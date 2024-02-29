@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container, Breadcrumbs, Link, Typography } from '@mui/material';
+import { Box, Container, Breadcrumbs, Link, Typography } from '@mui/material';
 
 function PageTitle({ title, companyName = 'liviileads' }) {
 	return (
-		<Container sx={{ px:0, py:'8px' }}>
+		<Box>
 			<Typography variant="h5" color="#212844" sx={{fontSize: '20px', textTransform: 'capitalize', fontWeight: 'bold', fontFamily: 'Lato, sans-serif',}}>
 				{title || ''}
 			</Typography>
@@ -13,7 +13,7 @@ function PageTitle({ title, companyName = 'liviileads' }) {
 				</Link>
 				<Typography color="textPrimary"  sx={{fontSize: '14px', textTransform: 'capitalize', fontWeight: 'light'}}>{title || ''}</Typography>
 			</Breadcrumbs>
-		</Container>
+		</Box>
 	);
 }
 
