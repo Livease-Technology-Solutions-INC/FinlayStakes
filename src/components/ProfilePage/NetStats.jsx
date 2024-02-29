@@ -12,7 +12,7 @@ function NetStats({ data1, data2, Header, subHeader1, subHeader2 }) {
             </Typography>
             <Box sx={{ width: "100%", display: "flex", flexDirection: "row", gap: "76px", justifyContent: "center", alignItems: "flex-start" }}>
                 <Box sx={{ width: "196px", height: "150px", flexShrink: 0 }} >
-                    <DonutChart StatsData={data1} />
+                    <DonutChart StatsData={data1} inRadius={30} />
                 </Box>
                 <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: "16px", justifyContent: "space-between", alignItems: "flex-start" }}>
                     <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="body1">
@@ -48,7 +48,7 @@ function NetStats({ data1, data2, Header, subHeader1, subHeader2 }) {
 
             <Box sx={{ width: "100%", display: "flex", flexDirection: "row", gap: "76px", justifyContent: "center", alignItems: "flex-start" }}>
                 <Box sx={{ width: "196px", height: "196px", flexShrink: 0 }} >
-                    <DonutChart StatsData={data2} />
+                    <DonutChart StatsData={data2}inRadius={30} />
                 </Box>
                 <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: "16px", justifyContent: "space-between", alignItems: "flex-start" }}>
                     <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="body1">

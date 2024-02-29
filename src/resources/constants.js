@@ -290,23 +290,40 @@ export const chartData = [
 ]
 export const tableData = [
   {
-    policyNo: 'Policy001',
-    childrenEducation: 'Education Benefit 1',
-    lifeInsurance: 'Life Insurance Benefit 1',
-    retirement: 'Retirement Benefit 1',
+    header: 'Policy No',
+    childrenEducation: '101L132V01',
+    lifeInsurance: '201L152S01',
+    retirement: '101B126L01',
   },
   {
-    policyNo: 'Policy002',
-    childrenEducation: 'Education Benefit 2',
-    lifeInsurance: 'Life Insurance Benefit 2',
-    retirement: 'Retirement Benefit 2',
+    header: 'Date of Commencement',
+    childrenEducation: '12/02/2024',
+    lifeInsurance: '12/02/2024',
+    retirement: '12/02/2024',
   },
   {
-    policyNo: 'Policy003',
-    childrenEducation: 'Education Benefit 3',
-    lifeInsurance: 'Life Insurance Benefit 3',
-    retirement: 'Retirement Benefit 3',
+    header: 'Annual Premium',
+    childrenEducation: 'AED10,000',
+    lifeInsurance: 'AED15,000',
+    retirement: 'AED7,000',
   },
-  // Add more data as needed
+  {
+    header: 'Term',
+    childrenEducation: '10 Years',
+    lifeInsurance: '20 Years',
+    retirement: '15 Years',
+  },
+  {
+    header: 'Date of Maturity',
+    childrenEducation: '12/02/2034',
+    lifeInsurance: '12/02/2044',
+    retirement: '12/02/2039',
+  },
+  {
+    header: 'Benefits',
+    childrenEducation: 'Lorem ipsum dolor sit amet',
+    lifeInsurance: 'Lorem ipsum dolor sit amet',
+    retirement: 'Lorem ipsum dolor sit amet',
+  },
 ];
 

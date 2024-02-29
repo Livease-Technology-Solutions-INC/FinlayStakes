@@ -1,9 +1,10 @@
 import React from 'react'
 import HeaderCard from '../components/ProfilePage/HeaderCard'
-import { ProfilePageCardData,chartData, IncomeStats, ExpensesStats, AssetsStats,LiabilitiesStats, Goals } from '../resources/constants'
+import { ProfilePageCardData,chartData, IncomeStats, ExpensesStats, AssetsStats,LiabilitiesStats, Goals, tableData } from '../resources/constants'
 import NetStats from '../components/ProfilePage/NetStats'
 import GoalCards from '../components/ProfilePage/Goals'
 import Card2 from '../components/ProfilePage/Provisions'
+import PolicyTable from "../components/ProfilePage/Policies"
 
 import { Box } from '@mui/material'
 
@@ -18,6 +19,8 @@ function ProfilePage() {
             <Card2 data={chartData}  header="EXISTING PROVISIONS" stat="AED24,000" status="increase"  percentage="5.5%"/>
             <Card2 data={chartData}  header="EXISTING PROVISIONS" stat="AED24,000" status="increase"  percentage="5.5%"/>
             </Box>
+            <PolicyTable data={tableData}/>
+
         </Box>
     )
 }

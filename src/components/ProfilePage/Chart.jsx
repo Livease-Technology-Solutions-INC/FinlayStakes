@@ -15,12 +15,12 @@ const DonutChart = ({StatsData , inRadius, outRadius}) => {
         data={transformedData}
         cx="40%"
         cy="27%"
-        innerRadius={{inRadius}?(inRadius):30}
-        outerRadius={{outRadius}?(outRadius):27}
+        innerRadius={{inRadius}? inRadius:30}
+        outerRadius={{outRadius}?outRadius:27}
         startAngle={90}
         endAngle={450}
-        paddingAngle={9}
         dataKey="value"
+
       >
         {transformedData.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={entry.color} />
