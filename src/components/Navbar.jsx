@@ -9,7 +9,7 @@ import theme from '../assets/moon-solid 1.svg';
 import { Box, Button, InputBase } from '@mui/material';
 import userIcon from '../assets/Ellipse 5.svg';
 import flag from '../assets/Ellipse 6.svg';
-import SearchIcon from '@mui/icons-material/Search';
+import Search from "../assets/Search Icon.svg"
 
 function Navbar() {
   const [searchValue, setSearchValue] = useState('');
@@ -23,47 +23,28 @@ function Navbar() {
   };
 
   return (
-    <AppBar className='navbar' position="static" sx={{ backgroundColor: "#fff", color: "black", flex: 1, zIndex: 100 }}>
+    <AppBar className='navbar' position="static" sx={{ backgroundColor: "#fff", color: "black", flex: 1, zIndex: 100,  paddingLeft:"32px", paddingRight:"24px", paddingY:"20px" }}>
       <Toolbar className='navbar-container' sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Box sx={{ display: "flex", gap: "100px", alignItems: "center" }}>
           <Box sx={{ display: "flex", gap: "32px", alignItems: "center" }} >
             <img src={Logo} alt="logo" />
             <img src={barIcon} alt="icon" />
           </Box>
-          <Box sx={{ flexGrow: 1, display: 'flex' }} >
-            {/* <InputBase
+        <Box sx={{ display: "flex", gap: "24px", alignItems: "center", justifyContent: "center", flexGrow: 0, cursor: "pointer", backgroundColor:"#F2F1F9", padding:"10px",borderRadius:"30px"}}>
+        <Box sx={{ flexGrow: 1, display: 'flex' }} >
+             <InputBase
               placeholder="Search"
+              startAdornment={<img src={Search} alt="searchIcon" style={{marginRight:"8px"}} />} // Adjust marginRight for spacing
               sx={{
                 color: 'black',
-                backgroundColor: "#F2F1F9",
-                borderTopLeftRadius: '20px',
-                borderBottomLeftRadius: '20px',
-                paddingLeft: 3,
+                backgroundColor: "#Ffff",
+                borderRadius: '20px',
+                paddingLeft: 2,
                 flexShrink: 0,
-                minWidth: 236,
+                minWidth: 226,
               }}
               onChange={handleSearchChange}
-            /> */}
-            {/* <Button
-              className='search-button'
-              variant="contained"
-              color="primary"
-              sx={{
-                width: "10px",
-                borderBottomRightRadius: '20px',
-                borderTopRightRadius: '20px',
-                borderBottomLeftRadius: "0px",
-                borderTopLeftRadius: "0px",
-                minWidth: "62px",
-                backgroundColor: "#6560F0",
-              }}
-              onClick={handleSearchSubmit}
-            >
-              <SearchIcon />
-            </Button> */}
+            /> 
           </Box>
-        </Box>
-        <Box sx={{ display: "flex", gap: "24px", alignItems: "center", justifyContent: "center", flexGrow: 0, cursor: "pointer" }}>
           <img src={flag} alt="flag" />
           <img src={bellIcon} alt="bellicon" />
           <img src={theme} alt="theme" />
