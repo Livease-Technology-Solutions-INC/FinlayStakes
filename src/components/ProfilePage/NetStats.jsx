@@ -18,9 +18,9 @@ function NetStats({ data1, data2, Header, subHeader1, subHeader2 }) {
                     <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="body1">
                         {subHeader1}
                     </Typography>
-                    <Box sx={{ width: "100%", display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+                    <Box sx={{ width: "100%", display: 'flex', flexWrap:"wrap", gap: '72px', rowGap: "24px"}}>
                         {data1.map((item, index) => (
-                            <Box key={index} sx={{ width: '100%', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                            <Box key={index} sx={{ width: '100%',  maxWidth:"200px", display: 'flex', flexDirection: 'column', position: 'relative' }}>
                                 <Typography sx={{ fontFamily: 'Inter', color: '#212844', fontWeight: "400px" }} variant="body1">
                                     <span style={{ position: 'absolute', left: "-8%", top: '25%', transform: 'translateY(-50%)', fontSize: '20px', color: item.color }}>•</span>
                                     {item.name}
@@ -54,9 +54,9 @@ function NetStats({ data1, data2, Header, subHeader1, subHeader2 }) {
                     <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="body1">
                         {subHeader2}
                     </Typography>
-                    <Box sx={{ width: "100%", display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+                    <Box sx={{ width: "100%", display: 'flex', flexWrap:"wrap", gap: '72px', rowGap: "24px"}}>
                         {data2.map((item, index) => (
-                            <Box key={index} sx={{ width: '100%', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                            <Box key={index} sx={{ width: '100%', maxWidth:"200px", display: 'flex', flexDirection: 'column', position: 'relative' }}>
                                 <Typography sx={{ fontFamily: 'Inter', color: '#212844', fontWeight: "400px" }} variant="body1">
                                     <span style={{ position: 'absolute', left: "-8%", top: '25%', transform: 'translateY(-50%)', fontSize: '20px', color: item.color }}>•</span>
                                     {item.name}

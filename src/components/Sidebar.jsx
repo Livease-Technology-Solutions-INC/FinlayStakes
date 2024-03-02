@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Drawer from '@mui/material/Drawer';
+import {Drawer, Box} from '@mui/material';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -23,20 +23,36 @@ const Sidebar = ({ sidebarData, updateActiveItem, activeItem }) => {
   };
 
   return (
-    <Drawer variant="permanent" anchor="left" sx={{ zIndex: 1 }} className='sidebar'>
+    <Drawer variant="permanent" anchor="left" 
+    InputProps={{
+      sx: {
+        '& .MuiDrawer-paper': {
+          position: 'static',
+        }
+      },
+    }}
+    sx={{ position:"fixed",zIndex:"100", top:"104px", height:"100%", overflowY: "auto", '& .MuiDrawer-paper': { position: 'static'},borderTop: "solid 1px rgba(147, 151, 187, 0.25)",  }}>
       <List
         className='sidebar-container'
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-      >
+        sx={{ 
+          padding: "0rem 1rem",
+          display: "flex",
+          flexDirection: "column",
+          gap: "8px",
+          marginTop:"24px",
+        }}
+        >
         {sidebarData.map((option, index) => (
           <ListItem
             key={index}
             className={`sidebar-item ${option === activeItem && !isHovered ? 'active' : ''}`}
             onClick={() => handleItemClick(option)}
+            sx={{cursor: 'pointer'}}
           >
             {option.icon && <ListItemIcon className='sidebar-item-image'>{option.icon}</ListItemIcon>}
-            <ListItemText primary={option.label} className='sidebar-item-text' />
+            <ListItemText primary={option.label} className='sidebar-item-text' sx={{color: "#9397BB"}} />
             {option.chevron && <ListItemIcon className='sidebar-item-image'><ChevronIcon /></ListItemIcon>}
           </ListItem>
         ))}

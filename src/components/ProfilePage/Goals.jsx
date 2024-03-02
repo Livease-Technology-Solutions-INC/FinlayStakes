@@ -9,9 +9,9 @@ const GoalCard = ({ goalData }) => {
     <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="body1">
                 GOALS
             </Typography>
-    <Box sx={{ width: "100%", display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '36px', borderRadius:"20px" }}>
+    <Box sx={{ width: "100%", display: 'flex', flexWrap:"wrap", rowGap:"24px",gap: '36px', borderRadius:"20px" }}>
     {goalData.map((goal, index) => (
-        <Card key={index} variant="outlined" sx={{border:"1px solid #DEDFEE",borderRadius:"20px"}} >
+        <Card key={index} variant="outlined" sx={{ width:"100%", maxWidth:"229px", border:"1px solid #DEDFEE",borderRadius:"20px"}} >
           <CardContent sx={{display:"flex", flexDirection:"column", gap:"16px"}}>
             <Typography variant="body2"  sx={{ fontWeight: "600", color: "#212844", fontFamily: "Inter" }}>
               {goal.header}
