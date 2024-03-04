@@ -23,7 +23,7 @@ function Navbar() {
   };
 
   return (
-    <AppBar className='navbar' position="static" sx={{ backgroundColor: "#fff", color: "black", flex: 1, zIndex: 100,  paddingLeft:"32px", paddingRight:"24px", paddingY:"20px" }}>
+    <AppBar  sx={{position:"fixed", width:"100%", backgroundColor: "#fff", color: "black",  paddingLeft:"8px", paddingY:"20px", boxShadow:"none", }}>
       <Toolbar className='navbar-container' sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box sx={{ display: "flex", gap: "32px", alignItems: "center" }} >
             <img src={Logo} alt="logo" />
@@ -33,7 +33,7 @@ function Navbar() {
         <Box sx={{ flexGrow: 1, display: 'flex' }} >
              <InputBase
               placeholder="Search"
-              startAdornment={<img src={Search} alt="searchIcon" style={{marginRight:"8px"}} />} // Adjust marginRight for spacing
+              startAdornment={<img src={Search} alt="searchIcon" style={{marginRight:"8px"}} />} 
               sx={{
                 color: 'black',
                 backgroundColor: "#Ffff",

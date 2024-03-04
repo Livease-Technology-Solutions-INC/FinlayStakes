@@ -321,9 +321,9 @@ export const tableData = [
   },
   {
     header: 'Benefits',
-    childrenEducation: 'Lorem ipsum dolor sit amet',
-    lifeInsurance: 'Lorem ipsum dolor sit amet',
-    retirement: 'Lorem ipsum dolor sit amet',
+    childrenEducation: 'Lorem ipsum',
+    lifeInsurance: 'Lorem ipsum',
+    retirement: 'Lorem ipsum',
   },
 ];
 

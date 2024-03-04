@@ -10,7 +10,7 @@ import chevronUp from "../../assets/system-uicons_chevron-up-double.svg"
 
 const HeaderCard = ({ HeaderCardData }) => {
     return (
-        <Box display="flex" gap="20px">
+        <Box display="flex" gap="20px" flexWrap="wrap">
             {HeaderCardData.map((item, index) => (
                 <Card key={index} sx={{ padding: "0px 8px" , borderRadius:"15px",  paddingTop:"8px", boxShadow:"none"}}>
                     <CardHeader
