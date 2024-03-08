@@ -1,8 +1,8 @@
 import React from 'react'
 import DonutChart from './Chart'
 import { Typography, Box, Divider } from '@mui/material';
-import chevronDown from "../../assets/system-uicons_chevron-up-double-red.svg";
-import chevronUp from "../../assets/system-uicons_chevron-up-double.svg"
+import chevronDown from "../../../assets/system-uicons_chevron-up-double-red.svg";
+import chevronUp from "../../../assets/system-uicons_chevron-up-double.svg"
 
 function NetStats({ data1, data2, Header, subHeader1, subHeader2 }) {
     return (

@@ -1,10 +1,10 @@
 import React from 'react'
 import DonutChart from './Chart'
 import { Typography, Box, Divider } from '@mui/material';
-import chevronDown from "../../assets/system-uicons_chevron-up-double-red.svg";
-import chevronUp from "../../assets/system-uicons_chevron-up-double.svg"
+// import chevronDown from "../../../assets/system-uicons_chevron-up-double-red.svg";
+// import chevronUp from "../../assets/system-uicons_chevron-up-double.svg"
 
-function Card2({ data, header, stat, status, percentage }) {
+function BoxCard({ data, header, stat, status, percentage }) {
     return (
         <Box sx={{ width:"100%", maxWidth:"550px", display: "flex", flexDirection: "column", backgroundColor: "#fff", padding: "24px", gap:"16px" }}>
             <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap:"16px" }}>
@@ -42,4 +42,4 @@ function Card2({ data, header, stat, status, percentage }) {
     )
 }
 
-export default Card2
+export default BoxCard

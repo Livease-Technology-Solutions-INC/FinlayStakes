@@ -5,8 +5,8 @@ import CardContent from '@mui/material/CardContent';
 import { Typography, Box } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import { Avatar } from '@mui/material';
-import chevronDown from "../../assets/system-uicons_chevron-up-double-red.svg";
-import chevronUp from "../../assets/system-uicons_chevron-up-double.svg"
+import chevronDown from "../../../assets/system-uicons_chevron-up-double-red.svg";
+import chevronUp from "../../../assets/system-uicons_chevron-up-double.svg"
 
 const HeaderCard = ({ HeaderCardData }) => {
     return (

@@ -1,27 +1,41 @@
-import React from 'react'
-import HeaderCard from '../components/ProfilePage/HeaderCard'
-import { ProfilePageCardData,chartData, IncomeStats, ExpensesStats, AssetsStats,LiabilitiesStats, Goals, tableData } from '../resources/constants'
-import NetStats from '../components/ProfilePage/NetStats'
-import GoalCards from '../components/ProfilePage/Goals'
-import Card2 from '../components/ProfilePage/GraphCard'
-import PolicyTable from "../components/ProfilePage/Policies"
-
+import React, { useState } from 'react';
 import { Box } from '@mui/material'
+import ExpensesDetail from '../components/ProfilePage/ExpensesDetail';
+import FinancialPlanning from '../components/ProfilePage/FinancialPlanning';
+import Goal from '../components/ProfilePage/Goal';
+import IncomeDetail from '../components/ProfilePage/IncomeDetail';
+import LiabilityDetail from '../components/ProfilePage/LiabilityDetail';
+import PersonalDetail from '../components/ProfilePage/PersonalDetail';
+import ExistingPolicy from '../components/ProfilePage/ExistingPolicy';
+import ExistingProvisions from '../components/ProfilePage/ExistingProvisions';
+import ReviewPage from '../components/ProfilePage/ReviewPage'
+import ScheduleCall from '../components/ProfilePage/ScheduleCall';
+import AssetDetails from '../components/ProfilePage/AssetDetails';
 
 function ProfilePage() {
+    const [activeStep, setActiveStep] = useState(0);
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+  const handlePrev = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
     return (
-        <Box sx={{ position:"static" ,width:"100%", display:"flex", flexDirection:"column", gap:"24px", justifyContent:"center", alignItems:"flex-start"}}>
-            <HeaderCard  HeaderCardData={ProfilePageCardData}/>
-            <NetStats data1={IncomeStats} data2={ExpensesStats} Header={"NET INCOME"} subHeader1={"Income"} subHeader2={"Expenses"}/>
-            <NetStats data1={AssetsStats} data2={LiabilitiesStats} Header={"NET WORTH"} subHeader1={"Assets"} subHeader2={"Liabilities"}/>
-            <GoalCards goalData={Goals}/>
-            <Box sx={{ width:"100%", display:"flex", flexWrap:"wrap",rowGap:"20px", gap:"20px", justifyContent:"flex-start", alignItems:"flex-start"}}>
-            <Card2 data={chartData}  header="EXISTING PROVISIONS" stat="AED24,000" status="increase"  percentage="5.5%"/>
-            <Card2 data={chartData}  header="EXISTING PROVISIONS" stat="AED24,000" status="increase"  percentage="5.5%"/>
-            </Box>
-            <PolicyTable data={tableData}/>
-
-        </Box>
+        <>
+         <Box display="flex" width="100%" padding="0">
+            {activeStep === 0 && <PersonalDetail onNext={handleNext} onPrev={handlePrev} />}
+            {activeStep === 1 && <IncomeDetail onNext={handleNext} onPrev={handlePrev} />}
+            {activeStep === 2 && <ExpensesDetail onNext={handleNext} onPrev={handlePrev}/>}
+            {activeStep === 3 && <AssetDetails onNext={handleNext} onPrev={handlePrev} />}
+            {activeStep === 4 && <LiabilityDetail onNext={handleNext} onPrev={handlePrev} />}
+            {activeStep === 5 && <Goal onNext={handleNext} onPrev={handlePrev} />}
+            {activeStep === 6 && <ExistingProvisions onNext={handleNext} onPrev={handlePrev} />}
+            {activeStep === 7 && <FinancialPlanning onNext={handleNext} onPrev={handlePrev} />}
+            {activeStep === 8 && <ExistingPolicy onNext={handleNext} onPrev={handlePrev} />}
+            {activeStep === 9 && <ScheduleCall onNext={handleNext} onPrev={handlePrev} />}           
+            {activeStep === 10 && <ReviewPage onNext={handleNext} onPrev={handlePrev} />}           
+             </Box>
+        </>
     )
 }
 

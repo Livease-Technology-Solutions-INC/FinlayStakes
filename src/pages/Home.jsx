@@ -20,11 +20,10 @@ function Home() {
           <Sidebar
             sidebarData={SidebarData}
             updateActiveItem={updateActiveItem}
-            activeItem={activeItem}
+            activeItem={activeItem} 
           />
-          
          <div className="main-container" style={{ flex:1,display: "flex", flexDirection: "column", marginTop: "104px", marginLeft:"291px", backgroundColor: "#F2F1F9", padding: "24px" }}>
-          <Pagetitle title={activeItem.label} companyName={'Finlay Stakes'} />
+          {/* <Pagetitle title={activeItem.label} companyName={'Finlay Stakes'} /> */}
           <Routes>
             <Route path="/" element={<ProfilePage />}></Route>
           </Routes>
