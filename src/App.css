@@ -29,3 +29,37 @@
 .sidebar-item.active .sidebar-item-text span {
   color: #250C77; 
 }
+.row-layout {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  text-align: center;
+  align-items: flex-start;
+}
+
+.column-layout {
+  padding: 56px 134px;
+  padding-left: 144px;
+}
+.otp-box .MuiInputBase-input,
+  .otp-box .MuiOutlinedInput-input,
+  .otp-box .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    font-size: 24px;
+  }
+
+@media (max-width: 1286px) {
+  .row-layout {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .column-layout{
+    padding: 50px;
+  }
+  .otp-box .MuiInputBase-input,
+  .otp-box .MuiOutlinedInput-input,
+  .otp-box .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    font-size: 20px;
+  }
+}
