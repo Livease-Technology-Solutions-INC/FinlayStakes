@@ -5,12 +5,19 @@ import NetStats from '../ProfilePage/reviewPage/NetStats'
 import GoalCards from '../ProfilePage/reviewPage/Goals'
 import BoxCard from './reviewPage/BoxCard'
 import PolicyTable from "../ProfilePage/reviewPage/Policies"
-import { Box } from '@mui/material'
-import { Button } from '@mui/material'
+import nextChevron from "../../assets/carbon_next-outline.svg"
+import PageTitle from '../Pagetitle'
+import { Box, Typography, Button } from '@mui/material'
 
-function ReviewPage({onNext, onPrev}) {
+function ReviewPage({onNext}) {
+    const ScheduleCall=()=>{
+        onNext()  ;  
+    }
     return (
         <Box sx={{ position:"static" ,width:"100%", display:"flex", flexDirection:"column", gap:"24px", justifyContent:"center", alignItems:"flex-start"}}>
+            <Box sx={{}}>
+            <PageTitle header={"Personal Financial Review"} title={"Profile page"} />
+            </Box>
             <HeaderCard  HeaderCardData={ProfilePageCardData}/>
             <NetStats data1={IncomeStats} data2={ExpensesStats} Header={"NET INCOME"} subHeader1={"Income"} subHeader2={"Expenses"}/>
             <NetStats data1={AssetsStats} data2={LiabilitiesStats} Header={"NET WORTH"} subHeader1={"Assets"} subHeader2={"Liabilities"}/>
@@ -20,6 +27,14 @@ function ReviewPage({onNext, onPrev}) {
             <BoxCard data={chartData}  header="EXISTING PROVISIONS" stat="AED24,000" status="increase"  percentage="5.5%"/>
             </Box>
             <PolicyTable data={tableData}/>
+            <Box alignSelf={'flex-end'}>
+        <Button sx={{ backgroundColor: "#250C77", color: "#fff", padding: "10px 0px", paddingLeft:"24px", paddingRight:"6px", borderRadius: "40px", gap: "16px", '&:hover': { backgroundColor: "#250C94" } }} variant="contained" onClick={ScheduleCall} style={{ marginTop: '16px' }}>
+          <Typography variant="body1" sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}>Request for Free Analysis and Consultation</Typography>
+          <div style={{backgroundColor:"#fff", width:"32px", height:"32px", borderRadius:"50%", position:"relative", display: "flex", justifyContent: "center", alignItems: "center"}}>
+          <img src={nextChevron} style={{filter: "invert(1) saturate(0)", zIndex:"100", position:"absolute"}}></img>
+          </div>
+        </Button>
+      </Box>
         </Box>
     )
 }

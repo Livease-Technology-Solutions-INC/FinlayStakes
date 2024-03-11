@@ -58,7 +58,7 @@ const Step1 = ({ onNext }) => {
         setPasswordVisible(!passwordVisible);
     };
     const togglereEnterPasswordVisibility = () => {
-        setReEnterPasswordVisible(!passwordVisible);
+        setReEnterPasswordVisible(!reEnterPasswordVisible);
     };
 
     return (
@@ -87,7 +87,7 @@ const Step1 = ({ onNext }) => {
                             {snackbarMessage}
                         </Alert>
                     </Snackbar>
-                    <Typography style={{ fontFamily: 'Inter, sans-serif', fontWeight: "bold", color: "#212844" }} variant="h5">
+                    <Typography style={{ fontFamily: 'Inter, sans-serif', fontWeight: "700", color: "#250C77" }} variant="h5">
                         Enter your details
                     </Typography>
                     <Typography variant="body2" style={{ color: "#9397BB", fontFamily: 'Inter, sans-serif', fontWeight: "Regular", marginBottom:"32px" }}>
@@ -102,6 +102,7 @@ const Step1 = ({ onNext }) => {
                         type="email"
                         onChange={(value) => handleInputEmail(value)}
                         required
+                        maxWidth= "690px"
                     />
                     <InputField
                         label={"Password"}
@@ -111,6 +112,7 @@ const Step1 = ({ onNext }) => {
                         type={passwordVisible ? "text" : "password"}
                         onChange={(value) => handleInputPassword(value)}
                         required
+                        maxWidth= "690px"
                     />
                     <InputField
                     label={"Re-enter Password"}
@@ -120,6 +122,7 @@ const Step1 = ({ onNext }) => {
                     type={reEnterPasswordVisible ? "text" : "password"}
                     onChange={(value) => handleReEnterPassword(value)}
                     required
+                    maxWidth="690px"
                 />
                 </Box>
                 
@@ -128,7 +131,7 @@ const Step1 = ({ onNext }) => {
                     variant="contained"
                     onClick={handleContinue}
                 >
-                    <Typography variant="body1" style={{ fontFamily: 'Inter, sans-serif' }}>Continue</Typography>
+                    <Typography variant="body1" style={{ fontFamily: 'Inter, sans-serif', fontWeight:"600", fontSize:"16px", textTransform:"none"}}>Get OTP</Typography>
                 </Button>
             </Box>
         </Box>

@@ -12,55 +12,48 @@ const LiabilityDetail = ({ onNext, onPrev }) => {
   const [autoLoans, setAutoLoans] = useState('');
   const [handLoans, setHandLoans] = useState('');
   const [totalLiabilities, setTotalLiabilities] = useState('');
-  
+
   return (
     <Box width="100%" display={'flex'} flexDirection={"column"} gap={"32px"} paddingDown={"24px"} >
       <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="h5">Liability Details</Typography>
-      <Box width={"100%"} display={'flex'} flexDirection={'column'} gap={"24px"}>
-        <Box display={'flex'} flexDirection={'row'} gap="92px" >
-          <InputField
-            label={"Bank Loans"}
-            placeholder={"Bank Loans"}
-            value={bankLoans}
-            onChange={(bankLoans) => setBankLoans(bankLoans)}
-          />
-          <InputField
-            label={"Credit Card Outstanding"}
-            placeholder={"Credit Card Outstanding"}
-            value={creditCard}
-            onChange={(creditCard) => setCreditCard(creditCard)}
-          />
+        <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
+            <InputField
+              label={"Bank Loans"}
+              placeholder={"Bank Loans"}
+              value={bankLoans}
+              onChange={(bankLoans) => setBankLoans(bankLoans)}
+            />
+            <InputField
+              label={"Credit Card Outstanding"}
+              placeholder={"Credit Card Outstanding"}
+              value={creditCard}
+              onChange={(creditCard) => setCreditCard(creditCard)}
+            />
+            <InputField
+              label={"Mortgages"}
+              placeholder={"Mortgages"}
+              value={mortgages}
+              onChange={(mortgages) => setMortgages(mortgages)}
+            />
+            <InputField
+              label={"Auto Loans"}
+              placeholder={"Auto Loans"}
+              value={autoLoans}
+              onChange={(autoLoans) => setAutoLoans(autoLoans)}
+            />
+            <InputField
+              label={"Hand Loans"}
+              placeholder={"Hand Loans"}
+              value={handLoans}
+              onChange={(handLoans) => setHandLoans(handLoans)}
+            />
+            <InputField
+              label={"Total Liabilities"}
+              placeholder={"Total Liabilities"}
+              value={totalLiabilities}
+              onChange={(totalLiabilities) => setTotalLiabilities(totalLiabilities)}
+            />
         </Box>
-        <Box display={'flex'} flexDirection={'row'} gap="92px" >
-          <InputField
-            label={"Mortgages"}
-            placeholder={"Mortgages"}
-            value={mortgages}
-            onChange={(mortgages) => setMortgages(mortgages)}
-          />
-          <InputField
-            label={"Auto Loans"}
-            placeholder={"Auto Loans"}
-            value={autoLoans}
-            onChange={(autoLoans) => setAutoLoans(autoLoans)}
-          />
-        </Box>
-
-        <Box display={'flex'} flexDirection={'row'} gap="92px" >
-          <InputField
-            label={"Hand Loans"}
-            placeholder={"Hand Loans"}
-            value={handLoans}
-            onChange={(handLoans) => setHandLoans(handLoans)}
-          />
-          <InputField
-            label={"Total Liabilities"}
-            placeholder={"Total Liabilities"}
-            value={totalLiabilities}
-            onChange={(totalLiabilities) => setTotalLiabilities(totalLiabilities)}
-          />
-        </Box>
-      </Box>
       <Box marginTop={"110px"} display={'flex'} flexDirection={'row'} gap="16px" alignSelf={'flex-end'}>
         <Button sx={{ color: "#250C77", padding: "10px 43px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#fff" } }} onClick={onPrev} style={{ marginTop: '16px' }}>
           <img src={backChevron}></img>

@@ -12,12 +12,12 @@ const AssetsDetail = ({ onNext, onPrev }) => {
   const [businessAssets, setBusinessAssets] = useState('');
   const [others, setOthers] = useState('');
   const [totalAssets, setTotalAssets] = useState('');
-  
+
   return (
     <Box width="100%" display={'flex'} flexDirection={"column"} gap={"32px"} paddingDown={"24px"} >
       <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="h5">Asset Details</Typography>
       <Box width={"100%"} display={'flex'} flexDirection={'column'} gap={"24px"}>
-        <Box display={'flex'} flexDirection={'row'} gap="92px" >
+        <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
           <InputField
             label={"Cash in Hand & Bank"}
             placeholder={"Cash in Hand & Bank"}
@@ -30,8 +30,6 @@ const AssetsDetail = ({ onNext, onPrev }) => {
             value={propertyValue}
             onChange={(propertyValue) => setPropertyValue(propertyValue)}
           />
-        </Box>
-        <Box display={'flex'} flexDirection={'row'} gap="92px" >
           <InputField
             label={"Shares / Equities"}
             placeholder={"Shares / Equities"}
@@ -44,9 +42,6 @@ const AssetsDetail = ({ onNext, onPrev }) => {
             value={businessAssets}
             onChange={(businessAssets) => setBusinessAssets(businessAssets)}
           />
-        </Box>
-
-        <Box display={'flex'} flexDirection={'row'} gap="92px" >
           <InputField
             label={"Others"}
             placeholder={"Others"}

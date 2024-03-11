@@ -17,9 +17,8 @@ const ExpensesDetail=({ onNext, onPrev })=> {
     <Box width="100%" display={'flex'} flexDirection={"column"} gap={"32px"} >
       <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="h5">Expense Details</Typography>
       <Box width={"100%"} display={'flex'} flexDirection={'column'} gap={"24px"}>
-      <Typography sx={{ color:"#212844",fontWeight:"600px",fontSize:"20px",fontFamily: 'Inter, sans-serif' , lineHeight:"24.2px"}}>Fixed Expenses</Typography>
-        <Box display={'flex'} flexDirection={'row'} gap="92px"  alignItems={'flex-start'} justifyContent={'center'} >
-          <Box  width={"100%"}display={'flex'} flexDirection={'column'} gap="24px" >
+      <Typography sx={{ color:"#212844",fontWeight:"600",fontSize:"20px",fontFamily: 'Inter, sans-serif' , lineHeight:"24.2px"}}>Fixed Expenses</Typography>
+      <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
             <InputField
             label={"Utility Bill"}
             placeholder={"Utility Bill"}
@@ -32,7 +31,6 @@ const ExpensesDetail=({ onNext, onPrev })=> {
             value={rent}
             onChange={(rent) => setRent(rent)}
           /> 
-          </Box>  
           <InputField
             label={"Loan"}
             placeholder={"Loan"}
@@ -40,9 +38,8 @@ const ExpensesDetail=({ onNext, onPrev })=> {
             onChange={(loan) => setLoan(loan)}
           />
         </Box>
-        <Typography sx={{color:"#212844", fontWeight:"600px", fontSize:"20px",fontFamily: 'Inter, sans-serif' }}>Other Expenses</Typography>
-        <Box display={'flex'} flexDirection={'row'} gap="92px" alignItems={'flex-start'} justifyContent={'center'} >
-        <Box  width={"100%"}display={'flex'} flexDirection={'column'} gap="24px" >
+        <Typography sx={{color:"#212844", fontWeight:"600", fontSize:"20px",fontFamily: 'Inter, sans-serif' }}>Other Expenses</Typography>
+        <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
           <InputField
             label={"Shopping Expense"}
             placeholder={"Shopping Expense"}
@@ -61,7 +58,6 @@ const ExpensesDetail=({ onNext, onPrev })=> {
           value={totalExpenses}
           onChange={(totalExpenses) => setTotalExpenses(totalExpenses)}
         />
-        </Box>
           <InputField
             label={"Medical Expense"}
             placeholder={"Medical Expense"}

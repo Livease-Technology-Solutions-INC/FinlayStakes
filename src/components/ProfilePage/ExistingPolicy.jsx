@@ -36,8 +36,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
       <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="h5">Existing Policies</Typography>
       <Box width={"100%"} display={'flex'} flexDirection={'column'} gap={"24px"}>
         <Typography sx={{ color: "#212844", fontWeight: "600", fontSize: "20px", fontFamily: 'Inter, sans-serif', lineHeight: "24.2px" }}>Children’s Education</Typography>
-        <Box display={'flex'} flexDirection={'row'} gap="92px" alignItems={'flex-start'} justifyContent={'center'} >
-          <Box width={"100%"} display={'flex'} flexDirection={'column'} gap="24px" >
+        <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
           <InputField
               label={"Policy No"}
               placeholder={"Policy No"}
@@ -56,8 +55,6 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
               value={childrenEducation.dateofMaturity}
               onChange={(e) => setChildrenEducation(prevState => ({ ...prevState, dateofMaturity: e.target.value }))}
             />
-          </Box>
-          <Box width={"100%"} display={'flex'} flexDirection={'column'} gap="24px" >
             <InputField
               label={"Date of Commencement"}
               placeholder={"Date of Commencement"}
@@ -76,11 +73,9 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
               value={childrenEducation.benefits}
               onChange={(e) => setChildrenEducation(prevState => ({ ...prevState, benefits: e.target.value }))}
             />
-          </Box>
         </Box>
         <Typography sx={{ color: "#212844", fontWeight: "600", fontSize: "20px", fontFamily: 'Inter, sans-serif', lineHeight: "24.2px", marginTop:"8px" }}>Life Insurance</Typography>
-        <Box display={'flex'} flexDirection={'row'} gap="92px" alignItems={'flex-start'} justifyContent={'center'} >
-          <Box width={"100%"} display={'flex'} flexDirection={'column'} gap="24px" >
+        <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
             <InputField
               label={"Policy No"}
               placeholder={"Policy No"}
@@ -99,8 +94,6 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
               value={lifeInsurance.dateofMaturity}
               onChange={(e) => setLifeInsurance(prevState => ({ ...prevState, dateofMaturity: e.target.value }))}
             />
-          </Box>
-          <Box width={"100%"} display={'flex'} flexDirection={'column'} gap="24px" >
             <InputField
               label={"Date of Commencement"}
               placeholder={"Date of Commencement"}
@@ -119,11 +112,9 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
               value={lifeInsurance.benefits}
               onChange={(e) => setLifeInsurance(prevState => ({ ...prevState, benefits: e.target.value }))}
             />
-          </Box>
         </Box>
-
         <Typography sx={{ color: "#212844", fontWeight: "600", fontSize: "20px", fontFamily: 'Inter, sans-serif', lineHeight: "24.2px", marginTop:"8px"  }}>Retirement</Typography>
-        <Box display={'flex'} flexDirection={'row'} gap="92px" alignItems={'flex-start'} justifyContent={'center'} >
+        <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
         <Box width={"100%"} display={'flex'} flexDirection={'column'} gap="24px" >
         <InputField
               label={"Policy No"}

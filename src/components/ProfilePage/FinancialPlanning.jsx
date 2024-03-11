@@ -15,8 +15,7 @@ const FinancialPlanningShortfall = ({ onNext, onPrev }) => {
   return (
     <Box width="100%" display={'flex'} flexDirection={"column"} gap={"32px"} paddingDown={"24px"} >
       <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="h5">Financial Planning Shortfall</Typography>
-      <Box display={'flex'} flexDirection={'row'} alignItems={'flex-start'} justifyContent={"center"} gap="92px" >
-        <Box width={"100%"} display={'flex'} flexDirection={'column'} gap="24px" >
+      <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
           <InputField
             label={"Children’s Education"}
             placeholder={"Children’s Education"}
@@ -35,8 +34,6 @@ const FinancialPlanningShortfall = ({ onNext, onPrev }) => {
             value={disability}
             onChange={(disability) => setDisability(disability)}
           />
-        </Box>
-        <Box width={"100%"} display={'flex'} flexDirection={'column'} gap="24px" >
           <InputField
             label={"Retirement"}
             placeholder={"Retirement"}
@@ -49,7 +46,6 @@ const FinancialPlanningShortfall = ({ onNext, onPrev }) => {
             value={criticalIllness}
             onChange={(criticalIllness) => setCriticalIllness(criticalIllness)}
           />
-        </Box>
       </Box>
       <Box marginTop={"110px"} display={'flex'} flexDirection={'row'} gap="16px" alignSelf={'flex-end'}>
         <Button sx={{ color: "#250C77", padding: "10px 43px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#fff" } }} onClick={onPrev} style={{ marginTop: '16px' }}>

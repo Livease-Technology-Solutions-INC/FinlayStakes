@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {Drawer, Box} from '@mui/material';
+import {Drawer, Box, Button} from '@mui/material';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ChevronIcon from '@mui/icons-material/ExpandMore';
+import chevron from "../../src/assets/solar_logout-outline.svg"
 import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ sidebarData, updateActiveItem, activeItem }) => {
@@ -57,6 +58,9 @@ const Sidebar = ({ sidebarData, updateActiveItem, activeItem }) => {
           </ListItem>
         ))}
       </List>
+      <Button sx={{position:"absolute", padding:"0px 24px", bottom:"140px", color:"#9397BB" , textTransform:"none", fontSize:"16px"}}>
+        <img src={chevron} style={{marginRight:"16px"}}></img>
+        Logout</Button>
     </Drawer>
   );
 };
