@@ -8,13 +8,13 @@ export const personalDetailSlice = createSlice({
     DOB: '',
     age: '',
     maritalStatus: '',
+    phoneNumber: '',
     email: '',
     residentCountry: '',
     nationality: '',
     residentialAddress: '',
     smoker: '',
     medicalHistory: '',
-    phoneNumber: '',
   },
   reducers: {
     updatePersonalDetail: (state, action) => {

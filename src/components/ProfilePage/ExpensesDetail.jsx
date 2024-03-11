@@ -1,68 +1,70 @@
-import { React, useState } from 'react';
+// ExpensesDetail.js
+import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import InputField from '../Input';
-import nextChevron from "../../assets/carbon_next-outline.svg"
-import backChevron from "../../assets/carbon_back-outline.svg"
+import nextChevron from "../../assets/carbon_next-outline.svg";
+import backChevron from "../../assets/carbon_back-outline.svg";
+import { useSelector, useDispatch } from 'react-redux';
+import { updateExpensesDetail } from '../../state-management/reducer/expensesDetailSlice';
 
-const ExpensesDetail=({ onNext, onPrev })=> {
-  const [utilityBill, setUtilityBill] = useState('');
-  const [loan, setLoan] = useState('');
-  const [rent, setRent] = useState('');
-  const [shoppingExpense, setShoppingExpense] = useState('');
-  const [leisureExpense, setLeisureExpense] = useState('');
-  const [totalExpenses, setTotalExpenses] = useState('');
-  const [medicalExpense, setMedicalExpense] = useState('');
+const ExpensesDetail = ({ onNext, onPrev }) => {
+  const expensesDetail = useSelector((state) => state.expensesDetail);
+  const dispatch = useDispatch();
+
+  const handleChange = (field, value) => {
+    dispatch(updateExpensesDetail({ [field]: value }));
+  };
 
   return (
-    <Box width="100%" display={'flex'} flexDirection={"column"} gap={"32px"} >
+    <Box width="100%" display={'flex'} flexDirection={"column"} gap={"32px"}>
       <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="h5">Expense Details</Typography>
       <Box width={"100%"} display={'flex'} flexDirection={'column'} gap={"24px"}>
-      <Typography sx={{ color:"#212844",fontWeight:"600",fontSize:"20px",fontFamily: 'Inter, sans-serif' , lineHeight:"24.2px"}}>Fixed Expenses</Typography>
-      <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
-            <InputField
+        <Typography sx={{ color: "#212844", fontWeight: "600", fontSize: "20px", fontFamily: 'Inter, sans-serif', lineHeight: "24.2px" }}>Fixed Expenses</Typography>
+        <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"}>
+          <InputField
             label={"Utility Bill"}
             placeholder={"Utility Bill"}
-            value={utilityBill}
-            onChange={(utilityBill) => setUtilityBill(utilityBill)}
+            value={expensesDetail.utilityBill}
+            onChange={(utilityBill) => handleChange('utilityBill', utilityBill)}
           />
-           <InputField
+          <InputField
             label={"Rent"}
-            placeholder={"rent"}
-            value={rent}
-            onChange={(rent) => setRent(rent)}
-          /> 
+            placeholder={"Rent"}
+            value={expensesDetail.rent}
+            onChange={(rent) => handleChange('rent', rent)}
+          />
           <InputField
             label={"Loan"}
             placeholder={"Loan"}
-            value={loan}
-            onChange={(loan) => setLoan(loan)}
+            value={expensesDetail.loan}
+            onChange={(loan) => handleChange('loan', loan)}
           />
         </Box>
-        <Typography sx={{color:"#212844", fontWeight:"600", fontSize:"20px",fontFamily: 'Inter, sans-serif' }}>Other Expenses</Typography>
-        <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
+        <Typography sx={{ color: "#212844", fontWeight: "600", fontSize: "20px", fontFamily: 'Inter, sans-serif' }}>Other Expenses</Typography>
+        <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"}>
           <InputField
             label={"Shopping Expense"}
             placeholder={"Shopping Expense"}
-            value={shoppingExpense}
-            onChange={(shoppingExpense) => setShoppingExpense(shoppingExpense)}
+            value={expensesDetail.shoppingExpense}
+            onChange={(shoppingExpense) => handleChange('shoppingExpense', shoppingExpense)}
           />
           <InputField
-          label={"Leisure Expense"}
-          placeholder={"Leisure Expense"}
-          value={leisureExpense}
-          onChange={(leisureExpense) => setLeisureExpense(leisureExpense)}
-        />
-        <InputField
-          label={"Total Expenses"}
-          placeholder={"Total Expenses"}
-          value={totalExpenses}
-          onChange={(totalExpenses) => setTotalExpenses(totalExpenses)}
-        />
+            label={"Leisure Expense"}
+            placeholder={"Leisure Expense"}
+            value={expensesDetail.leisureExpense}
+            onChange={(leisureExpense) => handleChange('leisureExpense', leisureExpense)}
+          />
+          <InputField
+            label={"Total Expenses"}
+            placeholder={"Total Expenses"}
+            value={expensesDetail.totalExpenses}
+            onChange={(totalExpenses) => handleChange('totalExpenses', totalExpenses)}
+          />
           <InputField
             label={"Medical Expense"}
             placeholder={"Medical Expense"}
-            value={medicalExpense}
-            onChange={(medicalExpense) => setMedicalExpense(medicalExpense)}
+            value={expensesDetail.medicalExpense}
+            onChange={(medicalExpense) => handleChange('medicalExpense', medicalExpense)}
           />
         </Box>
       </Box>
@@ -71,7 +73,7 @@ const ExpensesDetail=({ onNext, onPrev })=> {
           <img src={backChevron}></img>
           <Typography variant="body1" sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}>Back</Typography>
         </Button>
-        <Button sx={{backgroundColor: "#250C77", color: "#fff", padding: "10px 24px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#250C94" } }} variant="contained" onClick={onNext} style={{ marginTop: '16px' }}>
+        <Button sx={{ backgroundColor: "#250C77", color: "#fff", padding: "10px 24px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#250C94" } }} variant="contained" onClick={onNext} style={{ marginTop: '16px' }}>
           <Typography variant="body1" sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}>Next Step</Typography>
           <img src={nextChevron}></img>
         </Button>
@@ -80,4 +82,4 @@ const ExpensesDetail=({ onNext, onPrev })=> {
   )
 }
 
-export default ExpensesDetail
+export default ExpensesDetail;

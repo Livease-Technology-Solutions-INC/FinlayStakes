@@ -1,4 +1,5 @@
-import { React, useState } from 'react';
+// PersonalDetail.js
+import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import { Radio, RadioGroup, FormGroup, FormControl, FormControlLabel, FormLabel, InputLabel, Select, MenuItem } from '@mui/material';
 import InputField from '../Input';
@@ -6,21 +7,16 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import nextChevron from "../../assets/carbon_next-outline.svg"
 import backChevron from "../../assets/carbon_back-outline.svg"
-
+import { useSelector, useDispatch } from 'react-redux';
+import { updatePersonalDetail } from '../../state-management/reducer/personalDetailSlice';
 
 const PersonalDetail = ({ onNext, onPrev }) => {
-  const [name, setName] = useState('');
-  const [DOB, setDOB] = useState('');
-  const [age, setAge] = useState('');
-  const [maritalStatus, setMaritalStatus] = useState('');
-  const [email, setEmail] = useState('');
-  const [residentCountry, setResidentCountry] = useState('');
-  const [nationality, setNationality] = useState('');
-  const [residentialAddress, setResidentialAddress] = useState('');
-  const [smoker, setSmoker] = useState("");
-  const [medicalHistory, setMedicalHistory] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const personalDetail = useSelector((state) => state.personalDetail);
+  const dispatch = useDispatch();
 
+  const handleChange = (field, value) => {
+    dispatch(updatePersonalDetail({ [field]: value }));
+  };
 
   return (
     <Box width="100%" display={'flex'} flexDirection={"column"} gap={"32px"} >
@@ -29,8 +25,8 @@ const PersonalDetail = ({ onNext, onPrev }) => {
         <InputField
           label={"Name"}
           placeholder={"Name"}
-          value={name}
-          onChange={(name) => setName(name)}
+          value={personalDetail.name}
+          onChange={(name) => handleChange('name', name)}
         />
         <InputField
           margin="dense"
@@ -41,15 +37,15 @@ const PersonalDetail = ({ onNext, onPrev }) => {
           }}
           label={"Date of Birth"}
           placeholder={"Date of Birth"}
-          value={DOB}
-          onChange={(DOB) => setDOB(DOB)}
+          value={personalDetail.DOB}
+          onChange={(DOB) => handleChange('DOB', DOB)}
         />
 
         <InputField
           label={"Age"}
           placeholder={"Age"}
-          value={age}
-          onChange={(age) => setAge(age)}
+          value={personalDetail.age}
+          onChange={(age) => handleChange('age', age)}
         />
         <InputField
           dropdown={true}
@@ -61,21 +57,20 @@ const PersonalDetail = ({ onNext, onPrev }) => {
           ]}
           label={"Marital Status"}
           placeholder={"Marital Status"}
-          value={maritalStatus}
-          onChange={(maritalStatus) => setMaritalStatus(maritalStatus)}
+          value={personalDetail.maritalStatus}
+          onChange={(maritalStatus) => handleChange('maritalStatus', maritalStatus)}
         />
         <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} >
           <Box maxWidth="435px" width={"100%"} display={'flex'} flexDirection={'column'} gap="24px" >
-
-            <Typography sx={{ color: "#212844", fontFamily: "Inter", fontWeight: "600", lineHeight: "19.36px", fontSize: "16px" }}>
+           <Typography sx={{ color: "#212844", fontFamily: "Inter", fontWeight: "600", lineHeight: "19.36px", fontSize: "16px" }}>
               Phone Number
             </Typography>
             <PhoneInput
               country="us"
               label="Contact Number"
               placeholder='Contact Number'
-              value={phoneNumber}
-              onChange={(phone) => setPhoneNumber(phone)}
+              value={personalDetail.phoneNumber}
+              onChange={(phone) => handleChange('phoneNumber', phone)}
               inputClass="phone-input"
               dropdownStyle={{ width: '200px' }}
               buttonStyle={{ backgroundColor: 'transparent', border: 'none', marginRight: "200px" }}
@@ -114,27 +109,26 @@ const PersonalDetail = ({ onNext, onPrev }) => {
           <InputField
             label={"Email ID"}
             placeholder={"Email ID"}
-            value={email}
-            onChange={(email) => setEmail(email)}
+            value={personalDetail.email}
+            onChange={(email) => handleChange('email', email)}
           />
-        </Box>
         <InputField
           label={"Country of Residence"}
           placeholder={"Country of Residence"}
-          value={residentCountry}
-          onChange={(residentCountry) => setResidentCountry(residentCountry)}
+          value={personalDetail.residentCountry}
+          onChange={(residentCountry) => handleChange("residentCountry",residentCountry)}
         />
         <InputField
           label={"Nationality & Country of Birth"}
           placeholder={"Nationality & Country of Birth"}
-          value={nationality}
-          onChange={(nationality) => setNationality(nationality)}
+          value={personalDetail.nationality}
+          onChange={(nationality) => handleChange('nationality',nationality)}
         />
         <InputField
           label={"Physical Residential Address"}
           placeholder={"Physical Residential Address"}
-          value={residentialAddress}
-          onChange={(residentialAddress) => setResidentialAddress(residentialAddress)}
+          value={personalDetail.residentialAddress}
+          onChange={(residentialAddress) => handleChange("residentialAddress",residentialAddress)}
         />
         <Box maxWidth="435px" width={"100%"} display={'flex'} flexDirection={'column'} gap="24px" >
           <FormControl component="fieldset" style={{ width: "100%", display: 'flex' }}>
@@ -143,7 +137,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
                 Smoker
               </Typography>
             </FormLabel>
-            <RadioGroup value={smoker} onChange={(event) => setSmoker(event.target.value)}>
+            <RadioGroup value={personalDetail.smoker} onChange={(event) => handleChange("smoker", event.target.value)}>
               <FormGroup row>
                 <FormControlLabel value="yes" sx={{ color: "#9397BB" }} control={<Radio sx={{ '& .MuiSvgIcon-root': { fontSize: '1.25rem', color: "#250C77" } }} />} label="Yes" />
                 <FormControlLabel value="no" sx={{ color: "#9397BB" }} control={<Radio sx={{ '& .MuiSvgIcon-root': { fontSize: '1.25rem', color: "#250C77" } }} />} label="No" />
@@ -156,9 +150,10 @@ const PersonalDetail = ({ onNext, onPrev }) => {
           placeholder={"Type here"}
           multiline={true}
           rows={"4.5"}
-          value={medicalHistory}
-          onChange={(medicalHistory) => setMedicalHistory(medicalHistory)}
+          value={personalDetail.medicalHistory}
+          onChange={(medicalHistory) => handleChange("medicalHistory",medicalHistory)}
         />
+      </Box>
       </Box>
       <Box display={'flex'} flexDirection={'row'} gap="16px" alignSelf={'flex-end'}>
         <Button sx={{ color: "#250C77", padding: "10px 43px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#fff" } }} onClick={onPrev} style={{ marginTop: '16px' }}>

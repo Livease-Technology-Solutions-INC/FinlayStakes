@@ -3,16 +3,17 @@ import { Box, Button, Typography } from '@mui/material';
 import InputField from '../Input';
 import nextChevron from "../../assets/carbon_next-outline.svg"
 import backChevron from "../../assets/carbon_back-outline.svg"
+import { useSelector, useDispatch } from 'react-redux';
+import { updateIncomeDetail } from '../../state-management/reducer/incomeDetailSlice';
 
+const IncomeDetail = ({ onNext, onPrev }) => {
+  const incomeDetail = useSelector((state) => state.incomeDetail);
+  const dispatch = useDispatch();
 
-const IncomeDetail=({ onNext, onPrev })=> {
-  const [Interest, setInterest] = useState('');
-  const [bankReturns, setBankReturns] = useState('');
-  const [propertyIncome, setPropertyIncome] = useState('');
-  const [salary, setSalary] = useState('');
-  const [bonus, setBonus] = useState('');
-  const [totalIncome, setTotalIncome] = useState('');
- 
+  const handleChange = (field, value) => {
+    dispatch(updateIncomeDetail({ [field]: value }));
+  };
+   
 
   return (
     <Box width="100%" display={'flex'} flexDirection={"column"} gap={"32px"} >
@@ -23,20 +24,20 @@ const IncomeDetail=({ onNext, onPrev })=> {
             <InputField
             label={"Interest"}
             placeholder={"Interest"}
-            value={Interest}
-            onChange={(Interest) => setInterest(Interest)}
+            value={incomeDetail.Interest}
+            onChange={(Interest) => handleChange("Interest",Interest)}
           />
           <InputField
             label={"Income from Property"}
             placeholder={"Income from Property"}
-            value={propertyIncome}
-            onChange={(propertyIncome) => setPropertyIncome(propertyIncome)}
+            value={incomeDetail.propertyIncome}
+            onChange={(propertyIncome) => handleChange("propertyIncome",propertyIncome)}
           />
           <InputField
             label={"Bank Returns"}
             placeholder={"Bank Returns"}
-            value={bankReturns}
-            onChange={(bankReturns) => setBankReturns(bankReturns)}
+            value={incomeDetail.bankReturns}
+            onChange={(bankReturns) => handleChange("bankReturns",bankReturns)}
           />
         </Box>
         <Typography sx={{color:"#212844", fontWeight:"600", fontSize:"20px",fontFamily: 'Inter, sans-serif' }}>Non Saving Details</Typography>
@@ -44,20 +45,20 @@ const IncomeDetail=({ onNext, onPrev })=> {
           <InputField
             label={"Salary"}
             placeholder={"Salary"}
-            value={salary}
-            onChange={(salary) => setSalary(salary)}
+            value={incomeDetail.salary}
+            onChange={(salary) => handleChange("salary",salary)}
           />
           <InputField
           label={"Total Income"}
           placeholder={"Total Income"}
-          value={totalIncome}
-          onChange={(totalIncome) => setTotalIncome(totalIncome)}
+          value={incomeDetail.totalIncome}
+          onChange={(totalIncome) => handleChange("totalIncome",totalIncome)}
         />
           <InputField
             label={"Bonus"}
             placeholder={"Bonus"}
-            value={bonus}
-            onChange={(bonus) => setBonus(bonus)}
+            value={incomeDetail.bonus}
+            onChange={(bonus) => handleChange("bonus",bonus)}
           />
         </Box>
       </Box>
