@@ -11,7 +11,7 @@ function PageTitle({header, title, companyName = 'Finlay Stakes' }) {
 				<Link href="/" color="#6560F0"  sx={{fontSize: '14px', textTransform: 'capitalize', fontWeight: 'light', textDecoration: 'none'}}>
 					{companyName || ''}
 				</Link>
-				<Typography color="textPrimary"  sx={{fontSize: '14px', textTransform: 'capitalize', fontWeight: 'light'}}>{title || ''}</Typography>
+				<Typography color="#727677"  sx={{fontSize: '14px', textTransform: 'capitalize', fontWeight: 'light'}}>{title || ''}</Typography>
 			</Breadcrumbs>
 		</Box>
 	);

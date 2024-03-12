@@ -20,6 +20,9 @@ function ProfilePage() {
   const handlePrev = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+  const showScheduleCall=()=>{
+    setActiveStep(9);
+  }
     return (
         <>
          <Box display="flex" width="100%" padding="0">
@@ -31,9 +34,9 @@ function ProfilePage() {
             {activeStep === 5 && <Goal onNext={handleNext} onPrev={handlePrev} />}
             {activeStep === 6 && <ExistingProvisions onNext={handleNext} onPrev={handlePrev} />}
             {activeStep === 7 && <FinancialPlanning onNext={handleNext} onPrev={handlePrev} />}
-            {activeStep === 8 && <ExistingPolicy onNext={handleNext} onPrev={handlePrev} />}
-            {activeStep === 9 && <ScheduleCall onNext={handleNext} onPrev={handlePrev} />}           
-            {activeStep === 10 && <ReviewPage onNext={handleNext} onPrev={handlePrev} />}           
+            {activeStep === 8 && <ExistingPolicy onNext={handleNext} />}
+            {activeStep === 9 && <ScheduleCall onNext={handleNext} />}           
+            {activeStep === 10 && <ReviewPage onNext={showScheduleCall} />}           
              </Box>
         </>
     )
