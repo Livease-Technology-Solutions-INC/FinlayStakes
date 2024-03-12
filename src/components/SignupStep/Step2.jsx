@@ -77,7 +77,7 @@ const Step2 = () => {
                         </Box>
                         <Box display="flex" width="100%">
                             <Typography variant="body2" color="#9397BB" sx={{ fontFamily: 'Inter, sans-serif', fontWeight: "Regular" }} >
-                                Didn’t get a code? <span style={{ color: "#004EFD", fontWeight: "500" }}> Click to resend</span>
+                                Didn’t get a code? <span style={{ color: "#004EFD", fontWeight: "600" }}> Click to resend</span>
                             </Typography>
                         </Box>
                     </Box>

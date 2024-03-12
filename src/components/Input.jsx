@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Typography, Box, InputAdornment, TextField, MenuItem } from '@mui/material';
 
-const InputField = ({ value, leftIcon, rightIcon, placeholder, label, multiline, rows, dropdown, options, required, type ,onChange, ...rest }) => {
+const InputField = ({ value, leftIcon, rightIcon, placeholder, label, multiline, rows, dropdown, options, required, type ,onChange,maxWidth, ...rest }) => {
   const [error, setError] = useState("");
 
   const validateEmail = (value) => {
@@ -28,7 +28,7 @@ const InputField = ({ value, leftIcon, rightIcon, placeholder, label, multiline,
   const defaultValue = value || (dropdown ? options[0].value : '');
 
   return (
-    <Box sx={{ width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", gap: "16px" }}>
+    <Box sx={{ width: "100%",   maxWidth: maxWidth ? maxWidth : "435px" , display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", gap: "16px" }}>
       {label && (
         <Typography  sx={{ color: "#212844", fontFamily: "Inter", fontWeight: "600",lineHeight:"19.36px", fontSize:"16px" }}>
           {label}

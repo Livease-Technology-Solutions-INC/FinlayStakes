@@ -2,9 +2,13 @@
  .sidebar .sidebar-container .sidebar-item:hover {
   color: #250C77
 }
-
+.sidebar
 .sidebar .sidebar-container .sidebar-item.active {
+  /* position: relative;  */
+
   color: #250C77; 
+
+
 } 
 
 
@@ -19,15 +23,35 @@
 
 
 
-.sidebar-item:hover .sidebar-item-image img,
-.sidebar-item.active .sidebar-item-image img {
-  fill: #250C77
+.sidebar-item:hover .css-cveggr-MuiListItemIcon-root svg,
+.sidebar-item.active .css-cveggr-MuiListItemIcon-root svg  {
+  fill: #250C77;
+  /* filter: brightness(0) invert(0); */
+  color: #250C77;
 }
+.sidebar-item:hover .css-cveggr-MuiListItemIcon-root svg path,
+.sidebar-item.active .css-cveggr-MuiListItemIcon-root svg path {
+  fill: #250C77;
+}
+
+
 
 
 .sidebar-item:hover .sidebar-item-text span,
 .sidebar-item.active .sidebar-item-text span {
+  font-weight: 600;
   color: #250C77; 
+}
+.sidebar-item.active .sidebar-item-text span::after {
+  content: ""; 
+  position: absolute;
+  top: 0; 
+  right: 0;
+  margin-right: -15px;
+  border-radius: 25px; 
+  height: 36px; 
+  width: 4px; 
+  background-color: #250C77;
 }
 .row-layout {
   width: 100%;
