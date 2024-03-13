@@ -11,6 +11,7 @@ import ExistingProvisions from '../components/ProfilePage/ExistingProvisions';
 import ReviewPage from '../components/ProfilePage/ReviewPage'
 import ScheduleCall from '../components/ProfilePage/ScheduleCall';
 import AssetDetails from '../components/ProfilePage/AssetDetails';
+import ExportPage from '../components/ProfilePage/ExportPage';
 
 function ProfilePage() {
     const [activeStep, setActiveStep] = useState(0);
@@ -22,6 +23,9 @@ function ProfilePage() {
   };
   const showScheduleCall=()=>{
     setActiveStep(9);
+  }
+  const showExportPage=()=>{
+    setActiveStep(11);
   }
     return (
         <>
@@ -36,8 +40,9 @@ function ProfilePage() {
             {activeStep === 7 && <FinancialPlanning onNext={handleNext} onPrev={handlePrev} />}
             {activeStep === 8 && <ExistingPolicy onNext={handleNext} />}
             {activeStep === 9 && <ScheduleCall onNext={handleNext} />}           
-            {activeStep === 10 && <ReviewPage onNext={showScheduleCall} />}           
-             </Box>
+            {activeStep === 10 && <ReviewPage onNext={showScheduleCall} exportPage={showExportPage} />}   
+            {activeStep === 11 && <ExportPage onNext={showScheduleCall} />}      
+          </Box>
         </>
     )
 }

@@ -6,18 +6,28 @@ import GoalCards from '../ProfilePage/reviewPage/Goals'
 import BoxCard from './reviewPage/BoxCard'
 import PolicyTable from "../ProfilePage/reviewPage/Policies"
 import nextChevron from "../../assets/carbon_next-outline.svg"
+import exportIcon from "../../assets/export.svg"
 import PageTitle from '../Pagetitle'
 import { Box, Typography, Button } from '@mui/material'
 
-function ReviewPage({onNext}) {
+function ReviewPage({onNext, exportPage}) {
     const ScheduleCall=()=>{
         onNext()  ;  
     }
     return (
         <Box sx={{ position:"static" ,width:"100%", display:"flex", flexDirection:"column", gap:"24px", justifyContent:"center", alignItems:"flex-start"}}>
-            <Box sx={{}}>
-            <PageTitle header={"Personal Financial Review"} title={"Profile page"} />
-            </Box>
+            <Box sx={{ width:"100%",display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+              <Box>
+              <PageTitle header={"Personal Financial Review"} title={"Profile page"} />
+              </Box>
+              <Box>
+              <Button sx={{ display:"flex", color: "#9397BB", padding: "7px 16px", borderRadius: "8px", gap: "8px", backgroundColor: "#fff", '&:hover': { backgroundColor: "#fff" } }} onClick={exportPage} >
+            <Typography variant="body1" sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}>Export</Typography>
+            <img src={exportIcon} alt="exportIcon"/>
+          </Button>  
+              </Box>
+                     
+           </Box>
             <HeaderCard  HeaderCardData={ProfilePageCardData}/>
             <NetStats data1={IncomeStats} data2={ExpensesStats} Header={"NET INCOME"} subHeader1={"Income"} subHeader2={"Expenses"}/>
             <NetStats data1={AssetsStats} data2={LiabilitiesStats} Header={"NET WORTH"} subHeader1={"Assets"} subHeader2={"Liabilities"}/>
