@@ -8,6 +8,8 @@ import { validateEmail, validatePassword, validateNotEmpty } from '../resources/
 import { useNavigate } from "react-router-dom"
 import google from "../assets/flat-color-icons_google.svg"
 import facebook from "../assets/logos_facebook.svg"
+import AuthContext from '../context/AuthContext'
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 

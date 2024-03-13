@@ -106,7 +106,7 @@ const Step1 = ({ onNext }) => {
 								elevation={6}
 								variant="filled"
 								onClose={() => setSnackbarOpen(false)}
-								severity="error"
+		 			 			severity="error"
 							>
 								{snackbarMessage}
 							</Alert>
