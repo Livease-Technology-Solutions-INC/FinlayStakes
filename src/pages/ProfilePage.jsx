@@ -12,39 +12,78 @@ import ReviewPage from '../components/ProfilePage/ReviewPage'
 import ScheduleCall from '../components/ProfilePage/ScheduleCall';
 import AssetDetails from '../components/ProfilePage/AssetDetails';
 import ExportPage from '../components/ProfilePage/ExportPage';
-
+import Progressbar from '../components/ProfilePage/Progressbar';
 function ProfilePage() {
-    const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
   const handlePrev = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  const showScheduleCall=()=>{
+  const showScheduleCall = () => {
     setActiveStep(9);
   }
-  const showExportPage=()=>{
+  const showExportPage = () => {
     setActiveStep(11);
   }
-    return (
-        <>
-         <Box display="flex" width="100%" padding="0">
-            {activeStep === 0 && <PersonalDetail onNext={handleNext} onPrev={handlePrev} />}
-            {activeStep === 1 && <IncomeDetail onNext={handleNext} onPrev={handlePrev} />}
-            {activeStep === 2 && <ExpensesDetail onNext={handleNext} onPrev={handlePrev}/>}
-            {activeStep === 3 && <AssetDetails onNext={handleNext} onPrev={handlePrev} />}
-            {activeStep === 4 && <LiabilityDetail onNext={handleNext} onPrev={handlePrev} />}
-            {activeStep === 5 && <Goal onNext={handleNext} onPrev={handlePrev} />}
-            {activeStep === 6 && <ExistingProvisions onNext={handleNext} onPrev={handlePrev} />}
-            {activeStep === 7 && <FinancialPlanning onNext={handleNext} onPrev={handlePrev} />}
-            {activeStep === 8 && <ExistingPolicy onNext={handleNext} />}
-            {activeStep === 9 && <ScheduleCall onNext={handleNext} />}           
-            {activeStep === 10 && <ReviewPage onNext={showScheduleCall} exportPage={showExportPage} />}   
-            {activeStep === 11 && <ExportPage onNext={showScheduleCall} />}      
-          </Box>
-        </>
-    )
+  return (
+    <>
+      <Box display="flex" width="100%" paddingBottom="80px" backgroundColor="#F2F1F9">
+        {activeStep === 0 &&
+          <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
+            <PersonalDetail onNext={handleNext} onPrev={handlePrev} />
+            <Progressbar activeStep={activeStep} />
+          </Box>}
+        {activeStep === 1 &&
+          <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
+            <IncomeDetail onNext={handleNext} onPrev={handlePrev} />
+            <Progressbar activeStep={activeStep} />
+          </Box>}
+        {activeStep === 2 &&
+          <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
+            <ExpensesDetail onNext={handleNext} onPrev={handlePrev} />
+            <Progressbar activeStep={activeStep} />
+          </Box>}
+        {activeStep === 3 &&
+          <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
+            <AssetDetails onNext={handleNext} onPrev={handlePrev} />
+            <Progressbar activeStep={activeStep} />
+          </Box>}
+        {activeStep === 4 &&
+          <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
+            <LiabilityDetail onNext={handleNext} onPrev={handlePrev} />
+            <Progressbar activeStep={activeStep} />
+          </Box>}
+        {activeStep === 5 &&
+          <Box position={"relative"}  width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
+            <Goal onNext={handleNext} onPrev={handlePrev} />
+            <Progressbar activeStep={activeStep} />
+          </Box>}
+        {activeStep === 6 &&
+          <Box position={"relative"}  width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
+            <ExistingProvisions onNext={handleNext} onPrev={handlePrev} />
+            <Progressbar activeStep={activeStep} />
+          </Box>}
+        {activeStep === 7 &&
+          <Box position={"relative"}  width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
+            <FinancialPlanning onNext={handleNext} onPrev={handlePrev} />
+            <Progressbar activeStep={activeStep} />
+          </Box>}
+        {activeStep === 8 &&
+          <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
+            <ExistingPolicy onNext={handleNext} />
+            <Progressbar activeStep={activeStep} />
+          </Box>}
+        {activeStep === 9 && <ScheduleCall onNext={handleNext} />}
+        {activeStep === 10 && 
+        <Box position={"relative"} width={"100%"}>
+        <ReviewPage onNext={showScheduleCall} exportPage={showExportPage} />
+        </Box>}
+        {activeStep === 11 && <ExportPage onNext={showScheduleCall} />}
+      </Box>
+    </>
+  )
 }
 
 export default ProfilePage

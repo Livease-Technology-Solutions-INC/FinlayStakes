@@ -9,7 +9,6 @@ import nextChevron from "../../assets/carbon_next-outline.svg"
 import backChevron from "../../assets/carbon_back-outline.svg"
 import { useSelector, useDispatch } from 'react-redux';
 import { updatePersonalDetail } from '../../state-management/reducer/personalDetailSlice';
-
 const PersonalDetail = ({ onNext, onPrev }) => {
   const personalDetail = useSelector((state) => state.personalDetail);
   const dispatch = useDispatch();
@@ -40,7 +39,6 @@ const PersonalDetail = ({ onNext, onPrev }) => {
           value={personalDetail.DOB}
           onChange={(DOB) => handleChange('DOB', DOB)}
         />
-
         <InputField
           label={"Age"}
           placeholder={"Age"}
@@ -62,7 +60,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
         />
         <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} >
           <Box maxWidth="435px" width={"100%"} display={'flex'} flexDirection={'column'} gap="24px" >
-           <Typography sx={{ color: "#212844", fontFamily: "Inter", fontWeight: "600", lineHeight: "19.36px", fontSize: "16px" }}>
+            <Typography sx={{ color: "#212844", fontFamily: "Inter", fontWeight: "600", lineHeight: "19.36px", fontSize: "16px" }}>
               Phone Number
             </Typography>
             <PhoneInput
@@ -112,55 +110,55 @@ const PersonalDetail = ({ onNext, onPrev }) => {
             value={personalDetail.email}
             onChange={(email) => handleChange('email', email)}
           />
-        <InputField
-          label={"Country of Residence"}
-          placeholder={"Country of Residence"}
-          value={personalDetail.residentCountry}
-          onChange={(residentCountry) => handleChange("residentCountry",residentCountry)}
-        />
-        <InputField
-          label={"Nationality & Country of Birth"}
-          placeholder={"Nationality & Country of Birth"}
-          value={personalDetail.nationality}
-          onChange={(nationality) => handleChange('nationality',nationality)}
-        />
-        <InputField
-          label={"Physical Residential Address"}
-          placeholder={"Physical Residential Address"}
-          value={personalDetail.residentialAddress}
-          onChange={(residentialAddress) => handleChange("residentialAddress",residentialAddress)}
-        />
-        <Box maxWidth="435px" width={"100%"} display={'flex'} flexDirection={'column'} gap="24px" >
-          <FormControl component="fieldset" style={{ width: "100%", display: 'flex' }}>
-            <FormLabel component="legend">
-              <Typography sx={{ color: "#212844", fontFamily: "Inter", fontWeight: "600", lineHeight: "19.36px", fontSize: "16px" }}>
-                Smoker
-              </Typography>
-            </FormLabel>
-            <RadioGroup value={personalDetail.smoker} onChange={(event) => handleChange("smoker", event.target.value)}>
-              <FormGroup row>
-                <FormControlLabel value="yes" sx={{ color: "#9397BB" }} control={<Radio sx={{ '& .MuiSvgIcon-root': { fontSize: '1.25rem', color: "#250C77" } }} />} label="Yes" />
-                <FormControlLabel value="no" sx={{ color: "#9397BB" }} control={<Radio sx={{ '& .MuiSvgIcon-root': { fontSize: '1.25rem', color: "#250C77" } }} />} label="No" />
-              </FormGroup>
-            </RadioGroup>
-          </FormControl>
+          <InputField
+            label={"Country of Residence"}
+            placeholder={"Country of Residence"}
+            value={personalDetail.residentCountry}
+            onChange={(residentCountry) => handleChange("residentCountry", residentCountry)}
+          />
+          <InputField
+            label={"Nationality & Country of Birth"}
+            placeholder={"Nationality & Country of Birth"}
+            value={personalDetail.nationality}
+            onChange={(nationality) => handleChange('nationality', nationality)}
+          />
+          <InputField
+            label={"Physical Residential Address"}
+            placeholder={"Physical Residential Address"}
+            value={personalDetail.residentialAddress}
+            onChange={(residentialAddress) => handleChange("residentialAddress", residentialAddress)}
+          />
+          <Box maxWidth="435px" width={"100%"} display={'flex'} flexDirection={'column'} gap="24px" >
+            <FormControl component="fieldset" style={{ width: "100%", display: 'flex' }}>
+              <FormLabel component="legend">
+                <Typography sx={{ color: "#212844", fontFamily: "Inter", fontWeight: "600", lineHeight: "19.36px", fontSize: "16px" }}>
+                  Smoker
+                </Typography>
+              </FormLabel>
+              <RadioGroup value={personalDetail.smoker} onChange={(event) => handleChange("smoker", event.target.value)}>
+                <FormGroup row>
+                  <FormControlLabel value="yes" sx={{ color: "#9397BB" }} control={<Radio sx={{ '& .MuiSvgIcon-root': { fontSize: '1.25rem', color: "#250C77" } }} />} label="Yes" />
+                  <FormControlLabel value="no" sx={{ color: "#9397BB" }} control={<Radio sx={{ '& .MuiSvgIcon-root': { fontSize: '1.25rem', color: "#250C77" } }} />} label="No" />
+                </FormGroup>
+              </RadioGroup>
+            </FormControl>
+          </Box>
+          <InputField
+            label={"Medical History"}
+            placeholder={"Type here"}
+            multiline={true}
+            rows={"4.5"}
+            value={personalDetail.medicalHistory}
+            onChange={(medicalHistory) => handleChange("medicalHistory", medicalHistory)}
+          />
         </Box>
-        <InputField
-          label={"Medical History"}
-          placeholder={"Type here"}
-          multiline={true}
-          rows={"4.5"}
-          value={personalDetail.medicalHistory}
-          onChange={(medicalHistory) => handleChange("medicalHistory",medicalHistory)}
-        />
       </Box>
-      </Box>
-      <Box display={'flex'} flexDirection={'row'} gap="16px" alignSelf={'flex-end'}>
-        <Button sx={{ color: "#250C77", padding: "10px 43px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#fff" } }} onClick={onPrev} style={{ marginTop: '16px' }}>
+      <Box position={"absolute"} bottom="-100px" right="135px" display={'flex'} flexDirection={'row'} gap="16px" alignSelf={'flex-end'}>
+        <Button sx={{ color: "#250C77", padding: "10px 43px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#fff" } }} onClick={onPrev}>
           <img src={backChevron}></img>
           <Typography variant="body1" sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}>Back</Typography>
         </Button>
-        <Button sx={{ backgroundColor: "#250C77", color: "#fff", padding: "10px 24px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#250C94" } }} variant="contained" onClick={onNext} style={{ marginTop: '16px' }}>
+        <Button sx={{ backgroundColor: "#250C77", color: "#fff", padding: "10px 24px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#250C94" } }} variant="contained" onClick={onNext}>
           <Typography variant="body1" sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}>Next Step</Typography>
           <img src={nextChevron}></img>
         </Button>
