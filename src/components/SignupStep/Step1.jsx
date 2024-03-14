@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Logo from '../../assets/Finlay Stakes-01-big.svg';
 import Background from '../../assets/backgoundImage.jpg';
 import InputField from '../../components/Input';
@@ -17,6 +17,10 @@ import {
 	validatePassword,
 	validateNotEmpty,
 } from '../../resources/functions';
+import AuthContext from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const Step1 = ({ onNext }) => {
 	const [email, setEmail] = useState('');
@@ -26,6 +30,9 @@ const Step1 = ({ onNext }) => {
 	const [reEnterPasswordVisible, setReEnterPasswordVisible] = useState(false);
 	const [snackbarOpen, setSnackbarOpen] = useState(false);
 	const [snackbarMessage, setSnackbarMessage] = useState('');
+	const [username, setUsername] = useState('')
+	// const navigate = useNavigate();
+    const {registerUser} = useContext(AuthContext)
 
 	const handleInputEmail = (value) => {
 		setEmail(value);
@@ -56,10 +63,15 @@ const Step1 = ({ onNext }) => {
 			setSnackbarOpen(true);
 			return;
 		} else {
+			setUsername(email, () => {
+				console.log('the username is' + username);
+			});
+			registerUser(email, email, password)
+			console.log('the username is' + username)
 			onNext();
 		}
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		handleContinue()
 	};

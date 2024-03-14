@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
             setAuthTokens(data)
             setUser(jwtDecode(data.access))
             localStorage.setItem("authTokens", JSON.stringify(data))
-            history.push("/")
+            history("/")
             swal.fire({
                 title: "Login Successful",
                 icon: "success",
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
             console.log(response.status);
             console.log("there was a server issue");
             swal.fire({
-                title: "Username or passowrd does not exists",
+                title: "Username or passoword does not exists",
                 icon: "error",
                 toast: true,
                 timer: 6000,
@@ -70,18 +70,18 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    const registerUser = async (email, username, password, password2) => {
+    const registerUser = async (email, username, password) => {
         const response = await fetch("http://127.0.0.1:8000/app/register/", {
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
             },
             body: JSON.stringify({
-                email, username, password, password2
+                email, username, password
             })
         })
         if(response.status === 201){
-            history.push("/login")
+            history("/")
             swal.fire({
                 title: "Registration Successful, Login Now",
                 icon: "success",
@@ -112,7 +112,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("authTokens")
         history.push("/login")
         swal.fire({
-            title: "YOu have been logged out...",
+            title: "You have been logged out...",
             icon: "success",
             toast: true,
             timer: 6000,
