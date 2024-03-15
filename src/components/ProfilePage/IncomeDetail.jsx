@@ -62,12 +62,12 @@ const IncomeDetail = ({ onNext, onPrev }) => {
           />
         </Box>
       </Box>
-      <Box display={'flex'} flexDirection={'row'} gap="16px" alignSelf={'flex-end'}>
-        <Button sx={{ color: "#250C77", padding: "10px 43px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#fff" } }} onClick={onPrev} style={{ marginTop: '16px' }}>
+      <Box position={"absolute"} bottom="-100px" right="135px" display={'flex'} flexDirection={'row'} gap="16px" alignSelf={'flex-end'}>
+        <Button sx={{ color: "#250C77", padding: "10px 43px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#fff" } }} onClick={onPrev} >
           <img src={backChevron}></img>
           <Typography variant="body1" sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}>Back</Typography>
         </Button>
-        <Button  sx={{backgroundColor: "#250C77", color: "#fff", padding: "10px 24px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#250C94" } }} variant="contained" onClick={onNext} style={{ marginTop: '16px' }}>
+        <Button  sx={{backgroundColor: "#250C77", color: "#fff", padding: "10px 24px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#250C94" } }} variant="contained" onClick={onNext} >
           <Typography variant="body1" sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}>Next Step</Typography>
           <img src={nextChevron}></img>
         </Button>

@@ -144,7 +144,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
           />
         </Box>
       </Box>
-      <Box alignSelf={'flex-end'}>
+      <Box position={"absolute"} bottom="-100px" right="0px" alignSelf={'flex-end'}>
         <Button sx={{ backgroundColor: "#250C77", color: "#fff", padding: "10px 0px", paddingLeft: "24px", paddingRight: "6px", borderRadius: "40px", gap: "16px", '&:hover': { backgroundColor: "#250C94" } }} variant="contained" onClick={onNext} style={{ marginTop: '16px' }}>
           <Typography variant="body1" sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}>Request for Free Analysis and Consultation</Typography>
           <div style={{ backgroundColor: "#fff", width: "32px", height: "32px", borderRadius: "50%", position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>

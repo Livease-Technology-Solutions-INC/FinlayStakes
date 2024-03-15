@@ -15,7 +15,7 @@ const FinancialPlanningShortfall = ({ onNext, onPrev }) => {
     dispatch(updateFinancialPlanningShortfall({ [field]: value }));
   };
   return (
-    <Box width="100%" display={'flex'} flexDirection={"column"} gap={"32px"} paddingDown={"24px"} >
+    <Box width="100%" display={'flex'} flexDirection={"column"} gap={"32px"} >
       <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="h5">Financial Planning Shortfall</Typography>
       <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
           <InputField
@@ -49,7 +49,7 @@ const FinancialPlanningShortfall = ({ onNext, onPrev }) => {
             onChange={(criticalIllness) => handleChange('criticalIllness', criticalIllness)}
           />
       </Box>
-      <Box marginTop={"110px"} display={'flex'} flexDirection={'row'} gap="16px" alignSelf={'flex-end'}>
+      <Box position={"absolute"} bottom="-100px" right="135px" display={'flex'} flexDirection={'row'} gap="16px" alignSelf={'flex-end'}>
         <Button sx={{ color: "#250C77", padding: "10px 43px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#fff" } }} onClick={onPrev} style={{ marginTop: '16px' }}>
           <img src={backChevron} alt="back-chevron"></img>
           <Typography variant="body1" sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}>Back</Typography>

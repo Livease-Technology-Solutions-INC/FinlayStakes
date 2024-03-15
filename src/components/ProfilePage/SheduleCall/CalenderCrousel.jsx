@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Box, IconButton, Typography, MenuItem, Menu } from '@mui/material';
+import { Grid, Box, IconButton, Typography, MenuItem, Menu, Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 import { addDays,addMonths, format, isSameDay, format as formatDate } from 'date-fns';
 import downChevron from "../../../assets/u_angle-down.svg";
 import rightChevron from "../../../assets/RightArrow.svg";
 import leftChevron from "../../../assets/LeftArrow.svg";
-
-const CalendarCarousel = () => {
+import Popup from './Popup';
+const CalendarCarousel = ({onNext,scheduleTime,scheduleDate,setScheduleTime, setScheduleDate,popupOpen, handlePopupClose}) => {
     const [startDate, setStartDate] = useState(new Date());
-    const [month, setMonth] = useState(new Date());
     const [availableSlots, setAvailableSlots] = useState([]);
     const [selectedDate, setSelectedDate] = useState(0);
     const [selectedMorningSlot, setSelectedMorningSlot] = useState(null);
@@ -15,11 +14,13 @@ const CalendarCarousel = () => {
     const [selectedEveningSlot, setSelectedEveningSlot] = useState(null);
     const [monthMenuAnchorEl, setMonthMenuAnchorEl] = useState(null);
 
-
+    console.log("date",scheduleDate)
+    console.log("time",scheduleTime)
+   
     useEffect(() => {
         const slots = Array.from({ length: 5 }, () => Math.floor(Math.random() * 10));
         setAvailableSlots(slots);
-
+        setSelectedDate(0);
     }, [startDate]);
 
     const morningSlots = ['8:00 AM - 9:00 AM', '9:00 AM - 10:00 AM', '10:00 AM - 11:00 AM']
@@ -30,13 +31,10 @@ const CalendarCarousel = () => {
         const totalMorningSlots = morningSlots.length;
         const totalAfternoonSlots = afternoonSlots.length;
         const totalEveningSlots = eveningSlots.length;
-
         const morningCount = Math.min(Math.floor(totalSlots / 3), totalMorningSlots);
         const afternoonCount = Math.min(Math.floor(totalSlots / 3), totalAfternoonSlots);
         const eveningCount = Math.min(Math.floor(totalSlots / 3), totalEveningSlots);
-
         const remainingSlots = totalSlots - morningCount - afternoonCount - eveningCount;
-
         const distributedSlots = {
             morning: morningSlots.slice(0, morningCount),
             afternoon: afternoonSlots.slice(0, afternoonCount),
@@ -47,7 +45,6 @@ const CalendarCarousel = () => {
             const remainingMorningSlots = Math.min(remainingSlots, totalMorningSlots - morningCount);
             const remainingAfternoonSlots = Math.min(remainingSlots - remainingMorningSlots, totalAfternoonSlots - afternoonCount);
             const remainingEveningSlots = Math.min(remainingSlots - remainingMorningSlots - remainingAfternoonSlots, totalEveningSlots - eveningCount);
-
             for (let i = 0; i < remainingMorningSlots; i++) {
                 distributedSlots.morning.push(morningSlots[morningCount + i]);
             }
@@ -60,7 +57,6 @@ const CalendarCarousel = () => {
                 distributedSlots.evening.push(eveningSlots[eveningCount + i]);
             }
         }
-
         return distributedSlots;
     };
     
@@ -133,12 +129,8 @@ const CalendarCarousel = () => {
         ));
     };
     
-
     let distributedSlots = distributeSlots(availableSlots.reduce((acc, cur) => acc + cur, 0));
-
-
     distributedSlots = distributeSlots(availableSlots[selectedDate]);
-
     const handleNext = () => {
         setStartDate((prevStartDate) => addDays(prevStartDate, 5));
     };
@@ -146,8 +138,9 @@ const CalendarCarousel = () => {
     const handlePrev = () => {
         setStartDate((prevStartDate) => addDays(prevStartDate, -5));
     };
-    const handleDateClick = (date) => {
-        setSelectedDate(date);
+    const handleDateClick = (index,date) => {
+        setSelectedDate(index);
+        setScheduleDate(date);
         setSelectedMorningSlot(null);
         setSelectedAfternoonSlot(null);
         setSelectedEveningSlot(null);
@@ -155,33 +148,33 @@ const CalendarCarousel = () => {
    
     const handleMorningSlotClick = (index) => {
         setSelectedMorningSlot(index);
+        setScheduleTime(morningSlots[index])
         setSelectedAfternoonSlot(null);
         setSelectedEveningSlot(null);
     };
 
     const handleAfternoonSlotClick = (index) => {
         setSelectedAfternoonSlot(index);
+        setScheduleTime(afternoonSlots[index])
         setSelectedEveningSlot(null);
         setSelectedMorningSlot(null);};
 
     const handleEveningSlotClick = (index) => {
         setSelectedEveningSlot(index);
+        setScheduleTime(eveningSlots[index])
         setSelectedMorningSlot(null);
         setSelectedAfternoonSlot(null);
     };
-
     const renderDates = () => {
         const calendarDates = [];
         for (let i = 0; i < 5; i++) {
             const nextDate = addDays(startDate, i);
             calendarDates.push(nextDate);
         }
-
         return calendarDates.map((date, index) => {
             const slot = availableSlots[index];
-
             return (
-                <Grid item key={index} display="flex" height="auto" flexDirection="column" gap="16px" alignItems={'center'} justifyContent={"center"} padding='16px' border={"solid 1px #DEDFEE"} onClick={() => handleDateClick(index)}  sx={{ cursor: "pointer", borderColor: index === selectedDate ? '#250C77' : '#DEDFEE', borderRadius:"8px" }}>
+                <Grid item key={index} display="flex" height="auto" flexDirection="column" gap="16px" alignItems={'center'} justifyContent={"center"} padding='16px' border={"solid 1px #DEDFEE"} onClick={() => handleDateClick(index, date)}  sx={{ cursor: "pointer", borderColor: index === selectedDate ? '#250C77' : '#DEDFEE', borderRadius:"8px" }}>
                     <Typography variant='body1' sx={{ fontWeight: "600", fontFamily: 'Inter, sans-serif', color: index === selectedDate ? '#250C77' : '#9397BB', backgroundColor: "transparent" }}>{formatDate(date, 'EEE')}</Typography>
                     <Box elevation={3} sx={{
                         display: "flex",
@@ -208,17 +201,23 @@ const CalendarCarousel = () => {
             );
         });
     };
-
-
     return (
         <Grid display="flex" gap="32px" flexDirection={"column"} alignItems="flex-start" justifyContent={"center"} padding="0px">
+             {/* Popup Dialog */}  
+             <Popup
+                open={popupOpen}
+                onClose={handlePopupClose}
+                selectedDate={scheduleDate}
+                selectedTimeSlot={scheduleTime}
+                handlePopupClose={handlePopupClose}
+                onNext={onNext}
+            />
             <Grid width="100%" display="flex" alignItems="center" justifyContent="space-between">
                 <Box display="flex" justifyContent="space-between" border="solid 1px #9397BB" padding="8px 16px"  onClick={handleMonthMenuOpen} cursor= "pointer">
                 <Typography variant="body1" align="center" sx={{ fontFamily: "Inter", fontWeight: "bold", color: "#212844", display: "flex", gap: "8px" }}>
                         {format(startDate, 'MMMM yyyy')}
                         <img src={downChevron} alt="chevron-down" />
                     </Typography>
-
                 </Box>
                 <Grid display="flex">
                     <Grid item>
@@ -238,7 +237,6 @@ const CalendarCarousel = () => {
                 </Grid>
             </Grid>
             {renderMonthMenu()}
-
             <Box display={"flex"} flexWrap={"wrap"} gap="26px" row="16px" alignItems="center">
                 {renderDates()}
             </Box>

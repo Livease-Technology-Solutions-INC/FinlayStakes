@@ -22,8 +22,7 @@ function Home() {
             updateActiveItem={updateActiveItem}
             activeItem={activeItem} 
           />
-         <div className="main-container" style={{ flex:1,display: "flex", flexDirection: "column", marginTop: "104px", marginLeft:"291px", backgroundColor: "#F2F1F9", padding: "24px" }}>
-          {/* <Pagetitle title={activeItem.label} companyName={'Finlay Stakes'} /> */}
+         <div className="main-container" style={{ flex:1,display: "flex", flexDirection: "column", marginTop: "104px", marginLeft:"300px", backgroundColor: "#F2F1F9", padding: "24px" }}>
           <Routes>
             <Route path="/" element={<ProfilePage />}></Route>
           </Routes>
