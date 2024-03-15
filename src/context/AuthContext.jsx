@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
             })
         })
         const data = await response.json()
-        console.log(data);
+        // console.log(data);
 
         if(response.status === 200){
             console.log("Logged In");
@@ -49,20 +49,20 @@ export const AuthProvider = ({ children }) => {
                 title: "Login Successful",
                 icon: "success",
                 toast: true,
-                timer: 6000,
+                timer: 1000,
                 position: 'top-right',
                 timerProgressBar: true,
                 showConfirmButton: false,
             })
 
         } else {    
-            console.log(response.status);
-            console.log("there was a server issue");
+            // console.log(response.status);
+            // console.log("there was a server issue");
             swal.fire({
                 title: "Username or passoword does not exists",
                 icon: "error",
                 toast: true,
-                timer: 6000,
+                timer: 2000,
                 position: 'top-right',
                 timerProgressBar: true,
                 showConfirmButton: false,
@@ -81,12 +81,12 @@ export const AuthProvider = ({ children }) => {
             })
         })
         if(response.status === 201){
-            history("/")
+            history("/login")
             swal.fire({
-                title: "Registration Successful, Login Now",
+                title: "Registration Successful, Please verify your email",
                 icon: "success",
                 toast: true,
-                timer: 6000,
+                timer: 1000,
                 position: 'top-right',
                 timerProgressBar: true,
                 showConfirmButton: false,
@@ -98,7 +98,7 @@ export const AuthProvider = ({ children }) => {
                 title: "An Error Occured " + response.status,
                 icon: "error",
                 toast: true,
-                timer: 6000,
+                timer: 2000,
                 position: 'top-right',
                 timerProgressBar: true,
                 showConfirmButton: false,
@@ -110,16 +110,51 @@ export const AuthProvider = ({ children }) => {
         setAuthTokens(null)
         setUser(null)
         localStorage.removeItem("authTokens")
-        history.push("/login")
-        swal.fire({
-            title: "You have been logged out...",
-            icon: "success",
-            toast: true,
-            timer: 6000,
-            position: 'top-right',
-            timerProgressBar: true,
-            showConfirmButton: false,
+        history("/login")
+    }
+
+    const verifyEmail = async (email, otp_code) => {
+        const response = await fetch("http://127.0.0.1:8000/app/verify-email/{email}", {
+            method: "POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                email, otp_code
+            })
         })
+        const data = await response.json()
+        console.log(data);
+
+        if(response.status === 200){
+            console.log("Email Verified");
+            setAuthTokens(data)
+            setUser(jwtDecode(data.access))
+            localStorage.setItem("authTokens", JSON.stringify(data))
+            history("/")
+            swal.fire({
+                title: "Verification Successful",
+                icon: "success",
+                toast: true,
+                timer: 1000,
+                position: 'top-right',
+                timerProgressBar: true,
+                showConfirmButton: false,
+            })
+
+        } else {    
+            console.log(response.status);
+            console.log("there was a server issue");
+            swal.fire({
+                title: "Invalid otp",
+                icon: "error",
+                toast: true,
+                timer: 2000,
+                position: 'top-right',
+                timerProgressBar: true,
+                showConfirmButton: false,
+            })
+        }
     }
 
     const contextData = {
@@ -130,6 +165,7 @@ export const AuthProvider = ({ children }) => {
         registerUser,
         loginUser,
         logoutUser,
+        verifyEmail,
     }
 
     useEffect(() => {
