@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import Logo from '../../assets/Finlay Stakes-01-big.svg';
 import Background from '../../assets/backgoundImage.jpg';
 import { Box, Button, Typography, Snackbar, TextField, Alert } from '@mui/material'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 
 const Step2 = () => {
     const [otp, setOTP] = useState(['3', '2', '5', '9', '0', '1']);
