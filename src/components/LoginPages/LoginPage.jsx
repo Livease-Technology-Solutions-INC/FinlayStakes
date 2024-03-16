@@ -86,6 +86,8 @@ const LoginPage = () => {
 							vertical: 'top',
 							horizontal: 'right',
 						}}
+                        sx={{ width: '400px' , textAlign:"left"}}
+
 					>
 						<Alert
 							elevation={6}
