@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Logo from '../../assets/Finlay Stakes-01-big.svg';
 import InputField from '../../components/Input';
-import passwordEye from '../../assets/quill_eye-closed.svg';
 import {
 	Box,
 	Button,
@@ -12,7 +11,6 @@ import {
 } from '@mui/material';
 import {
 	validateEmail,
-	validatePassword,
 	validateNotEmpty,
 } from '../../resources/functions';
 import google from '../../assets/flat-color-icons_google.svg';
