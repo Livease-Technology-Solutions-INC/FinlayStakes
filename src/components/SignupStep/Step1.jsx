@@ -22,7 +22,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const Step1 = () => {
+const Step1 = ({onNext}) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [reEnterPassword, setReEnterPassword] = useState('');
@@ -31,7 +31,7 @@ const Step1 = () => {
 	const [snackbarOpen, setSnackbarOpen] = useState(false);
 	const [snackbarMessage, setSnackbarMessage] = useState('');
 	const [username, setUsername] = useState('')
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
     const {registerUser} = useContext(AuthContext)
 
 	const handleInputEmail = (value) => {
@@ -65,7 +65,7 @@ const Step1 = () => {
 		} else {
 			setUsername(email);
 			registerUser(email, email, password)
-			// onNext(email);
+			navigate("/register/verify-email")
 		}
 	};
 	const handleSubmit = async (e) => {
