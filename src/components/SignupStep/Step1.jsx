@@ -84,18 +84,8 @@ const Step1 = ({ onNext }) => {
 	};
 
 	return (
-		<Box className="row-layout">
-			<Box sx={{ width: '100%', maxWidth: '611px' }}>
-				<img
-					src={Background}
-					alt="background"
-					style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
-				/>
-			</Box>
-			<form onSubmit={handleSubmit}>
 				<Box
-					className="column-layout"
-					sx={{ width: '100%', maxWidth: '690px' }}
+					
 				>
 					<img src={Logo} style={{ marginBottom: '72px' }} />
 					<Box
@@ -113,6 +103,8 @@ const Step1 = ({ onNext }) => {
 								vertical: 'top',
 								horizontal: 'right',
 							}}
+							sx={{ width: '400px' , textAlign:"left"}}
+
 						>
 							<Alert
 								elevation={6}
@@ -202,7 +194,7 @@ const Step1 = ({ onNext }) => {
 							borderRadius: '10px',
 						}}
 						variant="contained"
-						type="submit"
+						onClick={handleSubmit}
 					>
 						<Typography
 							variant="body1"
@@ -212,8 +204,6 @@ const Step1 = ({ onNext }) => {
 						</Typography>
 					</Button>
 				</Box>
-			</form>
-		</Box>
 	);
 };
 

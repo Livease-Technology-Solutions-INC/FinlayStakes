@@ -27,6 +27,7 @@ const ResetPassword = () => {
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [greenSnackbarOpen, setGreenSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
 
     const navigate = useNavigate();
@@ -38,14 +39,29 @@ const ResetPassword = () => {
             setSnackbarOpen(true);
             return;
         }
+     else if (!validatePassword(confirmNewPassword)) {
+        setSnackbarMessage(
+            'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.',
+        );
+        setSnackbarOpen(true);
+        return;
+    } 
         else if (newPassword !== confirmNewPassword) {
             setSnackbarMessage('Passwords do not match.');
             setSnackbarOpen(true);
             return;
         }
         else {
-            // loginUser(email, password)
+            setSnackbarMessage('Your password is reset successfully.');
+            setGreenSnackbarOpen(true); 
+        setTimeout(() => {
+            setSnackbarMessage('You will be redirecting to login page.');
+        }, 2000);
+
+        setTimeout(() => {
+            setGreenSnackbarOpen(false);
             navigate('/login');
+        }, 5000); 
         }
     };
 
@@ -82,12 +98,37 @@ const ResetPassword = () => {
                         vertical: 'top',
                         horizontal: 'right',
                     }}
+                    sx={{ width: '400px' , textAlign:"left"}}
+
                 >
                     <Alert
                         elevation={6}
                         variant="filled"
                         onClose={() => setSnackbarOpen(false)}
                         severity="error"
+                    >
+                        {snackbarMessage}
+                    </Alert>
+                </Snackbar>
+                <Snackbar
+                  ContentProps={{
+                    backgroundColor: 'green',
+                    color:"white"
+                  }}
+                    open={greenSnackbarOpen}
+                    autoHideDuration={6000}
+                    onClose={() => setGreenSnackbarOpen(false)}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    sx={{ width: '400px' , textAlign:"left"}}
+
+                >
+                    <Alert
+                        elevation={6}
+                        variant="filled"
+                        onClose={() => setSnackbarOpen(false)}
                     >
                         {snackbarMessage}
                     </Alert>
