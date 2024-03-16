@@ -22,7 +22,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const Step1 = ({ onNext }) => {
+const Step1 = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [reEnterPassword, setReEnterPassword] = useState('');
@@ -63,11 +63,9 @@ const Step1 = ({ onNext }) => {
 			setSnackbarOpen(true);
 			return;
 		} else {
-			setUsername(email, () => {
-				console.log('the username is' + username);
-			});
+			setUsername(email);
 			registerUser(email, email, password)
-			onNext(email);
+			// onNext(email);
 		}
 	};
 	const handleSubmit = async (e) => {
@@ -136,6 +134,7 @@ const Step1 = ({ onNext }) => {
 							Provide your email and choose a password
 						</Typography>
 					</Box>
+					<form onSubmit={handleSubmit} >
 					<Box
 						width="100%"
 						display="flex"
@@ -193,7 +192,7 @@ const Step1 = ({ onNext }) => {
 							borderRadius: '10px',
 						}}
 						variant="contained"
-						onClick={handleSubmit}
+						type='submit'
 					>
 						<Typography
 							variant="body1"
@@ -202,6 +201,7 @@ const Step1 = ({ onNext }) => {
 							Continue
 						</Typography>
 					</Button>
+					</form>
 				</Box>
 	);
 };

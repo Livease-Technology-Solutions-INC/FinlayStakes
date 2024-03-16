@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Logo from '../../assets/Finlay Stakes-01-big.svg';
 import Background from '../../assets/backgoundImage.jpg';
 import {
