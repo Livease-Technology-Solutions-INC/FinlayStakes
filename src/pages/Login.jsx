@@ -18,7 +18,7 @@ function Login() {
 			</Box>
 			<Box className="column-layout" sx={{ width: '100%', maxWidth: '685px' }}>
 				<Routes>
-					<Route path="/login" element={<LoginPage />}></Route>
+					<Route path="/" element={<LoginPage />}></Route>
 					<Route path="/forget-password" element={<ForgotPasswordPage/>}></Route>
 					<Route path="/reset-password" element={<ResetPassword />}></Route>
 				</Routes>
