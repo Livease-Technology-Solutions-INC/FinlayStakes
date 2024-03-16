@@ -67,8 +67,7 @@ const Step1 = ({ onNext }) => {
 				console.log('the username is' + username);
 			});
 			registerUser(email, email, password)
-			console.log('the username is' + username)
-			onNext();
+			onNext(email);
 		}
 	};
 	const handleSubmit = async (e) => {

@@ -7,14 +7,16 @@ import Step2 from '../components/SignupStep/Step2.jsx';
 const SignUp = () => {
   
   const [activeStep, setActiveStep] = useState(0);
-  const handleNext = () => {
+  const [email, setEmail] = useState('');
+  const handleNext = (email) => {
+    setEmail(email)
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   return (
     <Box display="flex" width="100%">
             {activeStep === 0 && <Step1 onNext={handleNext}/>}
-            {activeStep === 1 && <Step2 onNext={handleNext} />}
+            {activeStep === 1 && <Step2 onNext={() => handleNext(email)} />}
     </Box>
   );
 };

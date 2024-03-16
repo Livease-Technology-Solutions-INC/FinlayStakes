@@ -114,7 +114,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const verifyEmail = async (email, otp_code) => {
-        const response = await fetch("http://127.0.0.1:8000/app/verify-email/{email}", {
+        const response = await fetch(`http://127.0.0.1:8000/app/verify-email/${encodeURIComponent(email)}`, {
             method: "POST",
             headers:{
                 "Content-Type":"application/json"
