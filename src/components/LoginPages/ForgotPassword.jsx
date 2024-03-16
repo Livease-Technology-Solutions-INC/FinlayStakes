@@ -38,7 +38,7 @@ const ForgotPasswordPage = () => {
 			setSnackbarOpen(true);
 			return;
 		} else {
-			navigate('/reset-password');
+			navigate('/login/reset-password');
 		}
 	};
 

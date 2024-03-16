@@ -60,7 +60,7 @@ const LoginPage = () => {
 	};
 
 	const handleForgotPassword = () => {
-        navigate('/forget-password');
+        navigate('/login/forget-password');
 
 	};
 	const handlePasswordReset = async () => {
