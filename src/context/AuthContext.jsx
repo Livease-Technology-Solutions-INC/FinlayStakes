@@ -37,7 +37,6 @@ export const AuthProvider = ({ children }) => {
             })
         })
         const data = await response.json()
-        // console.log(data);
 
         if(response.status === 200){
             console.log("Logged In");
@@ -80,8 +79,7 @@ export const AuthProvider = ({ children }) => {
                 email, username, password
             })
         })
-        if(response.status === 201){
-            history("/login")
+        if(response.status === 201 || 200){
             swal.fire({
                 title: "Registration Successful, Please verify your email",
                 icon: "success",
@@ -124,14 +122,9 @@ export const AuthProvider = ({ children }) => {
             })
         })
         const data = await response.json()
-        console.log(data);
-
-        if(response.status === 200){
+        if(response.status === 200 || 201){
             console.log("Email Verified");
-            setAuthTokens(data)
-            setUser(jwtDecode(data.access))
-            localStorage.setItem("authTokens", JSON.stringify(data))
-            history("/")
+            history("/login")
             swal.fire({
                 title: "Verification Successful",
                 icon: "success",

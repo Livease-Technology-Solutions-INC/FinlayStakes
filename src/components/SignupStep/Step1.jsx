@@ -65,6 +65,7 @@ const Step1 = ({onNext}) => {
 		} else {
 			setUsername(email);
 			registerUser(email, email, password)
+			localStorage.setItem('email', email);
 			navigate("/register/verify-email")
 		}
 	};
