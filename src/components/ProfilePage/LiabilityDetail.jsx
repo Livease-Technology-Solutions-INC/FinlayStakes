@@ -1,21 +1,45 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import InputField from '../Input';
 import nextChevron from "../../assets/carbon_next-outline.svg";
 import backChevron from "../../assets/carbon_back-outline.svg";
 import { useSelector, useDispatch } from 'react-redux';
 import { updateLiabilityDetail } from '../../state-management/reducer/liabilityDetailSlice';
+import AuthContext from '../../context/AuthContext';
+import { jwtDecode } from 'jwt-decode';
+
 
 const LiabilityDetail = ({ onNext, onPrev }) => {
   const liabilityDetail = useSelector((state) => state.liabilityDetail);
   const dispatch = useDispatch();
+  const { liabilityDetails } = useContext(AuthContext);
+	const token = localStorage.getItem('authTokens');
+	if (token) {
+		const decode = jwtDecode(token);
+		var user_id = decode.user_id;
+	}
 
   const handleChange = (field, value) => {
     dispatch(updateLiabilityDetail({ [field]: value }));
   };
-
+  const handleSubmit = async (e) => {
+		e.preventDefault();
+		handleChange();
+		liabilityDetails(
+			user_id,
+      liabilityDetail.bankLoans,
+      liabilityDetail.creditCard,
+      liabilityDetail.mortgages,
+      liabilityDetail.autoLoans,
+      liabilityDetail.handLoans,
+      liabilityDetail.totalLiabilities,
+			user_id
+		);
+		onNext();
+	};
   return (
     <Box width="100%" display={'flex'} flexDirection={"column"} gap={"32px"} >
+      <form onSubmit={handleSubmit} >
       <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="h5">Liability Details</Typography>
         <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
             <InputField
@@ -60,11 +84,12 @@ const LiabilityDetail = ({ onNext, onPrev }) => {
           <img src={backChevron} alt="back-chevron"></img>
           <Typography variant="body1" sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}>Back</Typography>
         </Button>
-        <Button sx={{ backgroundColor: "#250C77", color: "#fff", padding: "10px 24px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#250C94" } }} variant="contained" onClick={onNext}>
+        <Button sx={{ backgroundColor: "#250C77", color: "#fff", padding: "10px 24px", borderRadius: "8px", gap: "8px", '&:hover': { backgroundColor: "#250C94" } }} variant="contained" type="submit">
           <Typography variant="body1" sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}>Next Step</Typography>
           <img src={nextChevron} alt="next-chevron"></img>
         </Button>
       </Box>
+      </form>
     </Box>
   )
 }

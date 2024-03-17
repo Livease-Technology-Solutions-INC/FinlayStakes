@@ -5,8 +5,15 @@ import guestIcon from "../../../assets/lucide_users-round.svg"
 import dateIcon from "../../../assets/mingcute_time-line.svg"
 import detailIcon from "../../../assets/fluent_apps-list-detail-24-regular.svg"
 import cancelIcon from "../../../assets/line-md_cancel.svg"
+import { jwtDecode } from 'jwt-decode';
+
 
 function Popup({ open, onClose, selectedDate, selectedTimeSlot, handlePopupClose, onNext }) {
+    const token = localStorage.getItem('authTokens');
+	if (token) {
+		const decode = jwtDecode(token);
+		var useremail = decode.email;
+	}
     return (
         <Dialog open={open} onClose={onClose} sx={{ padding: "32px" }}>
             <DialogTitle sx={{ display: "flex", alignItems: "center", gap: "16px", flexDirection: "column" }}>
@@ -40,7 +47,7 @@ function Popup({ open, onClose, selectedDate, selectedTimeSlot, handlePopupClose
                         </Typography>
                     </Box>
                     <Typography sx={{ fontFamily: "Inter", color: "#9397BB", fontWeight: "400" }} variant="body1">
-                        Sample@gamil.com
+                        {useremail}
                     </Typography>
                 </Box>
                 <Divider sx={{ width: "100%", margin: "16px 0" }} />
