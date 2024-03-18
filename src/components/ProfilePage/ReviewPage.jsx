@@ -10,8 +10,12 @@ import {
 	tableData,
 } from '../../resources/constants';
 import ProfilePageCardData from '../../data/ProfilePageCardData';
-import IncomeData from '../../data/IncomeStats';
 import NetStats from '../ProfilePage/reviewPage/NetStats';
+import IncomeData from '../../data/IncomeStats';
+import ExpenseData from '../../data/ExpensesStats';
+import AssetsData from '../../data/AssetsStats';
+import LiabilitiesData from '../../data/LiabilitiesStats';
+import GoalData from '../../data/GoalData';
 import GoalCards from '../ProfilePage/reviewPage/Goals';
 import BoxCard from './reviewPage/BoxCard';
 import PolicyTable from '../ProfilePage/reviewPage/Policies';
@@ -26,6 +30,10 @@ function ReviewPage({ onNext, exportPage }) {
 	};
 	const profileData = ProfilePageCardData();
 	const incomeStatsData = IncomeData();
+	const expenseStatsData = ExpenseData();
+	const assetsStatsData = AssetsData();
+	const liabilitiesStatsData = LiabilitiesData();
+	const goalStatsData = GoalData()
 	return (
 		<Box
 			sx={{
@@ -78,19 +86,19 @@ function ReviewPage({ onNext, exportPage }) {
 			<HeaderCard HeaderCardData={profileData} />
 			<NetStats
 				data1={incomeStatsData}
-				data2={ExpensesStats}
+				data2={expenseStatsData}
 				Header={'NET INCOME'}
 				subHeader1={'Income'}
 				subHeader2={'Expenses'}
 			/>
 			<NetStats
-				data1={AssetsStats}
-				data2={LiabilitiesStats}
+				data1={assetsStatsData}
+				data2={liabilitiesStatsData}
 				Header={'NET WORTH'}
 				subHeader1={'Assets'}
 				subHeader2={'Liabilities'}
 			/>
-			<GoalCards goalData={Goals} />
+			<GoalCards goalData={goalStatsData} />
 			<Box
 				sx={{
 					width: '100%',
@@ -111,7 +119,7 @@ function ReviewPage({ onNext, exportPage }) {
 				/>
 				<BoxCard
 					data={chartData}
-					header="EXISTING PROVISIONS"
+					header="FINANCIAL PLANNING SHORTFALL"
 					stat="AED24,000"
 					status="increase"
 					percentage="5.5%"

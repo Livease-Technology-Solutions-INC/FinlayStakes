@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import useAxios from '../utlis/useAxios';
 import { jwtDecode } from 'jwt-decode';
 
-function ExpenseData() {
-	const [Expense, setExpense] = useState('');
+function LiabilitiesData() {
+	const [Liabilities, setLiabilities] = useState('');
 	const api = useAxios();
 
 	useEffect(() => {
@@ -13,10 +13,10 @@ function ExpenseData() {
 				const decode = jwtDecode(token);
 				const user_id = decode.user_id;
 				try {
-					const ExpenseResponse = await api.get(
-						`/expense_details/${encodeURIComponent(user_id)}/`,
+					const LiabilitiesResponse = await api.get(
+						`/liability_details/${encodeURIComponent(user_id)}/`,
 					);
-					setExpense(ExpenseResponse.data);
+					setLiabilities(LiabilitiesResponse.data);
 				} catch (error) {
 					console.log(error);
 				}
@@ -28,41 +28,41 @@ function ExpenseData() {
 
 	return [
 		{
-			name: 'Utility Bill',
-			stat: 'AED' + Expense.utility_bill,
+			name: 'Bank Loans',
+			stat: 'AED' + Liabilities.bank_loans,
 			status: 'increase',
 			percentage: '0.25%',
 			color: '#06B48A',
 		},
 		{
-			name: 'Loan',
-			stat: 'AED' + Expense.loan,
+			name: 'Credit Card Outstanding',
+			stat: 'AED' + Liabilities.credit_card_outstanding,
 			status: 'decrease',
 			percentage: '0.25%',
 			color: '#6560F0',
 		},
 		{
-			name: 'Rent',
-			stat: 'AED' + Expense.rent,
+			name: 'Mortgages',
+			stat: 'AED' + Liabilities.mortages,
 			status: 'decrease',
 			percentage: '0.25%',
 			color: '#3DD9EB',
 		},
 		{
-			name: 'Shopping',
-			stat: 'AED' + Expense.shopping_expense,
+			name: 'Auto Loans',
+			stat: 'AED' + Liabilities.auto_loans,
 			status: 'increase',
 			percentage: '0.35%',
 			color: '#D76B66',
 		},
 		{
-			name: 'Leisure',
-			stat: 'AED' + Expense.leisure_expense,
-			status: 'decrease',
+			name: 'Hand Loans',
+			stat: 'AED' + Liabilities.hand_loans,
+			status: 'increase',
 			percentage: '0.15%',
-			color: '#9F00AD',
+			color: '#F6CF7D',
 		},
 	];
 }
 
-export default ExpenseData;
+export default LiabilitiesData;

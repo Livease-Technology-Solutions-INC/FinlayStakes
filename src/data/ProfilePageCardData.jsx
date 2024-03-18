@@ -35,14 +35,7 @@ function ProfilePageCardData() {
         };
 
         fetchData();
-    }, [api]);
-
-    useEffect(() => {
-        // console.log("Total Income:", totalIncome);
-        // console.log("Total Expenses:", totalExpenses);
-        // console.log("Total Assets:", totalAssets);
-        // console.log("Total Liabilities:", totalLiabilities);
-    }, [totalIncome, totalExpenses, totalAssets, totalLiabilities]);
+    }, []);
 
     return [
         {

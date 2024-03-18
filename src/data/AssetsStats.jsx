@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import useAxios from '../utlis/useAxios';
 import { jwtDecode } from 'jwt-decode';
 
-function ExpenseData() {
-	const [Expense, setExpense] = useState('');
+function AssetData() {
+	const [Asset, setAsset] = useState('');
 	const api = useAxios();
 
 	useEffect(() => {
@@ -13,10 +13,10 @@ function ExpenseData() {
 				const decode = jwtDecode(token);
 				const user_id = decode.user_id;
 				try {
-					const ExpenseResponse = await api.get(
-						`/expense_details/${encodeURIComponent(user_id)}/`,
+					const AssetResponse = await api.get(
+						`/asset_details/${encodeURIComponent(user_id)}/`,
 					);
-					setExpense(ExpenseResponse.data);
+					setAsset(AssetResponse.data);
 				} catch (error) {
 					console.log(error);
 				}
@@ -28,41 +28,41 @@ function ExpenseData() {
 
 	return [
 		{
-			name: 'Utility Bill',
-			stat: 'AED' + Expense.utility_bill,
+			name: 'Cash in Hand & Bank',
+			stat: 'AED' + Asset.cash_in_hand,
 			status: 'increase',
 			percentage: '0.25%',
 			color: '#06B48A',
 		},
 		{
-			name: 'Loan',
-			stat: 'AED' + Expense.loan,
+			name: 'Property Value',
+			stat: 'AED' + Asset.property_value,
 			status: 'decrease',
 			percentage: '0.25%',
 			color: '#6560F0',
 		},
 		{
-			name: 'Rent',
-			stat: 'AED' + Expense.rent,
+			name: 'Shares / Equities',
+			stat: 'AED' + Asset.shares,
 			status: 'decrease',
 			percentage: '0.25%',
 			color: '#3DD9EB',
 		},
 		{
-			name: 'Shopping',
-			stat: 'AED' + Expense.shopping_expense,
+			name: 'Business Assets',
+			stat: 'AED' + Asset.business_asset,
 			status: 'increase',
 			percentage: '0.35%',
 			color: '#D76B66',
 		},
 		{
-			name: 'Leisure',
-			stat: 'AED' + Expense.leisure_expense,
-			status: 'decrease',
+			name: 'Others',
+			stat: 'AED' + Asset.others,
+			status: 'increase',
 			percentage: '0.15%',
-			color: '#9F00AD',
+			color: '#F6CF7D',
 		},
 	];
 }
 
-export default ExpenseData;
+export default AssetData;

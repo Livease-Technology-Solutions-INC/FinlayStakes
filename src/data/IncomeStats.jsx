@@ -14,54 +14,49 @@ function IncomeData() {
 				const user_id = decode.user_id;
 				try {
 					const incomeResponse = await api.get(
-						`/income_details/${encodeURIComponent(user_id)}/`,
-					);
-					setIncome(incomeResponse.data);
+						`/income_details/${encodeURIComponent(user_id)}/`);
+						setIncome(incomeResponse.data);
 				} catch (error) {
 					console.log(error);
 				}
 			}
 		};
-
+	
 		fetchData();
-	}, [api]);
-
-	useEffect(() => {
-		console.log('Income' + Income);
-	}, [Income]);
+	}, []);
 
 	return [
 		{
 			name: 'Interest',
-			stat: 'AED20,943',
+			stat: 'AED' + Income.Interest,
 			status: 'increase',
 			percentage: '0.25%',
 			color: '#06B48A',
 		},
 		{
 			name: 'Bank Returns',
-			stat: 'AED2,300',
+			stat: 'AED' + Income.bank_returns,
 			status: 'decrease',
 			percentage: '0.25%',
 			color: '#6560F0',
 		},
 		{
 			name: 'Income from Property',
-			stat: 'AED2,700',
+			stat: 'AED' + Income.propertyIncome,
 			status: 'decrease',
 			percentage: '0.25%',
 			color: '#3DD9EB',
 		},
 		{
 			name: 'Salary',
-			stat: 'AED26,700',
+			stat: 'AED' + Income.salary,
 			status: 'increase',
 			percentage: '0.35%',
 			color: '#D76B66',
 		},
 		{
 			name: 'Bonus',
-			stat: 'AED25,700',
+			stat: 'AED' + Income.bonus,
 			status: 'increase',
 			percentage: '0.15%',
 			color: '#F6CF7D',
