@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAxios from '../utlis/useAxios';
 import { jwtDecode } from 'jwt-decode';
-import incomeIcon from '../assets/income.svg';
-import expensesIcon from '../assets/expenses.svg';
-import liabilitiesIcon from '../assets/liabilities.svg';
-import assetsIcon from '../assets/assets.svg';
 
 function IncomeData() {
 	const [Income, setIncome] = useState('');
@@ -20,8 +16,7 @@ function IncomeData() {
 					const incomeResponse = await api.get(
 						`/income_details/${encodeURIComponent(user_id)}/`,
 					);
-					setTotalIncome(incomeResponse.data);
-					console.log;
+					setIncome(incomeResponse.data);
 				} catch (error) {
 					console.log(error);
 				}
