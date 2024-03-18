@@ -7,7 +7,6 @@ export const existingPoliciesSlice = createSlice({
     childrenEducation: {
       policyNo: "",
       annualPremium: "",
-      propertyIncome: "",
       dateofMaturity: "",
       commencementDate: "",
       term: "",
@@ -16,7 +15,6 @@ export const existingPoliciesSlice = createSlice({
     lifeInsurance: {
       policyNo: "",
       annualPremium: "",
-      propertyIncome: "",
       dateofMaturity: "",
       commencementDate: "",
       term: "",
@@ -25,7 +23,6 @@ export const existingPoliciesSlice = createSlice({
     retirement: {
       policyNo: "",
       annualPremium: "",
-      propertyIncome: "",
       dateofMaturity: "",
       commencementDate: "",
       term: "",

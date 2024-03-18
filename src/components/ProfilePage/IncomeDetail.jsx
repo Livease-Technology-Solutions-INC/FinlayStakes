@@ -26,16 +26,17 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 		e.preventDefault();
 		handleChange();
 		incomeDetails(
-      user_id,
-			incomeDetail.interest,
+			user_id,
+			incomeDetail.Interest,
 			incomeDetail.bankReturns,
 			incomeDetail.propertyIncome,
 			incomeDetail.salary,
-			incomeDetail.bonus,
 			incomeDetail.totalIncome,
-      user_id
+			incomeDetail.bonus,
+			user_id,
 		);
-    onNext()
+		console.log(incomeDetail)
+		onNext();
 	};
 
 	return (

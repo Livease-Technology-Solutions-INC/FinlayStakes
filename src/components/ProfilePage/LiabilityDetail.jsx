@@ -35,6 +35,7 @@ const LiabilityDetail = ({ onNext, onPrev }) => {
       liabilityDetail.totalLiabilities,
 			user_id
 		);
+    console.log( liabilityDetail)
 		onNext();
 	};
   return (

@@ -1,6 +1,8 @@
 import React from 'react'
 import HeaderCard from '../ProfilePage/reviewPage/HeaderCard'
-import { ProfilePageCardData, chartData, IncomeStats, ExpensesStats, AssetsStats, LiabilitiesStats, Goals, tableData } from '../../resources/constants'
+import { chartData, IncomeStats, ExpensesStats, AssetsStats, LiabilitiesStats, Goals, tableData } from '../../resources/constants'
+import ProfilePageCardData from '../../data/ProfilePageCardData'
+import IncomeData from '../../data/IncomeStats'
 import NetStats from '../ProfilePage/reviewPage/NetStats'
 import GoalCards from '../ProfilePage/reviewPage/Goals'
 import BoxCard from './reviewPage/BoxCard'
@@ -14,6 +16,8 @@ function ReviewPage({ onNext, exportPage }) {
   const ScheduleCall = () => {
     onNext();
   }
+  const profileData = ProfilePageCardData();
+  const IncomeStatsData = IncomeData();
   return (
     <Box sx={{ position: "static", width: "100%", display: "flex", flexDirection: "column", gap: "24px", justifyContent: "center", alignItems: "flex-start" }}>
       <Box sx={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
@@ -28,8 +32,8 @@ function ReviewPage({ onNext, exportPage }) {
         </Box>
 
       </Box>
-      <HeaderCard HeaderCardData={ProfilePageCardData} />
-      <NetStats data1={IncomeStats} data2={ExpensesStats} Header={"NET INCOME"} subHeader1={"Income"} subHeader2={"Expenses"} />
+      <HeaderCard HeaderCardData={profileData} />
+      <NetStats data1={IncomeStatsData} data2={ExpensesStats} Header={"NET INCOME"} subHeader1={"Income"} subHeader2={"Expenses"} />
       <NetStats data1={AssetsStats} data2={LiabilitiesStats} Header={"NET WORTH"} subHeader1={"Assets"} subHeader2={"Liabilities"} />
       <GoalCards goalData={Goals} />
       <Box sx={{ width: "100%", display: "flex", flexWrap: "wrap", rowGap: "20px", gap: "20px", justifyContent: "flex-start", alignItems: "flex-start" }}>

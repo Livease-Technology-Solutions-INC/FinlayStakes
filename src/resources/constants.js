@@ -8,6 +8,10 @@ import income from "../assets/income.svg";
 import expenses from "../assets/expenses.svg";
 import liabilities from "../assets/liabilities.svg";
 import assets from "../assets/assets.svg";
+import useAxios from "../utlis/useAxios"
+import { jwtDecode } from 'jwt-decode';
+import { useEffect, useState } from "react";
+
 
 export const SidebarData = [
   { label: 'Profile Page', icon: <img src={icon6} alt="Profile" />, url: "/" },

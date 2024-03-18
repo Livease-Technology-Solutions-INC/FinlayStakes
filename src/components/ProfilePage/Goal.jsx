@@ -37,6 +37,7 @@ const Goals = ({ onNext, onPrev }) => {
 			goals.incomeIncaseOfDisability,
 			user_id,
 		);
+		console.log(goals)
 		onNext();
 	};
 

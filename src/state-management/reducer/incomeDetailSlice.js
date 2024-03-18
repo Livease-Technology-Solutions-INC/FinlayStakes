@@ -8,8 +8,8 @@ export const incomeDetailSlice = createSlice({
     bankReturns: '',
     propertyIncome: '',
     salary: '',
-    bonus: '',
     totalIncome: '',
+    bonus: '',
   },
   reducers: {
     updateIncomeDetail: (state, action) => {
