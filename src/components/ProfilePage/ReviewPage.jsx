@@ -1,14 +1,5 @@
 import React from 'react';
 import HeaderCard from '../ProfilePage/reviewPage/HeaderCard';
-import {
-	chartData,
-	IncomeStats,
-	ExpensesStats,
-	AssetsStats,
-	LiabilitiesStats,
-	Goals,
-	tableData,
-} from '../../resources/constants';
 import ProfilePageCardData from '../../data/ProfilePageCardData';
 import NetStats from '../ProfilePage/reviewPage/NetStats';
 import IncomeData from '../../data/IncomeStats';
