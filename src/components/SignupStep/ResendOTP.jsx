@@ -20,6 +20,7 @@ const ResendOTP = () => {
 	const [snackbarOpen, setSnackbarOpen] = useState(false);
 	const [snackbarMessage, setSnackbarMessage] = useState('');
     const {resendOTP} = useContext(AuthContext)
+	const storedEmail = localStorage.getItem('email');
 
 	const navigate = useNavigate();
 
@@ -33,7 +34,7 @@ const ResendOTP = () => {
 			setSnackbarOpen(true);
 			return;
 		} else {
-            resendOTP()
+            resendOTP(storedEmail)
 			navigate('/register/verify-email');
 		}
 	};
