@@ -12,3 +12,7 @@ export const validatePassword = (password) => {
 export const validateNotEmpty = (value) => {
     return value.trim() !== '';
 };
+export const isValidPhoneNumber = (phoneNumber) => {
+    const phoneRegex = /^\d{10}$/; 
+    return phoneRegex.test(phoneNumber);
+}

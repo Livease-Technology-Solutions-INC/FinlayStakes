@@ -16,6 +16,9 @@ import ExpenseData from '../../data/ExpensesStats';
 import AssetsData from '../../data/AssetsStats';
 import LiabilitiesData from '../../data/LiabilitiesStats';
 import GoalData from '../../data/GoalData';
+import ExistingPolicies from '../../data/ExistingPolicies';
+import FinancialPlanningShortfall from '../../data/FinancialPlanningShortfall';
+import ExistingProvision from '../../data/ExistingProvision';
 import GoalCards from '../ProfilePage/reviewPage/Goals';
 import BoxCard from './reviewPage/BoxCard';
 import PolicyTable from '../ProfilePage/reviewPage/Policies';
@@ -33,7 +36,10 @@ function ReviewPage({ onNext, exportPage }) {
 	const expenseStatsData = ExpenseData();
 	const assetsStatsData = AssetsData();
 	const liabilitiesStatsData = LiabilitiesData();
-	const goalStatsData = GoalData()
+	const goalStatsData = GoalData();
+	const existingProvisionData = ExistingProvision();
+	const financialPlanningShortfallData = FinancialPlanningShortfall();
+	const existingPoliciesData = ExistingPolicies();
 	return (
 		<Box
 			sx={{
@@ -111,21 +117,21 @@ function ReviewPage({ onNext, exportPage }) {
 				}}
 			>
 				<BoxCard
-					data={chartData}
+					data={existingProvisionData}
 					header="EXISTING PROVISIONS"
 					stat="AED24,000"
 					status="increase"
 					percentage="5.5%"
 				/>
 				<BoxCard
-					data={chartData}
+					data={financialPlanningShortfallData}
 					header="FINANCIAL PLANNING SHORTFALL"
 					stat="AED24,000"
 					status="increase"
 					percentage="5.5%"
 				/>
 			</Box>
-			<PolicyTable data={tableData} />
+			<PolicyTable data={existingPoliciesData} />
 			<Box
 				position={'absolute'}
 				bottom="-100px"

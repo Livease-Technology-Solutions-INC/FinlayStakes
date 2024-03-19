@@ -22,17 +22,19 @@ import { updatePersonalDetail } from '../../state-management/reducer/personalDet
 import AuthContext from '../../context/AuthContext';
 import useAxios from '../../utlis/useAxios';
 import { jwtDecode } from 'jwt-decode';
+import {
+	isValidPhoneNumber
+} from '../../resources/functions';
 
 const PersonalDetail = ({ onNext, onPrev }) => {
 	const personalDetail = useSelector((state) => state.personalDetail);
 	const dispatch = useDispatch();
 	const { personalDetails } = useContext(AuthContext);
-  const api = useAxios;
-  const token = localStorage.getItem('authTokens')
-  if (token){
-    const decode = jwtDecode(token)
-    var user_id = decode.user_id
-  }
+	const token = localStorage.getItem('authTokens');
+	if (token) {
+		const decode = jwtDecode(token);
+		var user_id = decode.user_id;
+	}
 
 	const handleChange = (field, value) => {
 		dispatch(updatePersonalDetail({ [field]: value }));
@@ -46,15 +48,16 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 			personalDetail.DOB,
 			personalDetail.age,
 			personalDetail.maritalStatus,
-			personalDetail.phonenumber,
+			personalDetail.phoneNumber,
 			personalDetail.email,
 			personalDetail.residentCountry,
 			personalDetail.nationality,
 			personalDetail.residentialAddress,
 			personalDetail.smoker,
 			personalDetail.medicalHistory,
-		  user_id,
+			user_id,
 		);
+		console.log(personalDetail.phoneNumber);
 		onNext();
 	};
 
