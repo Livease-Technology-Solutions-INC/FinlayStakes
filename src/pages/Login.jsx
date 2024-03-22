@@ -9,7 +9,7 @@ function Login() {
 
 	return (
 		<Box className="row-layout">
-			<Box sx={{ width: '100%', maxWidth: '650px' }}>
+			<Box sx={{ width: '100%', maxWidth: '650px', maxHeight: '100%' }}>
 				<img
 					src={Background}
 					alt="background"

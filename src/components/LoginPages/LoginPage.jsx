@@ -27,8 +27,7 @@ const LoginPage = () => {
 	const [passwordVisible, setPasswordVisible] = useState(false);
 	const [snackbarOpen, setSnackbarOpen] = useState(false);
 	const [snackbarMessage, setSnackbarMessage] = useState('');
-	const [forgotPassword, setForgotPassword] = useState(false); // State to manage visibility of "Forgot Password" section
-
+	const [forgotPassword, setForgotPassword] = useState(false); 
 	const navigate = useNavigate();
 	const { loginUser } = useContext(AuthContext)
 
@@ -70,7 +69,7 @@ const LoginPage = () => {
 
 	return (
 			<Box>
-				<img src={Logo} style={{ marginBottom: '72px' }} />
+				<img src={Logo} style={{ marginBottom: '20px', width: '320px', height: '46px' }} />
 				<Box
 					display="flex"
 					flexDirection="column"

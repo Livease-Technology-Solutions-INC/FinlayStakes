@@ -42,7 +42,7 @@ const LiabilityDetail = ({ onNext, onPrev }) => {
     <Box width="100%" display={'flex'} flexDirection={"column"} gap={"32px"} >
       <form onSubmit={handleSubmit} >
       <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="h5">Liability Details</Typography>
-        <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="92px" rowGap={"24px"} alignItems={"flex-start"} >
+        <Box width={"100%"} display={'flex'} flexWrap={"wrap"} flexDirection={"row"} gap="52px" rowGap={"24px"} alignItems={"flex-start"} >
             <InputField
               label={"Bank Loans"}
               placeholder={"Bank Loans"}

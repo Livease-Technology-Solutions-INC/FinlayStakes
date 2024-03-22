@@ -70,7 +70,7 @@ const ExpensesDetail = ({ onNext, onPrev }) => {
 						display={'flex'}
 						flexWrap={'wrap'}
 						flexDirection={'row'}
-						gap="92px"
+						gap="52px"
 						rowGap={'24px'}
 						alignItems={'flex-start'}
 					>
@@ -110,7 +110,7 @@ const ExpensesDetail = ({ onNext, onPrev }) => {
 						display={'flex'}
 						flexWrap={'wrap'}
 						flexDirection={'row'}
-						gap="92px"
+						gap="52px"
 						rowGap={'24px'}
 						alignItems={'flex-start'}
 					>
