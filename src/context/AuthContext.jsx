@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
+import { baseURL } from '../constants/Constant';
 const swal = require('sweetalert2');
 
 const AuthContext = createContext();
@@ -25,7 +26,7 @@ export const AuthProvider = ({ children }) => {
 	const history = useNavigate();
 
 	const loginUser = async (email, password) => {
-		const response = await fetch('http://127.0.0.1:8000/app/token/', {
+		const response = await fetch(`https://backend.finlaystakes.com/app/token/`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -67,7 +68,7 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	const registerUser = async (email, username, password) => {
-		const response = await fetch('http://127.0.0.1:8000/app/register/', {
+		const response = await fetch('https://backend.finlaystakes.com/app/register/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -112,7 +113,7 @@ export const AuthProvider = ({ children }) => {
 
 	const verifyEmail = async (email, otp_code) => {
 		const response = await fetch(
-			`http://127.0.0.1:8000/app/verify-email/${encodeURIComponent(email)}/`,
+			`https://backend.finlaystakes.com/app/verify-email/${encodeURIComponent(email)}/`,
 			{
 				method: 'POST',
 				headers: {
@@ -153,15 +154,18 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	const resendOTP = async (email) => {
-		const response = await fetch(`http://127.0.0.1:8000/app/resend_otp/${encodeURIComponent(email)}/`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
+		const response = await fetch(
+			`https://backend.finlaystakes.com/app/resend_otp/${encodeURIComponent(email)}/`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					email,
+				}),
 			},
-			body: JSON.stringify({
-				email
-			}),
-		});
+		);
 		const data = await response.json();
 		if (response.status === 200 || 201) {
 			console.log('OTP Send' + data);
@@ -188,6 +192,87 @@ export const AuthProvider = ({ children }) => {
 			});
 		}
 	};
+
+	const requestResetPassword = async (email) => {
+		const response = await fetch(
+			`https://backend.finlaystakes.com/app/request-password-reset/`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					email,
+				}),
+			},
+		);
+		const data = await response.json();
+		if (response.status === 200 || 201) {
+			console.log('OTP Send' + data);
+			swal.fire({
+				title: 'Password Reset Successful',
+				icon: 'success',
+				toast: true,
+				timer: 1000,
+				position: 'top-right',
+				timerProgressBar: true,
+				showConfirmButton: false,
+			});
+		} else {
+			console.log(response.status);
+			console.log('there was a server issue');
+			swal.fire({
+				title: 'Password reset failed',
+				icon: 'error',
+				toast: true,
+				timer: 2000,
+				position: 'top-right',
+				timerProgressBar: true,
+				showConfirmButton: false,
+			});
+		}
+	};
+	const resetPassword = async (uidb64, token) => {
+		const response = await fetch(
+			`https://backend.finlaystakes.com/app/reset-password/${uidb64}/${token}/`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					uidb64,
+					token,
+				}),
+			},
+		);
+		const data = await response.json();
+		if (response.status === 200 || 201) {
+			console.log('OTP Send' + data);
+			swal.fire({
+				title: 'Password Reset Successful',
+				icon: 'success',
+				toast: true,
+				timer: 1000,
+				position: 'top-right',
+				timerProgressBar: true,
+				showConfirmButton: false,
+			});
+		} else {
+			console.log(response.status);
+			console.log('there was a server issue');
+			swal.fire({
+				title: 'Password reset failed',
+				icon: 'error',
+				toast: true,
+				timer: 2000,
+				position: 'top-right',
+				timerProgressBar: true,
+				showConfirmButton: false,
+			});
+		}
+	};
+
 	const personalDetails = async (
 		id,
 		name,
@@ -204,7 +289,7 @@ export const AuthProvider = ({ children }) => {
 		user,
 	) => {
 		const response = await fetch(
-			`http://127.0.0.1:8000/app/personal_details/${encodeURIComponent(id)}/`,
+			`https://backend.finlaystakes.com/app/personal_details/${encodeURIComponent(id)}/`,
 			{
 				method: 'POST',
 				headers: {
@@ -247,7 +332,7 @@ export const AuthProvider = ({ children }) => {
 		user,
 	) => {
 		const response = await fetch(
-			`http://127.0.0.1:8000/app/income_details/${encodeURIComponent(id)}/`,
+			`https://backend.finlaystakes.com/app/income_details/${encodeURIComponent(id)}/`,
 			{
 				method: 'POST',
 				headers: {
@@ -286,7 +371,7 @@ export const AuthProvider = ({ children }) => {
 		user,
 	) => {
 		const response = await fetch(
-			`http://127.0.0.1:8000/app/expense_details/${encodeURIComponent(id)}/`,
+			`https://backend.finlaystakes.com/app/expense_details/${encodeURIComponent(id)}/`,
 			{
 				method: 'POST',
 				headers: {
@@ -325,7 +410,7 @@ export const AuthProvider = ({ children }) => {
 		user,
 	) => {
 		const response = await fetch(
-			`http://127.0.0.1:8000/app/asset_details/${encodeURIComponent(id)}/`,
+			`https://backend.finlaystakes.com/app/asset_details/${encodeURIComponent(id)}/`,
 			{
 				method: 'POST',
 				headers: {
@@ -363,7 +448,7 @@ export const AuthProvider = ({ children }) => {
 		user,
 	) => {
 		const response = await fetch(
-			`http://127.0.0.1:8000/app/liability_details/${encodeURIComponent(id)}/`,
+			`https://backend.finlaystakes.com/app/liability_details/${encodeURIComponent(id)}/`,
 			{
 				method: 'POST',
 				headers: {
@@ -403,7 +488,7 @@ export const AuthProvider = ({ children }) => {
 		user,
 	) => {
 		const response = await fetch(
-			`http://127.0.0.1:8000/app/goals/${encodeURIComponent(id)}/`,
+			`https://backend.finlaystakes.com/app/goals/${encodeURIComponent(id)}/`,
 			{
 				method: 'POST',
 				headers: {
@@ -442,7 +527,7 @@ export const AuthProvider = ({ children }) => {
 		user,
 	) => {
 		const response = await fetch(
-			`http://127.0.0.1:8000/app/existing_provisions_details/${encodeURIComponent(
+			`https://backend.finlaystakes.com/app/existing_provisions_details/${encodeURIComponent(
 				id,
 			)}/`,
 			{
@@ -480,7 +565,7 @@ export const AuthProvider = ({ children }) => {
 		user,
 	) => {
 		const response = await fetch(
-			`http://127.0.0.1:8000/app/financial_planning_shortfall/${encodeURIComponent(
+			`https://backend.finlaystakes.com/app/financial_planning_shortfall/${encodeURIComponent(
 				id,
 			)}/`,
 			{
@@ -531,7 +616,7 @@ export const AuthProvider = ({ children }) => {
 		user,
 	) => {
 		const response = await fetch(
-			`http://127.0.0.1:8000/app/existing_policies/${encodeURIComponent(id)}/`,
+			`https://backend.finlaystakes.com/app/existing_policies/${encodeURIComponent(id)}/`,
 			{
 				method: 'POST',
 				headers: {
@@ -581,6 +666,8 @@ export const AuthProvider = ({ children }) => {
 		logoutUser,
 		verifyEmail,
 		resendOTP,
+		requestResetPassword,
+		resetPassword,
 		personalDetails,
 		incomeDetails,
 		expenseDetails,
