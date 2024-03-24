@@ -37,12 +37,18 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 	const handleChange = (field, value) => {
 		dispatch(updatePersonalDetail({ [field]: value }));
 	};
+	const validateForm = () => {
+        const requiredFields = ['name', 'DOB', 'age', 'maritalStatus', 'phoneNumber', 'email', 'residentCountry', 'residentialAddress', 'smoker', 'medicalHistory'];
+        const isValid = requiredFields.every(field => !!personalDetail[field]);
+        
+        return isValid;
+    };
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		handleChange();
-		const isFormValid = Object.values(personalDetail).every((value) => !!value);
-		
+		const isFormValid = validateForm(); 
 		setFormValid(isFormValid);
+		console.log(personalDetail)
 		if (isFormValid) {
 			personalDetails(
 				user_id,

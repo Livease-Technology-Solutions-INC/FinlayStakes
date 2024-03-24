@@ -122,7 +122,6 @@ const LoginPage = () => {
 			return;
 		} else {
 			loginUser(email, password);
-			// navigate('/');
 		}
 	};
 

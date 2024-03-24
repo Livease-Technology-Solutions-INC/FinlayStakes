@@ -78,7 +78,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 	justifyContent: 'flex-end',
 }));
 
-const Navbar = ({ sidebarData, updateActiveItem, activeItem }) => {
+const Navbar = ({ sidebarData, updateActiveItem, activeItem}) => {
 	const [searchValue, setSearchValue] = useState('');
 
 	const theme = useTheme();
@@ -139,7 +139,7 @@ const Navbar = ({ sidebarData, updateActiveItem, activeItem }) => {
 						edge="start"
 						sx={{ mr: 2, ...(open && { display: 'none' }) }}
 					>
-						<MenuIcon />
+						<img src={barIcon} alt="icon" />
 					</IconButton>
 					<Box
 						sx={{
@@ -201,10 +201,10 @@ const Navbar = ({ sidebarData, updateActiveItem, activeItem }) => {
 				<DrawerHeader>
 					<Box sx={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
 						<img src={Logo} alt="logo" />
+						<IconButton onClick={handleDrawerClose}>
+							<img src={barIcon} alt="icon" />
+						</IconButton>
 					</Box>
-					<IconButton onClick={handleDrawerClose}>
-						<img src={barIcon} alt="icon" />
-					</IconButton>
 				</DrawerHeader>
 				<Divider />
 				<List
