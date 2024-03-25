@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Pagetitle from '../components/Pagetitle';
 import { Route, Routes } from 'react-router';
 import { SidebarData } from '../resources/constants';
-import ProfilePage from './ProfilePage';
+import ProfilePage from './Dashboard';
 import { Grid } from '@mui/material';
 
 function Home() {

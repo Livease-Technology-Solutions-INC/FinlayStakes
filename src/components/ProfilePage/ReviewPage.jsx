@@ -20,6 +20,7 @@ import PageTitle from '../Pagetitle';
 import { Box, Typography, Button } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import xclose from '../../assets/Xclose.svg';
+import main from '../../assets/main.svg';
 
 const style = {
 	position: 'absolute',
@@ -38,10 +39,11 @@ const style = {
 	alignItems: 'center',
 	flexDirection: 'column',
 };
-function ReviewPage({ onNext, exportPage, editPage }) {
+function ReviewPage({ onNext, exportPage, editPage, first }) {
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+	console.log(open);
 	const ScheduleCall = () => {
 		onNext();
 	};
@@ -127,6 +129,9 @@ function ReviewPage({ onNext, exportPage, editPage }) {
 					</Button>
 				</Box>
 			</Box>
+			<Box>
+				<img src={main} alt="main" />
+			</Box>
 			<HeaderCard HeaderCardData={profileData} />
 			<NetStats
 				data1={incomeStatsData}
@@ -176,6 +181,70 @@ function ReviewPage({ onNext, exportPage, editPage }) {
 				right="0px"
 				alignSelf={'flex-end'}
 			>
+				<Modal
+					open={open}
+					onClose={handleClose}
+					aria-labelledby="modal-modal-title"
+					aria-describedby="modal-modal-description"
+				>
+					<Box sx={style}>
+						<Box>
+							<Box
+								sx={{
+									display: 'flex',
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									mb: 1,
+								}}
+							>
+								<Typography
+									id="modal-modal-title"
+									variant="h6"
+									component="h2"
+									sx={{
+										color: 'hsla(228, 35%, 20%, 1)',
+										fontWeight: 600,
+									}}
+								>
+									Fill Required Form
+								</Typography>
+								<Button
+									onClick={handleClose}
+									sx={{
+										position: 'absolute',
+										top: 20,
+										right: 0,
+									}}
+								>
+									<img src={xclose} alt="editIcon" />
+								</Button>
+							</Box>
+							<Typography
+								id="modal-modal-description"
+								sx={{ mb: 3, color: 'hsla(234, 23%, 65%, 1)' }}
+							>
+								Complete the necessary form.
+							</Typography>
+						</Box>
+						<Button
+							onClick={first}
+							sx={{
+								display: 'flex',
+								alignItems: 'center',
+								justifyContent: 'center',
+								color: 'white',
+								padding: '7px 16px',
+								borderRadius: '8px',
+								gap: '8px',
+								backgroundColor: 'hsla(254, 82%, 26%, 1)',
+								height: '32px',
+								fontSize: '16px',
+							}}
+						>
+							Click here
+						</Button>
+					</Box>
+				</Modal>
 				<Button
 					sx={{
 						backgroundColor: '#250C77',
@@ -192,61 +261,6 @@ function ReviewPage({ onNext, exportPage, editPage }) {
 					onClick={handleOpen}
 					style={{ marginTop: '16px' }}
 				>
-					<Modal
-						open={open}
-						aria-labelledby="modal-modal-title"
-						aria-describedby="modal-modal-description"
-					>
-						<Box sx={style}>
-							<Box>
-								<Box
-									sx={{
-										display: 'flex',
-										justifyContent: 'space-between',
-										alignItems: 'center',
-										mb: 1
-									}}
-								>
-									<Typography
-										id="modal-modal-title"
-										variant="h6"
-										component="h2"
-										sx={{
-											color: 'hsla(228, 35%, 20%, 1)',
-										}}
-									>
-										Fill Required Form
-									</Typography>
-									<Button onClose={handleClose}>
-										<img src={xclose} alt="editIcon" />
-									</Button>
-								</Box>
-								<Typography
-									id="modal-modal-description"
-									sx={{ mb: 3, color: 'hsla(234, 23%, 65%, 1)' }}
-								>
-									Complete the necessary form.
-								</Typography>
-							</Box>
-							<Button
-								onClick={ScheduleCall}
-								sx={{
-									display: 'flex',
-									alignItems: 'center',
-									justifyContent: 'center',
-									color: 'white',
-									padding: '7px 16px',
-									borderRadius: '8px',
-									gap: '8px',
-									backgroundColor: 'hsla(254, 82%, 26%, 1)',
-									height: '32px',
-									fontSize: '16px',
-								}}
-							>
-								Click here
-							</Button>
-						</Box>
-					</Modal>
 					<Typography
 						variant="body1"
 						sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}

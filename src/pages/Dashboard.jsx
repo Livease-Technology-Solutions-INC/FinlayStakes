@@ -27,12 +27,18 @@ function ProfilePage() {
   const showExportPage = () => {
     setActiveStep(11);
   }
+  const showFirstTime = () => {
+    setActiveStep(1)
+  }
+  const showEditPage = () => {
+    setActiveStep(12)
+  }
   return (
     <>
       <Box display="flex" width="100%" paddingBottom="80px" backgroundColor="#F2F1F9">
       {activeStep === 0 && 
         <Box position={"relative"} width={"100%"}>
-        <ReviewPage onNext={showScheduleCall} exportPage={showExportPage} />
+        <ReviewPage onNext={showScheduleCall} exportPage={showExportPage} editPage={showEditPage} first={showFirstTime} />
         </Box>}
         {activeStep === 1 &&
           <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>

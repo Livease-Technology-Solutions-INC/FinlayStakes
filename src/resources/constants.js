@@ -4,6 +4,7 @@ import icon3 from "../assets/Mask group3.svg";
 import icon4 from "../assets/Mask group4.svg";
 import icon5 from "../assets/ant-design_project-filled.svg";
 import icon6 from "../assets/iconamoon_profile-fill.svg";
+import icon7 from "../assets/dashboard.svg"
 import income from "../assets/income.svg";
 import expenses from "../assets/expenses.svg";
 import liabilities from "../assets/liabilities.svg";
@@ -14,7 +15,8 @@ import { useEffect, useState } from "react";
 
 
 export const SidebarData = [
-  { label: 'Profile Page', icon: <img src={icon6} alt="Profile" />, url: "/" },
+  { label: 'Dashboard', icon: <img src={icon7} alt="Dashboard" />, url: "/" },
+  { label: 'Profile Page', icon: <img src={icon6} alt="Profile" />, url: "/profile" },
   { label: 'Investment Amount', icon: <img src={icon2} alt="Investment" />, url: "/investment" },
   { label: 'Business categories', icon: <img src={icon1} alt="Buissness" />, url: "/buissness" },
   { label: 'Purpose of Investments', icon: <img src={icon3} alt="Investment" />, url: "/investment" },
