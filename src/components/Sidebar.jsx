@@ -26,7 +26,6 @@ const Sidebar = ({ sidebarData, updateActiveItem, activeItem }) => {
 	const handleItemClick = (option) => {
 		updateActiveItem(option);
 	};
-
 	return (
 		<Drawer
 			variant="permanent"
