@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router';
 import { SidebarData } from '../resources/constants';
 import ProfilePage from './ProfilePage';
 import { Grid } from '@mui/material';
+import AvailableProjects from './AvailableProjects';
 
 function Home() {
 	const [activeItem, setActiveItem] = useState(SidebarData[0]);
@@ -33,8 +34,9 @@ function Home() {
 					}}
 				>
 					<Routes>
-            <Route path="/" element={<ProfilePage />}></Route>
-          </Routes>
+						<Route path="/" element={<ProfilePage />}></Route>
+						<Route path="/*" element={<AvailableProjects />}></Route>
+					</Routes>
 				</div>
 			</div>
 		</div>
