@@ -41,6 +41,9 @@ const style = {
 };
 function ReviewPage({ onNext, exportPage, editPage, first }) {
 	const [open, setOpen] = React.useState(false);
+	const [exportOpen, setExportOpen] = React.useState(false);
+	const handleExportOpen = () => setExportOpen(true);
+	const handleExportClose = () => setExportOpen(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 	console.log(open);
@@ -117,7 +120,7 @@ function ReviewPage({ onNext, exportPage, editPage, first }) {
 							'&:hover': { backgroundColor: '#fff' },
 							height: '32px',
 						}}
-						onClick={exportPage}
+						onClick={handleExportOpen}
 					>
 						<Typography
 							variant="body1"
@@ -128,9 +131,92 @@ function ReviewPage({ onNext, exportPage, editPage, first }) {
 						<img src={exportIcon} alt="exportIcon" />
 					</Button>
 				</Box>
+				<Modal
+					open={exportOpen}
+					onClose={handleExportClose}
+					aria-labelledby="modal-modal-title"
+					aria-describedby="modal-modal-description"
+				>
+					<Box sx={style}>
+						<Box>
+							<Box
+								sx={{
+									display: 'flex',
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									mb: 1,
+								}}
+							>
+								<Typography
+									id="modal-modal-title"
+									variant="h6"
+									component="h2"
+									sx={{
+										color: 'hsla(228, 35%, 20%, 1)',
+										fontWeight: 600,
+									}}
+								>
+									Export Format
+								</Typography>
+								<Button
+									onClick={handleExportClose}
+									sx={{
+										position: 'absolute',
+										top: 20,
+										right: 0,
+									}}
+								>
+									<img src={xclose} alt="editIcon" />
+								</Button>
+							</Box>
+							<Typography
+								id="modal-modal-description"
+								sx={{ mb: 3, color: 'hsla(234, 23%, 65%, 1)' }}
+							>
+								Choose the export option
+							</Typography>
+						</Box>
+						<Button
+							onClick={first}
+							sx={{
+								display: 'flex',
+								alignItems: 'center',
+								justifyContent: 'center',
+								color: 'white',
+								padding: '7px 16px',
+								borderRadius: '8px',
+								gap: '8px',
+								backgroundColor: 'hsla(254, 82%, 26%, 1)',
+								height: '32px',
+								fontSize: '16px',
+							}}
+						>
+							Export
+						</Button>
+					</Box>
+				</Modal>
 			</Box>
-			<Box>
-				<img src={main} alt="main" />
+			<Box sx={{ width: '1000px' }}>
+				<Box sx={{ color: 'white', position: 'absolute', left: 30, top: 150 }}>
+					<Typography variant="h6">Hello,</Typography>
+					<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+						<Typography variant="h6" sx={{ fontSize: '32px' }}>
+							Good Morning,{' '}
+							<span variant="h4" sx={{ fontWeight: '100', lineBreak: 'none' }}>
+								Firstname
+							</span>
+						</Typography>
+					</Box>
+
+					<Typography variant="h6">
+						Check Your Personal Financial Review
+					</Typography>
+				</Box>
+				<img
+					src={main}
+					alt="main"
+					style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+				/>
 			</Box>
 			<HeaderCard HeaderCardData={profileData} />
 			<NetStats
@@ -238,13 +324,14 @@ function ReviewPage({ onNext, exportPage, editPage, first }) {
 								gap: '8px',
 								backgroundColor: 'hsla(254, 82%, 26%, 1)',
 								height: '32px',
-								fontSize: '16px',
+								fontSize: '12px',
 							}}
 						>
 							Click here
 						</Button>
 					</Box>
 				</Modal>
+
 				<Button
 					sx={{
 						backgroundColor: '#250C77',
