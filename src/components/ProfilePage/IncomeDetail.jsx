@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState} from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import InputField from '../Input';
 import nextChevron from '../../assets/carbon_next-outline.svg';

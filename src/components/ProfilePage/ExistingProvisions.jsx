@@ -1,5 +1,5 @@
 // ExistingProvision.js
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import InputField from '../Input';
 import nextChevron from '../../assets/carbon_next-outline.svg';
@@ -13,6 +13,7 @@ const ExistingProvision = ({ onNext, onPrev }) => {
 	const existingProvisions = useSelector((state) => state.existingProvisions);
 	const dispatch = useDispatch();
 	const { existingProvisionsDetails } = useContext(AuthContext);
+	const [formValid, setFormValid] = useState(false);
 	const token = localStorage.getItem('authTokens');
 	if (token) {
 		const decode = jwtDecode(token);
@@ -21,19 +22,37 @@ const ExistingProvision = ({ onNext, onPrev }) => {
 	const handleChange = (field, value) => {
 		dispatch(updateExistingProvisions({ [field]: value }));
 	};
+	const validateForm = () => {
+		const requiredFields = [
+			'childrenEducation',
+			'retirement',
+			'lifeInsurance',
+			'criticalIllness',
+			'disability',
+		];
+		const isValid = requiredFields.every(
+			(field) => !!existingProvisions[field],
+		);
+
+		return isValid;
+	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		handleChange();
-		existingProvisionsDetails(
-			user_id,
-			existingProvisions.childrenEducation,
-			existingProvisions.retirement,
-			existingProvisions.lifeInsurance,
-			existingProvisions.criticalIllness,
-			existingProvisions.disability,
-			user_id,
-		);
-		onNext();
+		const isFormValid = validateForm();
+		setFormValid(isFormValid);
+		if (isFormValid) {
+			existingProvisionsDetails(
+				user_id,
+				existingProvisions.childrenEducation,
+				existingProvisions.retirement,
+				existingProvisions.lifeInsurance,
+				existingProvisions.criticalIllness,
+				existingProvisions.disability,
+				user_id,
+			);
+			onNext();
+		}
 	};
 
 	return (
