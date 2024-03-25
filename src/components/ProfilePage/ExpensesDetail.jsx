@@ -1,5 +1,5 @@
 // ExpensesDetail.js
-import React, { useContext } from 'react';
+import React, { useContext, useState} from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import InputField from '../Input';
 import nextChevron from '../../assets/carbon_next-outline.svg';
@@ -13,6 +13,7 @@ const ExpensesDetail = ({ onNext, onPrev }) => {
 	const expensesDetail = useSelector((state) => state.expensesDetail);
 	const dispatch = useDispatch();
 	const { expenseDetails } = useContext(AuthContext);
+	const [formValid, setFormValid] = useState(false);
 	const token = localStorage.getItem('authTokens');
 	if (token) {
 		const decode = jwtDecode(token);
@@ -22,21 +23,39 @@ const ExpensesDetail = ({ onNext, onPrev }) => {
 	const handleChange = (field, value) => {
 		dispatch(updateExpensesDetail({ [field]: value }));
 	};
+	const validateForm = () => {
+		const requiredFields = [
+			'utilityBill',
+			'loan',
+			'rent',
+			'shoppingExpense',
+			'leisureExpense',
+			'totalExpenses',
+			'medicalExpense',
+		];
+		const isValid = requiredFields.every((field) => !!expensesDetail[field]);
+
+		return isValid;
+	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		handleChange();
-		expenseDetails(
-			user_id,
-			expensesDetail.utilityBill,
-			expensesDetail.loan,
-			expensesDetail.rent,
-			expensesDetail.shoppingExpense,
-			expensesDetail.leisureExpense,
-			expensesDetail.totalExpenses,
-			expensesDetail.medicalExpense,
-			user_id
-		);
-		onNext();
+		const isFormValid = validateForm();
+		setFormValid(isFormValid);
+		if (isFormValid) {
+			expenseDetails(
+				user_id,
+				expensesDetail.utilityBill,
+				expensesDetail.loan,
+				expensesDetail.rent,
+				expensesDetail.shoppingExpense,
+				expensesDetail.leisureExpense,
+				expensesDetail.totalExpenses,
+				expensesDetail.medicalExpense,
+				user_id,
+			);
+			onNext();
+		}
 	};
 
 	return (
@@ -70,7 +89,7 @@ const ExpensesDetail = ({ onNext, onPrev }) => {
 						display={'flex'}
 						flexWrap={'wrap'}
 						flexDirection={'row'}
-						gap="92px"
+						gap="52px"
 						rowGap={'24px'}
 						alignItems={'flex-start'}
 					>
@@ -110,7 +129,7 @@ const ExpensesDetail = ({ onNext, onPrev }) => {
 						display={'flex'}
 						flexWrap={'wrap'}
 						flexDirection={'row'}
-						gap="92px"
+						gap="52px"
 						rowGap={'24px'}
 						alignItems={'flex-start'}
 					>

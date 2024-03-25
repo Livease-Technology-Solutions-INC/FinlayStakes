@@ -15,10 +15,33 @@ import BoxCard from './reviewPage/BoxCard';
 import PolicyTable from '../ProfilePage/reviewPage/Policies';
 import nextChevron from '../../assets/carbon_next-outline.svg';
 import exportIcon from '../../assets/export.svg';
+import editIcon from '../../assets/edit.svg';
 import PageTitle from '../Pagetitle';
 import { Box, Typography, Button } from '@mui/material';
+import Modal from '@mui/material/Modal';
+import xclose from '../../assets/Xclose.svg';
 
-function ReviewPage({ onNext, exportPage }) {
+const style = {
+	position: 'absolute',
+	top: '50%',
+	left: '50%',
+	transform: 'translate(-50%, -50%)',
+	width: 348,
+	height: 175,
+	bgcolor: 'background.paper',
+	boxShadow: 24,
+	p: 4,
+	borderRadius: '8px',
+	border: 'none',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	flexDirection: 'column',
+};
+function ReviewPage({ onNext, exportPage, editPage }) {
+	const [open, setOpen] = React.useState(false);
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
 	const ScheduleCall = () => {
 		onNext();
 	};
@@ -52,12 +75,14 @@ function ReviewPage({ onNext, exportPage }) {
 				}}
 			>
 				<Box>
-					<PageTitle
-						header={'Personal Financial Review'}
-						title={'Profile page'}
-					/>
+					<PageTitle header={'Personal Financial Review'} title={'Dashboard'} />
 				</Box>
-				<Box>
+				<Box
+					sx={{
+						display: 'flex',
+						gap: '10px',
+					}}
+				>
 					<Button
 						sx={{
 							display: 'flex',
@@ -67,6 +92,28 @@ function ReviewPage({ onNext, exportPage }) {
 							gap: '8px',
 							backgroundColor: '#fff',
 							'&:hover': { backgroundColor: '#fff' },
+							height: '32px',
+						}}
+						onClick={editPage}
+					>
+						<img src={editIcon} alt="editIcon" />
+						<Typography
+							variant="body1"
+							sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
+						>
+							Edit
+						</Typography>
+					</Button>
+					<Button
+						sx={{
+							display: 'flex',
+							color: '#9397BB',
+							padding: '7px 16px',
+							borderRadius: '8px',
+							gap: '8px',
+							backgroundColor: '#fff',
+							'&:hover': { backgroundColor: '#fff' },
+							height: '32px',
 						}}
 						onClick={exportPage}
 					>
@@ -141,14 +188,70 @@ function ReviewPage({ onNext, exportPage }) {
 						'&:hover': { backgroundColor: '#250C94' },
 					}}
 					variant="contained"
-					onClick={ScheduleCall}
+					// onClick={ScheduleCall}
+					onClick={handleOpen}
 					style={{ marginTop: '16px' }}
 				>
+					<Modal
+						open={open}
+						aria-labelledby="modal-modal-title"
+						aria-describedby="modal-modal-description"
+					>
+						<Box sx={style}>
+							<Box>
+								<Box
+									sx={{
+										display: 'flex',
+										justifyContent: 'space-between',
+										alignItems: 'center',
+										mb: 1
+									}}
+								>
+									<Typography
+										id="modal-modal-title"
+										variant="h6"
+										component="h2"
+										sx={{
+											color: 'hsla(228, 35%, 20%, 1)',
+										}}
+									>
+										Fill Required Form
+									</Typography>
+									<Button onClose={handleClose}>
+										<img src={xclose} alt="editIcon" />
+									</Button>
+								</Box>
+								<Typography
+									id="modal-modal-description"
+									sx={{ mb: 3, color: 'hsla(234, 23%, 65%, 1)' }}
+								>
+									Complete the necessary form.
+								</Typography>
+							</Box>
+							<Button
+								onClick={ScheduleCall}
+								sx={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									color: 'white',
+									padding: '7px 16px',
+									borderRadius: '8px',
+									gap: '8px',
+									backgroundColor: 'hsla(254, 82%, 26%, 1)',
+									height: '32px',
+									fontSize: '16px',
+								}}
+							>
+								Click here
+							</Button>
+						</Box>
+					</Modal>
 					<Typography
 						variant="body1"
 						sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
 					>
-						Request for Free Analysis and Consultation
+						Fill Form
 					</Typography>
 					<div
 						style={{

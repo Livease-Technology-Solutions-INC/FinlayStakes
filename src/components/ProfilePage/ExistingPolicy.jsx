@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import InputField from '../Input';
 import nextChevron from '../../assets/carbon_next-outline.svg';
@@ -16,6 +16,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 	const existingPolicies = useSelector((state) => state.existingPolicies);
 	const dispatch = useDispatch();
 	const { existingPoliciesURL } = useContext(AuthContext);
+	const [formValid, setFormValid] = useState(false);
 	const token = localStorage.getItem('authTokens');
 	if (token) {
 		const decode = jwtDecode(token);
@@ -33,36 +34,73 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 	const handleRetirementChange = (field, value) => {
 		dispatch(updateRetirement({ [field]: value }));
 	};
+	const validateForm = () => {
+		const requiredFields = [
+			'childrenEducation.policyNo',
+			'childrenEducation.annualPremium',
+			'childrenEducation.dateofMaturity',
+			'childrenEducation.commencementDate',
+			'childrenEducation.term',
+			'childrenEducation.benefits',
+			'lifeInsurance.policyNo',
+			'lifeInsurance.annualPremium',
+			'lifeInsurance.dateofMaturity',
+			'lifeInsurance.commencementDate',
+			'lifeInsurance.term',
+			'lifeInsurance.benefits',
+			'retirement.policyNo',
+			'retirement.annualPremium',
+			'retirement.dateofMaturity',
+			'retirement.commencementDate',
+			'retirement.term',
+			'retirement.benefits',
+		];
+		const isValid = requiredFields.every((field) => {
+			const nestedFields = field.split('.');
+			const fieldValue = nestedFields.reduce((obj, key) => obj && obj[key], existingPolicies);
+			const exists = !!fieldValue;
+			if (!exists) {
+				console.log(`Missing field: ${field}`);
+			}
+			return exists;
+		})
+		return isValid;
+	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		handleChildrenEducationChange();
 		handleLifeInsuranceChange();
 		handleRetirementChange();
-		console.log(existingPolicies.childrenEducation.policyNo);
-		existingPoliciesURL(
-			user_id,
-			existingPolicies.childrenEducation.policyNo,
-			existingPolicies.childrenEducation.annualPremium,
-			existingPolicies.childrenEducation.dateofMaturity,
-			existingPolicies.childrenEducation.commencementDate,
-			existingPolicies.childrenEducation.term,
-			existingPolicies.childrenEducation.benefits,
-			existingPolicies.lifeInsurance.policyNo,
-			existingPolicies.lifeInsurance.annualPremium,
-			existingPolicies.lifeInsurance.dateofMaturity,
-			existingPolicies.lifeInsurance.commencementDate,
-			existingPolicies.lifeInsurance.term,
-			existingPolicies.lifeInsurance.benefits,
-			existingPolicies.retirement.policyNo,
-			existingPolicies.retirement.annualPremium,
-			existingPolicies.retirement.dateofMaturity,
-			existingPolicies.retirement.commencementDate,
-			existingPolicies.retirement.term,
-			existingPolicies.retirement.benefits,
-			user_id,
-		);
+		const isFormValid = validateForm();
+		setFormValid(isFormValid);
 		console.log(existingPolicies)
-		onNext();
+		if (isFormValid) {
+			existingPoliciesURL(
+				user_id,
+				existingPolicies.childrenEducation.policyNo,
+				existingPolicies.childrenEducation.annualPremium,
+				existingPolicies.childrenEducation.dateofMaturity,
+				existingPolicies.childrenEducation.commencementDate,
+				existingPolicies.childrenEducation.term,
+				existingPolicies.childrenEducation.benefits,
+				existingPolicies.lifeInsurance.policyNo,
+				existingPolicies.lifeInsurance.annualPremium,
+				existingPolicies.lifeInsurance.dateofMaturity,
+				existingPolicies.lifeInsurance.commencementDate,
+				existingPolicies.lifeInsurance.term,
+				existingPolicies.lifeInsurance.benefits,
+				existingPolicies.retirement.policyNo,
+				existingPolicies.retirement.annualPremium,
+				existingPolicies.retirement.dateofMaturity,
+				existingPolicies.retirement.commencementDate,
+				existingPolicies.retirement.term,
+				existingPolicies.retirement.benefits,
+				user_id,
+			);
+			console.log(existingPolicies);
+			onNext();
+		}
+		console.log(existingPolicies.childrenEducation.policyNo);
 	};
 
 	return (
@@ -96,7 +134,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 						display={'flex'}
 						flexWrap={'wrap'}
 						flexDirection={'row'}
-						gap="92px"
+						gap="52px"
 						rowGap={'24px'}
 						alignItems={'flex-start'}
 					>
@@ -107,6 +145,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							onChange={(value) =>
 								handleChildrenEducationChange('policyNo', value)
 							}
+							required={true}
 						/>
 						<InputField
 							label={'Annual Premium'}
@@ -115,6 +154,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							onChange={(value) =>
 								handleChildrenEducationChange('annualPremium', value)
 							}
+							required={true}
 						/>
 						<InputField
 							label={'Date of Maturity'}
@@ -123,6 +163,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							onChange={(value) =>
 								handleChildrenEducationChange('dateofMaturity', value)
 							}
+							required={true}
 						/>
 						<InputField
 							label={'Date of Commencement'}
@@ -131,12 +172,14 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							onChange={(value) =>
 								handleChildrenEducationChange('commencementDate', value)
 							}
+							required={true}
 						/>
 						<InputField
 							label={'Term'}
 							placeholder={'Term'}
 							value={existingPolicies.childrenEducation.term}
 							onChange={(value) => handleChildrenEducationChange('term', value)}
+							required={true}
 						/>
 						<InputField
 							label={'Benefits'}
@@ -145,6 +188,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							onChange={(value) =>
 								handleChildrenEducationChange('benefits', value)
 							}
+							required={true}
 						/>
 					</Box>
 					<Typography
@@ -163,7 +207,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 						display={'flex'}
 						flexWrap={'wrap'}
 						flexDirection={'row'}
-						gap="92px"
+						gap="52px"
 						rowGap={'24px'}
 						alignItems={'flex-start'}
 					>
@@ -172,6 +216,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							placeholder={'Policy No'}
 							value={existingPolicies.lifeInsurance.policyNo}
 							onChange={(value) => handleLifeInsuranceChange('policyNo', value)}
+							required={true}
 						/>
 						<InputField
 							label={'Annual Premium'}
@@ -180,6 +225,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							onChange={(value) =>
 								handleLifeInsuranceChange('annualPremium', value)
 							}
+							required={true}
 						/>
 						<InputField
 							label={'Date of Maturity'}
@@ -188,6 +234,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							onChange={(value) =>
 								handleLifeInsuranceChange('dateofMaturity', value)
 							}
+							required={true}
 						/>
 						<InputField
 							label={'Date of Commencement'}
@@ -196,18 +243,21 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							onChange={(value) =>
 								handleLifeInsuranceChange('commencementDate', value)
 							}
+							required={true}
 						/>
 						<InputField
 							label={'Term'}
 							placeholder={'Term'}
 							value={existingPolicies.lifeInsurance.term}
 							onChange={(value) => handleLifeInsuranceChange('term', value)}
+							required={true}
 						/>
 						<InputField
 							label={'Benefits'}
 							placeholder={'Benefits'}
 							value={existingPolicies.lifeInsurance.benefits}
 							onChange={(value) => handleLifeInsuranceChange('benefits', value)}
+							required={true}
 						/>
 					</Box>
 					<Typography
@@ -226,7 +276,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 						display={'flex'}
 						flexWrap={'wrap'}
 						flexDirection={'row'}
-						gap="92px"
+						gap="52px"
 						rowGap={'24px'}
 						alignItems={'flex-start'}
 					>
@@ -235,6 +285,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							placeholder={'Policy No'}
 							value={existingPolicies.retirement.policyNo}
 							onChange={(value) => handleRetirementChange('policyNo', value)}
+							required={true}
 						/>
 						<InputField
 							label={'Annual Premium'}
@@ -243,6 +294,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							onChange={(value) =>
 								handleRetirementChange('annualPremium', value)
 							}
+							required={true}
 						/>
 						<InputField
 							label={'Date of Maturity'}
@@ -251,6 +303,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							onChange={(value) =>
 								handleRetirementChange('dateofMaturity', value)
 							}
+							required={true}
 						/>
 						<InputField
 							label={'Date of Commencement'}
@@ -259,18 +312,21 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							onChange={(value) =>
 								handleRetirementChange('commencementDate', value)
 							}
+							required={true}
 						/>
 						<InputField
 							label={'Term'}
 							placeholder={'Term'}
 							value={existingPolicies.retirement.term}
 							onChange={(value) => handleRetirementChange('term', value)}
+							required={true}
 						/>
 						<InputField
 							label={'Benefits'}
 							placeholder={'Benefits'}
 							value={existingPolicies.retirement.benefits}
 							onChange={(value) => handleRetirementChange('benefits', value)}
+							required={true}
 						/>
 					</Box>
 				</Box>

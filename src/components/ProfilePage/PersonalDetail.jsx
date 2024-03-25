@@ -1,5 +1,5 @@
 // PersonalDetail.js
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import {
 	Radio,
@@ -22,9 +22,7 @@ import { updatePersonalDetail } from '../../state-management/reducer/personalDet
 import AuthContext from '../../context/AuthContext';
 import useAxios from '../../utlis/useAxios';
 import { jwtDecode } from 'jwt-decode';
-import {
-	isValidPhoneNumber
-} from '../../resources/functions';
+import { isValidPhoneNumber } from '../../resources/functions';
 
 const PersonalDetail = ({ onNext, onPrev }) => {
 	const personalDetail = useSelector((state) => state.personalDetail);
@@ -35,30 +33,41 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 		const decode = jwtDecode(token);
 		var user_id = decode.user_id;
 	}
-
+	const [formValid, setFormValid] = useState(false);
 	const handleChange = (field, value) => {
 		dispatch(updatePersonalDetail({ [field]: value }));
 	};
+	const validateForm = () => {
+        const requiredFields = ['name', 'DOB', 'age', 'maritalStatus', 'phoneNumber', 'email', 'residentCountry', 'residentialAddress', 'smoker', 'medicalHistory'];
+        const isValid = requiredFields.every(field => !!personalDetail[field]);
+        
+        return isValid;
+    };
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		handleChange();
-		personalDetails(
-			user_id,
-			personalDetail.name,
-			personalDetail.DOB,
-			personalDetail.age,
-			personalDetail.maritalStatus,
-			personalDetail.phoneNumber,
-			personalDetail.email,
-			personalDetail.residentCountry,
-			personalDetail.nationality,
-			personalDetail.residentialAddress,
-			personalDetail.smoker,
-			personalDetail.medicalHistory,
-			user_id,
-		);
-		console.log(personalDetail.phoneNumber);
-		onNext();
+		const isFormValid = validateForm(); 
+		setFormValid(isFormValid);
+		console.log(personalDetail)
+		if (isFormValid) {
+			personalDetails(
+				user_id,
+				personalDetail.name,
+				personalDetail.DOB,
+				personalDetail.age,
+				personalDetail.maritalStatus,
+				personalDetail.phoneNumber,
+				personalDetail.email,
+				personalDetail.residentCountry,
+				personalDetail.nationality,
+				personalDetail.residentialAddress,
+				personalDetail.smoker,
+				personalDetail.medicalHistory,
+				user_id,
+			);
+			console.log(personalDetail.phoneNumber);
+			onNext();
+		}
 	};
 
 	return (
@@ -75,7 +84,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 					display={'flex'}
 					flexWrap={'wrap'}
 					flexDirection={'row'}
-					gap="92px"
+					gap="52px"
 					rowGap={'24px'}
 					alignItems={'flex-start'}
 				>
@@ -84,6 +93,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 						placeholder={'Name'}
 						value={personalDetail.name}
 						onChange={(name) => handleChange('name', name)}
+						required
 					/>
 					<InputField
 						margin="dense"
@@ -96,12 +106,14 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 						placeholder={'Date of Birth'}
 						value={personalDetail.DOB}
 						onChange={(DOB) => handleChange('DOB', DOB)}
+						required
 					/>
 					<InputField
 						label={'Age'}
 						placeholder={'Age'}
 						value={personalDetail.age}
 						onChange={(age) => handleChange('age', age)}
+						required
 					/>
 					<InputField
 						dropdown={true}
@@ -117,13 +129,14 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 						onChange={(maritalStatus) =>
 							handleChange('maritalStatus', maritalStatus)
 						}
+						required
 					/>
 					<Box
 						width={'100%'}
 						display={'flex'}
 						flexWrap={'wrap'}
 						flexDirection={'row'}
-						gap="92px"
+						gap="52px"
 						rowGap={'24px'}
 					>
 						<Box
@@ -150,6 +163,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 								placeholder="Contact Number"
 								value={personalDetail.phoneNumber}
 								onChange={(phone) => handleChange('phoneNumber', phone)}
+								required
 								inputClass="phone-input"
 								dropdownStyle={{ width: '200px' }}
 								buttonStyle={{
@@ -194,6 +208,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 							placeholder={'Email ID'}
 							value={personalDetail.email}
 							onChange={(email) => handleChange('email', email)}
+							required
 						/>
 						<InputField
 							label={'Country of Residence'}
@@ -202,6 +217,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 							onChange={(residentCountry) =>
 								handleChange('residentCountry', residentCountry)
 							}
+							required
 						/>
 						<InputField
 							label={'Nationality & Country of Birth'}
@@ -210,6 +226,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 							onChange={(nationality) =>
 								handleChange('nationality', nationality)
 							}
+							required
 						/>
 						<InputField
 							label={'Physical Residential Address'}
@@ -218,6 +235,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 							onChange={(residentialAddress) =>
 								handleChange('residentialAddress', residentialAddress)
 							}
+							required
 						/>
 						<Box
 							maxWidth="435px"
@@ -293,6 +311,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 							onChange={(medicalHistory) =>
 								handleChange('medicalHistory', medicalHistory)
 							}
+							required
 						/>
 					</Box>
 				</Box>
@@ -305,24 +324,6 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 					gap="16px"
 					alignSelf={'flex-end'}
 				>
-					<Button
-						sx={{
-							color: '#250C77',
-							padding: '10px 43px',
-							borderRadius: '8px',
-							gap: '8px',
-							'&:hover': { backgroundColor: '#fff' },
-						}}
-						onClick={onPrev}
-					>
-						<img src={backChevron}></img>
-						<Typography
-							variant="body1"
-							sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
-						>
-							Back
-						</Typography>
-					</Button>
 					<Button
 						sx={{
 							backgroundColor: '#250C77',

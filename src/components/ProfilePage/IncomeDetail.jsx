@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState} from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import InputField from '../Input';
 import nextChevron from '../../assets/carbon_next-outline.svg';
@@ -12,6 +12,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 	const incomeDetail = useSelector((state) => state.incomeDetail);
 	const dispatch = useDispatch();
 	const { incomeDetails } = useContext(AuthContext);
+	const [formValid, setFormValid] = useState(false);
 	const token = localStorage.getItem('authTokens');
 	if (token) {
 		const decode = jwtDecode(token);
@@ -22,21 +23,33 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 		dispatch(updateIncomeDetail({ [field]: value }));
 	};
 
+	const validateForm = () => {
+        const requiredFields = ['Interest', 'propertyIncome', 'bankReturns', 'salary', 'totalIncome', 'bonus'];
+        const isValid = requiredFields.every(field => !!incomeDetail[field]);
+        
+        return isValid;
+    };
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		handleChange();
-		incomeDetails(
-			user_id,
-			incomeDetail.Interest,
-			incomeDetail.bankReturns,
-			incomeDetail.propertyIncome,
-			incomeDetail.salary,
-			incomeDetail.totalIncome,
-			incomeDetail.bonus,
-			user_id,
-		);
+		const isFormValid = validateForm(); 
+		setFormValid(isFormValid);
+		console.log(isFormValid)
 		console.log(incomeDetail)
-		onNext();
+		if (isFormValid) {
+			incomeDetails(
+				user_id,
+				incomeDetail.Interest,
+				incomeDetail.bankReturns,
+				incomeDetail.propertyIncome,
+				incomeDetail.salary,
+				incomeDetail.totalIncome,
+				incomeDetail.bonus,
+				user_id,
+			);
+			console.log(incomeDetail);
+			onNext();
+		}
 	};
 
 	return (
@@ -70,7 +83,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 						display={'flex'}
 						flexWrap={'wrap'}
 						flexDirection={'row'}
-						gap="92px"
+						gap="52px"
 						rowGap={'24px'}
 						alignItems={'flex-start'}
 					>
@@ -79,6 +92,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 							placeholder={'Interest'}
 							value={incomeDetail.Interest}
 							onChange={(Interest) => handleChange('Interest', Interest)}
+							required={true}
 						/>
 						<InputField
 							label={'Income from Property'}
@@ -87,6 +101,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 							onChange={(propertyIncome) =>
 								handleChange('propertyIncome', propertyIncome)
 							}
+							required={true}
 						/>
 						<InputField
 							label={'Bank Returns'}
@@ -95,6 +110,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 							onChange={(bankReturns) =>
 								handleChange('bankReturns', bankReturns)
 							}
+							required={true}
 						/>
 					</Box>
 					<Typography
@@ -112,7 +128,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 						display={'flex'}
 						flexWrap={'wrap'}
 						flexDirection={'row'}
-						gap="92px"
+						gap="52px"
 						rowGap={'24px'}
 						alignItems={'flex-start'}
 					>
@@ -121,6 +137,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 							placeholder={'Salary'}
 							value={incomeDetail.salary}
 							onChange={(salary) => handleChange('salary', salary)}
+							required={true}
 						/>
 						<InputField
 							label={'Total Income'}
@@ -129,12 +146,14 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 							onChange={(totalIncome) =>
 								handleChange('totalIncome', totalIncome)
 							}
+							required={true}
 						/>
 						<InputField
 							label={'Bonus'}
 							placeholder={'Bonus'}
 							value={incomeDetail.bonus}
 							onChange={(bonus) => handleChange('bonus', bonus)}
+							required={true}
 						/>
 					</Box>
 				</Box>

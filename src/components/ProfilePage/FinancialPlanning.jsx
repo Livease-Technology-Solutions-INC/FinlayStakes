@@ -1,5 +1,5 @@
 // FinancialPlanningShortfall.js
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import InputField from '../Input';
 import nextChevron from '../../assets/carbon_next-outline.svg';
@@ -15,6 +15,7 @@ const FinancialPlanningShortfall = ({ onNext, onPrev }) => {
 	);
 	const dispatch = useDispatch();
 	const { financialPlanningShortfallURL } = useContext(AuthContext);
+	const [formValid, setFormValid] = useState(false);
 	const token = localStorage.getItem('authTokens');
 	if (token) {
 		const decode = jwtDecode(token);
@@ -24,19 +25,37 @@ const FinancialPlanningShortfall = ({ onNext, onPrev }) => {
 	const handleChange = (field, value) => {
 		dispatch(updateFinancialPlanningShortfall({ [field]: value }));
 	};
+	const validateForm = () => {
+		const requiredFields = [
+			'childrenEducation',
+			'retirement',
+			'lifeInsurance',
+			'criticalIllness',
+			'disability',
+		];
+		const isValid = requiredFields.every(
+			(field) => !!financialPlanningShortfall[field],
+		);
+
+		return isValid;
+	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		handleChange();
-		financialPlanningShortfallURL(
-			user_id,
-			financialPlanningShortfall.childrenEducation,
-			financialPlanningShortfall.retirement,
-			financialPlanningShortfall.lifeInsurance,
-			financialPlanningShortfall.criticalIllness,
-			financialPlanningShortfall.disability,
-			user_id,
-		);
-		onNext();
+		const isFormValid = validateForm();
+		setFormValid(isFormValid);
+		if (isFormValid) {
+			financialPlanningShortfallURL(
+				user_id,
+				financialPlanningShortfall.childrenEducation,
+				financialPlanningShortfall.retirement,
+				financialPlanningShortfall.lifeInsurance,
+				financialPlanningShortfall.criticalIllness,
+				financialPlanningShortfall.disability,
+				user_id,
+			);
+			onNext();
+		}
 	};
 	return (
 		<Box width="100%" display={'flex'} flexDirection={'column'} gap={'32px'}>
@@ -52,7 +71,7 @@ const FinancialPlanningShortfall = ({ onNext, onPrev }) => {
 					display={'flex'}
 					flexWrap={'wrap'}
 					flexDirection={'row'}
-					gap="92px"
+					gap="52px"
 					rowGap={'24px'}
 					alignItems={'flex-start'}
 				>

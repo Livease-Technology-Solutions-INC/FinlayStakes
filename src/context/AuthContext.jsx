@@ -273,6 +273,46 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
+	const loginWithGoogle = async (user) => {
+		const response = await fetch(
+			`http://127.0.0.1:8000/app/google_login/`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					user
+				}),
+			},
+		);
+		const data = await response.json();
+		if (response.status === 200 || 201) {
+			console.log('OTP Send' + data);
+			swal.fire({
+				title: 'Password Reset Successful',
+				icon: 'success',
+				toast: true,
+				timer: 1000,
+				position: 'top-right',
+				timerProgressBar: true,
+				showConfirmButton: false,
+			});
+		} else {
+			console.log(response.status);
+			console.log('there was a server issue');
+			swal.fire({
+				title: 'Password reset failed',
+				icon: 'error',
+				toast: true,
+				timer: 2000,
+				position: 'top-right',
+				timerProgressBar: true,
+				showConfirmButton: false,
+			});
+		}
+	};
+
 	const personalDetails = async (
 		id,
 		name,
