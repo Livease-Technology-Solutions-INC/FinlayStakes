@@ -30,57 +30,61 @@ function ProfilePage() {
   return (
     <>
       <Box display="flex" width="100%" paddingBottom="80px" backgroundColor="#F2F1F9">
-        {activeStep === 0 &&
+      {activeStep === 0 && 
+        <Box position={"relative"} width={"100%"}>
+        <ReviewPage onNext={showScheduleCall} exportPage={showExportPage} />
+        </Box>}
+        {activeStep === 1 &&
           <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
             <PersonalDetail onNext={handleNext} onPrev={handlePrev} />
             <Progressbar activeStep={activeStep} />
           </Box>}
-        {activeStep === 1 &&
+        {activeStep === 2 &&
           <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
             <IncomeDetail onNext={handleNext} onPrev={handlePrev} />
             <Progressbar activeStep={activeStep} />
           </Box>}
-        {activeStep === 2 &&
+        {activeStep === 3 &&
           <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
             <ExpensesDetail onNext={handleNext} onPrev={handlePrev} />
             <Progressbar activeStep={activeStep} />
           </Box>}
-        {activeStep === 3 &&
+        {activeStep === 4 &&
           <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
             <AssetDetails onNext={handleNext} onPrev={handlePrev} />
             <Progressbar activeStep={activeStep} />
           </Box>}
-        {activeStep === 4 &&
+        {activeStep === 5 &&
           <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
             <LiabilityDetail onNext={handleNext} onPrev={handlePrev} />
             <Progressbar activeStep={activeStep} />
           </Box>}
-        {activeStep === 5 &&
+        {activeStep === 6 &&
           <Box position={"relative"}  width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
             <Goal onNext={handleNext} onPrev={handlePrev} />
             <Progressbar activeStep={activeStep} />
           </Box>}
-        {activeStep === 6 &&
+        {activeStep === 7 &&
           <Box position={"relative"}  width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
             <ExistingProvisions onNext={handleNext} onPrev={handlePrev} />
             <Progressbar activeStep={activeStep} />
           </Box>}
-        {activeStep === 7 &&
+        {activeStep === 8 &&
           <Box position={"relative"}  width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
             <FinancialPlanning onNext={handleNext} onPrev={handlePrev} />
             <Progressbar activeStep={activeStep} />
           </Box>}
-        {activeStep === 8 &&
+        {activeStep === 9 &&
           <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
             <ExistingPolicy onNext={handleNext} />
             <Progressbar activeStep={activeStep} />
           </Box>}
-        {activeStep === 9 && <ScheduleCall onNext={handleNext} />}
-        {activeStep === 10 && 
+        {activeStep === 10 && <ScheduleCall onNext={handleNext} />}
+        {activeStep === 11 && 
         <Box position={"relative"} width={"100%"}>
         <ReviewPage onNext={showScheduleCall} exportPage={showExportPage} />
         </Box>}
-        {activeStep === 11 && <ExportPage onNext={showScheduleCall} />}
+        {activeStep === 12 && <ExportPage onNext={showScheduleCall} />}
       </Box>
     </>
   )
