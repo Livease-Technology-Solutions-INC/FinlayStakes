@@ -14,14 +14,15 @@ function Progressbar({ activeStep }) {
     const stepImages = [
         step1, step2, step3, step4, step5, step6, step7, step8, step9
     ];
+    console.log(activeStep)
     return (
         <Box display={"flex"} flexDirection={"column"} alignItems={"center"} marginTop="100px">
             {stepImages.map((stepImg, index) => (
-                <div key={index} style={{ display: 'flex', alignItems: 'center', flexDirection: "column", alignItems: "center"}}>
-                    <div style={activeStep === index? { width: "44px", height: "44px", backgroundColor: '#DEDFEE', display: 'flex', justifyContent: 'center', alignItems: 'center', translate: "-20px" } : {}}>
-                        <img src={stepImg} style={activeStep === index ? { transform: "scale(1.35)" , } : {filter: index > activeStep ? 'grayscale(100%) brightness(100%)' : 'none' }} />
+                <div key={index + 1} style={{ display: 'flex', alignItems: 'center', flexDirection: "column", alignItems: "center"}}>
+                    <div style={activeStep === index + 1? { width: "44px", height: "44px", backgroundColor: '#DEDFEE', display: 'flex', justifyContent: 'center', alignItems: 'center', translate: "-20px" } : {}}>
+                        <img src={stepImg} style={activeStep === index + 1 ? { transform: "scale(1.35)" , } : {filter: index + 1> activeStep ? 'grayscale(100%) brightness(100%)' : 'none' }} />
                     </div>
-                    {index < stepImages.length - 1 && <div style={{ height: "40px", width: "2px", backgroundColor: index >= activeStep ? '#A6A9D1':"#250C77", marginBottom:"4px" }}></div>}
+                    {index  < stepImages.length - 1 && <div style={{ height: "40px", width: "2px", backgroundColor: index >= activeStep ? '#A6A9D1':"#250C77", marginBottom:"4px" }}></div>}
                 </div>
             ))}
         </Box>

@@ -39,14 +39,14 @@ const style = {
 	alignItems: 'center',
 	flexDirection: 'column',
 };
-function ReviewPage({ onNext, exportPage, editPage, first }) {
+function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 	const [open, setOpen] = React.useState(false);
 	const [exportOpen, setExportOpen] = React.useState(false);
 	const handleExportOpen = () => setExportOpen(true);
 	const handleExportClose = () => setExportOpen(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-	console.log(open);
+	console.log(activeStep);
 	const ScheduleCall = () => {
 		onNext();
 	};
@@ -196,7 +196,7 @@ function ReviewPage({ onNext, exportPage, editPage, first }) {
 					</Box>
 				</Modal>
 			</Box>
-			<Box sx={{ width: '1000px' }}>
+			<Box sx={{ width: '100%' }}>
 				<Box sx={{ color: 'white', position: 'absolute', left: 30, top: 150 }}>
 					<Typography variant="h6">Hello,</Typography>
 					<Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -331,8 +331,7 @@ function ReviewPage({ onNext, exportPage, editPage, first }) {
 						</Button>
 					</Box>
 				</Modal>
-
-				<Button
+				{activeStep === 0 ? <Button
 					sx={{
 						backgroundColor: '#250C77',
 						color: '#fff',
@@ -375,7 +374,51 @@ function ReviewPage({ onNext, exportPage, editPage, first }) {
 							}}
 						></img>
 					</div>
-				</Button>
+				</Button> : <Button
+					sx={{
+						backgroundColor: '#250C77',
+						color: '#fff',
+						padding: '10px 0px',
+						paddingLeft: '24px',
+						paddingRight: '6px',
+						borderRadius: '40px',
+						gap: '16px',
+						'&:hover': { backgroundColor: '#250C94' },
+					}}
+					variant="contained"
+					onClick={ScheduleCall}
+					// onClick={handleOpen}
+					style={{ marginTop: '16px' }}
+				>
+					<Typography
+						variant="body1"
+						sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
+					>
+						Request For Free Analysis And Consultation
+					</Typography>
+					<div
+						style={{
+							backgroundColor: '#fff',
+							width: '32px',
+							height: '32px',
+							borderRadius: '50%',
+							position: 'relative',
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
+					>
+						<img
+							src={nextChevron}
+							style={{
+								filter: 'invert(1) saturate(0)',
+								zIndex: '100',
+								position: 'absolute',
+							}}
+						></img>
+					</div>
+				</Button>}
+				
 			</Box>
 		</Box>
 	);

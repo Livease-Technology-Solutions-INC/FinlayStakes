@@ -9,8 +9,16 @@ import AvailableProjects from './AvailableProjects';
 
 function Home() {
 	const [activeItem, setActiveItem] = useState(SidebarData[0]);
+	const [open, setOpen] = React.useState(true);
 	const updateActiveItem = (newActiveItem) => {
 		setActiveItem(newActiveItem);
+	};
+	const handleDrawerOpen = () => {
+		setOpen(true);
+	};
+
+	const handleDrawerClose = () => {
+		setOpen(false);
 	};
 
 	return (
@@ -19,6 +27,9 @@ function Home() {
 				sidebarData={SidebarData}
 				updateActiveItem={updateActiveItem}
 				activeItem={activeItem}
+				handleDrawerOpen={handleDrawerOpen}
+				handleDrawerClose={handleDrawerClose}
+				open={open}
 			/>
 			<div style={{ width: '100%', display: 'flex', flexDirection: 'row' }}>
 				<div
@@ -28,7 +39,7 @@ function Home() {
 						display: 'flex',
 						flexDirection: 'column',
 						marginTop: '104px',
-						marginLeft: '300px',
+						marginLeft: open ? '300px' : '50px',
 						backgroundColor: '#F2F1F9',
 						padding: '24px',
 					}}

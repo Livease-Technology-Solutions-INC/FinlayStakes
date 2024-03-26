@@ -338,13 +338,30 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 				>
 					<Button
 						sx={{
+							color: '#250C77',
+							padding: '10px 43px',
+							borderRadius: '8px',
+							gap: '8px',
+							'&:hover': { backgroundColor: '#fff' },
+						}}
+						onClick={onPrev}
+						style={{ marginTop: '16px' }}
+					>
+						<img src={backChevron} alt="back-chevron"></img>
+						<Typography
+							variant="body1"
+							sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
+						>
+							Back
+						</Typography>
+					</Button>
+					<Button
+						sx={{
 							backgroundColor: '#250C77',
 							color: '#fff',
-							padding: '10px 0px',
-							paddingLeft: '24px',
-							paddingRight: '6px',
-							borderRadius: '40px',
-							gap: '16px',
+							padding: '10px 24px',
+							borderRadius: '8px',
+							gap: '8px',
 							'&:hover': { backgroundColor: '#250C94' },
 						}}
 						variant="contained"
@@ -355,30 +372,9 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							variant="body1"
 							sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
 						>
-							Request for Free Analysis and Consultation
+							Complete
 						</Typography>
-						<div
-							style={{
-								backgroundColor: '#fff',
-								width: '32px',
-								height: '32px',
-								borderRadius: '50%',
-								position: 'relative',
-								display: 'flex',
-								justifyContent: 'center',
-								alignItems: 'center',
-							}}
-						>
-							<img
-								src={nextChevron}
-								style={{
-									filter: 'invert(1) saturate(0)',
-									zIndex: '100',
-									position: 'absolute',
-								}}
-								alt="next-chevron"
-							></img>
-						</div>
+						<img src={nextChevron} alt="next-chevron"></img>
 					</Button>
 				</Box>
 			</form>

@@ -22,10 +22,10 @@ function ProfilePage() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
   const showScheduleCall = () => {
-    setActiveStep(9);
+    setActiveStep(11);
   }
   const showExportPage = () => {
-    setActiveStep(11);
+    setActiveStep(12);
   }
   const showFirstTime = () => {
     setActiveStep(1)
@@ -38,7 +38,7 @@ function ProfilePage() {
       <Box display="flex" width="100%" paddingBottom="80px" backgroundColor="#F2F1F9">
       {activeStep === 0 && 
         <Box position={"relative"} width={"100%"}>
-        <ReviewPage onNext={showScheduleCall} exportPage={showExportPage} editPage={showEditPage} first={showFirstTime} />
+        <ReviewPage onNext={showScheduleCall} exportPage={showExportPage} editPage={showEditPage} first={showFirstTime} activeStep={activeStep} />
         </Box>}
         {activeStep === 1 &&
           <Box position={"relative"} width={"100%"} display={'flex'} flexDirection={"row"} alignItems={"flex-start"} justifyContent={'space-between'}>
@@ -85,12 +85,16 @@ function ProfilePage() {
             <ExistingPolicy onNext={handleNext} />
             <Progressbar activeStep={activeStep} />
           </Box>}
-        {activeStep === 10 && <ScheduleCall onNext={handleNext} />}
-        {activeStep === 11 && 
+        {activeStep === 10 && 
         <Box position={"relative"} width={"100%"}>
-        <ReviewPage onNext={showScheduleCall} exportPage={showExportPage} />
+        <ReviewPage onNext={showScheduleCall} exportPage={showExportPage} editPage={showEditPage} first={showFirstTime} activeStep={activeStep}/>
         </Box>}
-        {activeStep === 12 && <ExportPage onNext={showScheduleCall} />}
+        {activeStep === 11 && <ScheduleCall onNext={handleNext} />}
+        {activeStep === 12 && 
+        <Box position={"relative"} width={"100%"}>
+        <ReviewPage onNext={showScheduleCall} exportPage={showExportPage} editPage={showEditPage} first={showFirstTime} activeStep={activeStep}/>
+        </Box>}
+        {activeStep === 13 && <ExportPage onNext={showScheduleCall} />}
       </Box>
     </>
   )

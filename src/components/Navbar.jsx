@@ -30,6 +30,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import barIcon from '../assets/heroicons-outline_menu-alt-2.svg';
 import ChevronIcon from '@mui/icons-material/ExpandMore';
+import { propsToClassKey } from '@mui/styles';
 
 const drawerWidth = 300;
 
@@ -78,15 +79,13 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 	justifyContent: 'flex-end',
 }));
 
-const Navbar = ({ sidebarData, updateActiveItem, activeItem}) => {
+const Navbar = ({ sidebarData, updateActiveItem, activeItem, handleDrawerOpen, handleDrawerClose, open}) => {
 	const [searchValue, setSearchValue] = useState('');
 
 	const theme = useTheme();
-	const [open, setOpen] = React.useState(true);
 	const navigate = useNavigate();
 	const [isHovered, setIsHovered] = useState(false);
 	const { logoutUser } = useContext(AuthContext);
-
 	useEffect(() => {
 		if (updateActiveItem) {
 			updateActiveItem(activeItem);
@@ -98,13 +97,7 @@ const Navbar = ({ sidebarData, updateActiveItem, activeItem}) => {
 		updateActiveItem(option);
 	};
 
-	const handleDrawerOpen = () => {
-		setOpen(true);
-	};
 
-	const handleDrawerClose = () => {
-		setOpen(false);
-	};
 
 	const handleSearchChange = (event) => {
 		setSearchValue(event.target.value);
