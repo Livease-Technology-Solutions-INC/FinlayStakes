@@ -1,5 +1,5 @@
 // Goals.js
-import React, { useContext, useState} from 'react';
+import React, { useContext, useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import InputField from '../Input';
 import nextChevron from '../../assets/carbon_next-outline.svg';
@@ -146,25 +146,28 @@ const Goals = ({ onNext, onPrev }) => {
 					/>
 				</Box>
 				<Box
-					position={'absolute'}
-					bottom="-100px"
-					right="135px"
+					position={{ xs: 'absolute', md: 'absolute' }}
+					bottom={{ xs: '30', md: '-80px' }}
+					right={{ xs: '0', md: '135px' }}
 					display={'flex'}
 					flexDirection={'row'}
-					gap="16px"
+					gap={{ xs: '0', md: '16px' }}
 					alignSelf={'flex-end'}
 				>
 					<Button
 						sx={{
 							color: '#250C77',
-							padding: '10px 43px',
+							padding: { xs: '0', md: '10px 43px' },
 							borderRadius: '8px',
 							gap: '8px',
+							marginTop: { xs: '40px', md: '20px' },
+							height: { xs: 'auto', md: '48px' },
+							width: { xs: '100%', md: 'auto' },
 							'&:hover': { backgroundColor: '#fff' },
 						}}
 						onClick={onPrev}
 					>
-						<img src={backChevron} alt="back-chevron"></img>
+						<img src={backChevron}></img>
 						<Typography
 							variant="body1"
 							sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
@@ -179,6 +182,9 @@ const Goals = ({ onNext, onPrev }) => {
 							padding: '10px 24px',
 							borderRadius: '8px',
 							gap: '8px',
+							marginTop: { xs: '40px', md: '20px' },
+							height: { xs: 'auto', md: '48px' },
+							width: { xs: '300px', md: 'auto' },
 							'&:hover': { backgroundColor: '#250C94' },
 						}}
 						variant="contained"
@@ -190,7 +196,7 @@ const Goals = ({ onNext, onPrev }) => {
 						>
 							Next Step
 						</Typography>
-						<img src={nextChevron} alt="next-chevron"></img>
+						<img src={nextChevron}></img>
 					</Button>
 				</Box>
 			</form>

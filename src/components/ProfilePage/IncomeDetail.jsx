@@ -56,7 +56,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 		<Box width="100%" display={'flex'} flexDirection={'column'} gap={'32px'}>
 			<form onSubmit={handleSubmit}>
 				<Typography
-					sx={{ fontFamily: 'Inter', color: '#212844', fontWeight: '700' }}
+					sx={{ fontFamily: 'Inter', color: '#212844', fontWeight: '700', fontSize: { xs: '1.5rem', md: '2rem' }, }}
 					variant="h5"
 				>
 					Income Details
@@ -74,6 +74,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 							fontSize: '20px',
 							fontFamily: 'Inter, sans-serif',
 							lineHeight: '24.2px',
+							
 						}}
 					>
 						Saving Details
@@ -158,20 +159,23 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 					</Box>
 				</Box>
 				<Box
-					position={'absolute'}
-					bottom="-100px"
-					right="135px"
+					position={{ xs: 'absolute', md: 'absolute' }}
+					bottom={{ xs: '30', md: '-80px' }}
+					right={{ xs: '0', md: '135px' }}
 					display={'flex'}
 					flexDirection={'row'}
-					gap="16px"
+					gap={{xs: '0', md:"16px"}}
 					alignSelf={'flex-end'}
 				>
 					<Button
 						sx={{
 							color: '#250C77',
-							padding: '10px 43px',
+							padding: {xs: "0", md:'10px 43px'},
 							borderRadius: '8px',
 							gap: '8px',
+							marginTop: { xs: '40px', md: '20px' }, 
+							height: { xs: 'auto', md: '48px' }, 
+							width: { xs: '100%', md: 'auto' }, 
 							'&:hover': { backgroundColor: '#fff' },
 						}}
 						onClick={onPrev}
@@ -191,6 +195,9 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 							padding: '10px 24px',
 							borderRadius: '8px',
 							gap: '8px',
+							marginTop: { xs: '40px', md: '20px' }, 
+							height: { xs: 'auto', md: '48px' }, 
+							width: { xs: '300px', md: 'auto' }, 
 							'&:hover': { backgroundColor: '#250C94' },
 						}}
 						variant="contained"

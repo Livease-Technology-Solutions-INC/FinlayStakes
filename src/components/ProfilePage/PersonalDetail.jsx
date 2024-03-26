@@ -38,17 +38,28 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 		dispatch(updatePersonalDetail({ [field]: value }));
 	};
 	const validateForm = () => {
-        const requiredFields = ['name', 'DOB', 'age', 'maritalStatus', 'phoneNumber', 'email', 'residentCountry', 'residentialAddress', 'smoker', 'medicalHistory'];
-        const isValid = requiredFields.every(field => !!personalDetail[field]);
-        
-        return isValid;
-    };
+		const requiredFields = [
+			'name',
+			'DOB',
+			'age',
+			'maritalStatus',
+			'phoneNumber',
+			'email',
+			'residentCountry',
+			'residentialAddress',
+			'smoker',
+			'medicalHistory',
+		];
+		const isValid = requiredFields.every((field) => !!personalDetail[field]);
+
+		return isValid;
+	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		handleChange();
-		const isFormValid = validateForm(); 
+		const isFormValid = validateForm();
 		setFormValid(isFormValid);
-		console.log(personalDetail)
+		console.log(personalDetail);
 		if (isFormValid) {
 			personalDetails(
 				user_id,
@@ -74,7 +85,12 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 		<Box width="100%" display={'flex'} flexDirection={'column'} gap={'32px'}>
 			<form onSubmit={handleSubmit}>
 				<Typography
-					sx={{ fontFamily: 'Inter', color: '#212844', fontWeight: '700' }}
+					sx={{
+						fontFamily: 'Inter',
+						color: '#212844',
+						fontWeight: '700',
+						fontSize: { xs: '1.5rem', md: '2rem' },
+					}}
 					variant="h5"
 				>
 					Personal Details
@@ -84,7 +100,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 					display={'flex'}
 					flexWrap={'wrap'}
 					flexDirection={'row'}
-					gap="52px"
+					gap={{ xs: '16px', md: '32px' }}
 					rowGap={'24px'}
 					alignItems={'flex-start'}
 				>
@@ -316,9 +332,9 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 					</Box>
 				</Box>
 				<Box
-					position={'absolute'}
-					bottom="-100px"
-					right="135px"
+					position={{ xs: 'absolute', md: 'absolute' }}
+					bottom={{ xs: '30', md: '-80px' }}
+					right={{ xs: '0', md: '135px' }}
 					display={'flex'}
 					flexDirection={'row'}
 					gap="16px"
@@ -331,6 +347,9 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 							padding: '10px 24px',
 							borderRadius: '8px',
 							gap: '8px',
+							marginTop: { xs: '40px', md: '20px' }, 
+							height: { xs: 'auto', md: '48px' }, 
+							width: { xs: '100%', md: 'auto' }, 
 							'&:hover': { backgroundColor: '#250C94' },
 						}}
 						variant="contained"
@@ -342,7 +361,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 						>
 							Next Step
 						</Typography>
-						<img src={nextChevron}></img>
+						<img src={nextChevron} alt="Next Icon" /> {/* Alt text added */}
 					</Button>
 				</Box>
 			</form>
