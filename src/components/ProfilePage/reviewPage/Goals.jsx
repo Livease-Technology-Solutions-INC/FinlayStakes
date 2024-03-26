@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 const GoalCard = ({ goalData }) => {
   return (
-    <Box sx={{ width: "100%", display:"flex", flexDirection:"column",  backgroundColor:"#fff", padding:"24px" , gap:"24px" }}>
+    <Box sx={{ width: { xs: '70%', md: '100%' }, display:"flex", flexDirection:"column",  backgroundColor:"#fff", padding:"24px" , gap:"24px" }}>
     <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="body1">
                 GOALS
             </Typography>

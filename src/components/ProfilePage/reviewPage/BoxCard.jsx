@@ -6,7 +6,7 @@ import { Typography, Box, Divider } from '@mui/material';
 
 function BoxCard({ data, header, stat, status, percentage }) {
     return (
-        <Box sx={{ width:"100%", maxWidth:"550px", display: "flex", flexDirection: "column", backgroundColor: "#fff", padding: "24px", gap:"16px" }}>
+        <Box sx={{ width:{ xs: '70%', md: '100%' }, maxWidth:"550px", display: "flex", flexDirection: "column", backgroundColor: "#fff", padding: "24px", gap:"16px" }}>
             <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap:"16px" }}>
                 <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="body1">
                     {header}
@@ -21,7 +21,7 @@ function BoxCard({ data, header, stat, status, percentage }) {
                 </Box>
             </Box>
             <Box sx={{ width: "100%", display: "flex", flexDirection: "row", gap: "76px", justifyContent: "center", alignItems: "flex-start" }}>
-                <Box sx={{ width: "196px", height: "150px", flexShrink: 0 }} >
+                <Box sx={{ width: { xs: '0', md: '196px' }, height: "150px", flexShrink: 0 }} >
                     <DonutChart StatsData={data} inRadius={50} />
                 </Box>
                 <Box sx={{ width: "100%", display: 'flex', flexDirection: "column", alignItems: "flex-start", justifyContent: "center", gap: '24px' }}>

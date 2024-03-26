@@ -6,12 +6,12 @@ import chevronUp from "../../../assets/system-uicons_chevron-up-double.svg"
 
 function NetStats({ data1, data2, Header, subHeader1, subHeader2 }) {
     return (
-        <Box sx={{ width: "100%", display: "flex", flexDirection: "column", backgroundColor: "#fff", padding: "24px" }}>
+        <Box sx={{ width: { xs: '70%', md: '100%' }, display: "flex", flexDirection: "column", backgroundColor: "#fff", padding: "24px" }}>
             <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700", marginBottom: "32px" }} variant="body1">
                 {Header}
             </Typography>
             <Box sx={{ width: "100%", display: "flex", flexDirection: "row", gap: "76px", justifyContent: "center", alignItems: "flex-start" }}>
-                <Box sx={{ width: "196px", height: "150px", flexShrink: 0 }} >
+                <Box sx={{ width: { xs: '0', md: '196px' }, height: "150px", flexShrink: 0 }} >
                     <DonutChart StatsData={data1} inRadius={30} />
                 </Box>
                 <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: "16px", justifyContent: "space-between", alignItems: "flex-start" }}>
@@ -46,8 +46,8 @@ function NetStats({ data1, data2, Header, subHeader1, subHeader2 }) {
             </Box>
             <Divider sx={{ margin: "24px" }} />
 
-            <Box sx={{ width: "100%", display: "flex", flexDirection: "row", gap: "76px", justifyContent: "center", alignItems: "flex-start" }}>
-                <Box sx={{ width: "196px", height: "196px", flexShrink: 0 }} >
+            <Box sx={{ width: { xs: '70%', md: '100%' }, display: "flex", flexDirection: "row", gap: "76px", justifyContent: "center", alignItems: "flex-start" }}>
+                <Box sx={{ width: { xs: '0', md: '196px' }, height: "196px", flexShrink: 0 }} >
                     <DonutChart StatsData={data2}inRadius={30} />
                 </Box>
                 <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: "16px", justifyContent: "space-between", alignItems: "flex-start" }}>
