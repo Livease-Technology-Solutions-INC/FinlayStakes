@@ -146,6 +146,7 @@ const LoginPage = () => {
 			<img
 				src={Logo}
 				style={{ marginBottom: '20px', width: '320px', height: '46px' }}
+				loading="lazy"
 			/>
 			<Box
 				display="flex"
@@ -213,6 +214,7 @@ const LoginPage = () => {
 									src={passwordVisible ? passwordEye : passwordEye}
 									onClick={togglePasswordVisibility}
 									style={{ cursor: 'pointer' }}
+									loading="lazy"
 								/>
 							}
 							placeholder="Choose a password"
@@ -301,7 +303,7 @@ const LoginPage = () => {
 						}}
 						// onClick={() => LoginWithGoogleAuth()}
 					>
-						<img src={google}></img>
+						<img src={google} loading="lazy"></img>
 						<Typography
 							variant="body1"
 							sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
@@ -319,7 +321,7 @@ const LoginPage = () => {
 							'&:hover': { backgroundColor: '#fff' },
 						}}
 					>
-						<img src={facebook}></img>
+						<img src={facebook} loading="lazy"></img>
 						<Typography
 							variant="body1"
 							sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}

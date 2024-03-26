@@ -53,7 +53,7 @@ const ForgotPasswordPage = () => {
 
 	return (
 			<Box>
-				<img src={Logo} style={{ marginBottom: '72px' }} />
+				<img src={Logo} style={{ marginBottom: '72px' }} loading="lazy"/>
 				<Box
 					display="flex"
 					flexDirection="column"
@@ -188,7 +188,7 @@ const ForgotPasswordPage = () => {
 								'&:hover': { backgroundColor: '#fff' },
 							}}
 						>
-							<img src={google}></img>
+							<img src={google} loading="lazy"></img>
 							<Typography
 								variant="body1"
 								sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
@@ -206,7 +206,7 @@ const ForgotPasswordPage = () => {
 								'&:hover': { backgroundColor: '#fff' },
 							}}
 						>
-							<img src={facebook}></img>
+							<img src={facebook} loading="lazy"></img>
 							<Typography
 								variant="body1"
 								sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}

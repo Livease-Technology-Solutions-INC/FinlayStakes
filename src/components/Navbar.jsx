@@ -139,9 +139,9 @@ const Navbar = ({
 						aria-label="open drawer"
 						onClick={handleDrawerOpen}
 						edge="start"
-						sx={{ mr: 2, display: { xs: 'block', md: 'none' } }}
+						sx={{ mr: 2, display: { xs: 'block', md: 'block' } }}
 					>
-						<img src={barIcon} alt="icon" />
+						<img src={barIcon} alt="icon" loading='lazy'/>
 					</IconButton>
 					<Box
 						sx={{
@@ -166,6 +166,7 @@ const Navbar = ({
 										src={Search}
 										alt="searchIcon"
 										style={{ marginRight: '8px' }}
+										loading="lazy"
 									/>
 								}
 								sx={{
@@ -175,16 +176,18 @@ const Navbar = ({
 									paddingLeft: 2,
 									flexShrink: 0,
 									minWidth: 226,
+									width: 'auto',
+									flexGrow: 1,
 								}}
 								onChange={handleSearchChange}
 							/>
 						</Box>
 						<Box sx={{ display: { xs: 'none', md: 'flex' }, gap: '10px' }}>
-							<img src={flag} alt="flag" />
-							<img src={bellIcon} alt="bellicon" />
-							<img src={sitetheme} alt="theme" />
-							<img src={info} alt="info" />
-							<img alt="userIcon" src={userIcon} />
+							<img src={flag} alt="flag" loading="lazy" />
+							<img src={bellIcon} alt="bellicon" loading="lazy" />
+							<img src={sitetheme} alt="theme" loading="lazy" />
+							<img src={info} alt="info" loading="lazy" />
+							<img alt="userIcon" src={userIcon} loading="lazy" />
 						</Box>
 					</Box>
 				</Toolbar>
@@ -197,6 +200,7 @@ const Navbar = ({
 						width: drawerWidth,
 						boxSizing: 'border-box',
 					},
+					display: { xs: 'block', md: 'block' }
 				}}
 				variant="persistent"
 				anchor="left"
@@ -204,9 +208,9 @@ const Navbar = ({
 			>
 				<DrawerHeader>
 					<Box sx={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
-						<img src={Logo} alt="logo" />
+						<img src={Logo} alt="logo" loading='lazy' />
 						<IconButton onClick={handleDrawerClose}>
-							<img src={barIcon} alt="icon" />
+							<img src={barIcon} alt="icon" loading='lazy'/>
 						</IconButton>
 					</Box>
 				</DrawerHeader>

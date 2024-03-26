@@ -50,7 +50,7 @@ const Step2 = ({ email }) => {
 	};
 	return (
 		<Box>
-			<img src={Logo} style={{ marginBottom: '72px' }} />
+			<img src={Logo} style={{ marginBottom: '72px' }} loading="lazy"/>
 			<Box
 				width="100%"
 				display="flex"

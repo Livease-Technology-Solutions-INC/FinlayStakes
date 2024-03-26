@@ -85,7 +85,7 @@ const Step1 = ({onNext}) => {
 				<Box
 					
 				>
-					<img src={Logo} style={{ marginBottom: '72px' }} />
+					<img src={Logo} style={{ marginBottom: '72px' }} loading="lazy"/>
 					<Box
 						display="flex"
 						flexDirection="column"
@@ -159,6 +159,7 @@ const Step1 = ({onNext}) => {
 									src={passwordVisible ? passwordEye : passwordEye}
 									onClick={togglePasswordVisibility}
 									style={{ cursor: 'pointer' }}
+									loading="lazy"
 								/>
 							}
 							placeholder="Choose a password"
@@ -174,6 +175,7 @@ const Step1 = ({onNext}) => {
 									src={passwordVisible ? passwordEye : passwordEye}
 									onClick={togglereEnterPasswordVisibility}
 									style={{ cursor: 'pointer' }}
+									loading="lazy"
 								/>
 							}
 							placeholder="Re-enter Password"

@@ -20,7 +20,7 @@ function Progressbar({ activeStep }) {
             {stepImages.map((stepImg, index) => (
                 <div key={index + 1} style={{ display: 'flex', alignItems: 'center', flexDirection: "column", alignItems: "center"}}>
                     <div style={activeStep === index + 1? { width: "44px", height: "44px", backgroundColor: '#DEDFEE', display: 'flex', justifyContent: 'center', alignItems: 'center', translate: "-20px" } : {}}>
-                        <img src={stepImg} style={activeStep === index + 1 ? { transform: "scale(1.35)" , } : {filter: index + 1> activeStep ? 'grayscale(100%) brightness(100%)' : 'none' }} />
+                        <img src={stepImg} loading="lazy" style={activeStep === index + 1 ? { transform: "scale(1.35)" , } : {filter: index + 1> activeStep ? 'grayscale(100%) brightness(100%)' : 'none' }} />
                     </div>
                     {index  < stepImages.length - 1 && <div style={{ height: "40px", width: "2px", backgroundColor: index >= activeStep ? '#A6A9D1':"#250C77", marginBottom:"4px" }}></div>}
                 </div>

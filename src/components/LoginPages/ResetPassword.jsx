@@ -82,7 +82,7 @@ const ResetPassword = () => {
 
     return (
         <Box>
-            <img src={Logo} style={{ marginBottom: '72px' }} />
+            <img src={Logo} style={{ marginBottom: '72px' }} loading="lazy"/>
             <Box
                 display="flex"
                 flexDirection="column"
@@ -161,6 +161,7 @@ const ResetPassword = () => {
                             src={newPasswordVisible ? passwordEye : passwordEye}
                             onClick={togglePasswordVisibility}
                             style={{ cursor: 'pointer' }}
+                            loading="lazy"
                         />
                     }
                     placeholder="Choose a password"
@@ -177,6 +178,7 @@ const ResetPassword = () => {
                             src={confirmPasswordVisible ? passwordEye : passwordEye}
                             onClick={toggleConfirmPasswordVisibility}
                             style={{ cursor: 'pointer' }}
+                            loading="lazy"
                         />
                     }
                     placeholder="Choose a password"
@@ -250,7 +252,7 @@ const ResetPassword = () => {
                         '&:hover': { backgroundColor: '#fff' },
                     }}
                 >
-                    <img src={google}></img>
+                    <img src={google} loading="lazy"></img>
                     <Typography
                         variant="body1"
                         sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
@@ -268,7 +270,7 @@ const ResetPassword = () => {
                         '&:hover': { backgroundColor: '#fff' },
                     }}
                 >
-                    <img src={facebook}></img>
+                    <img src={facebook} loading="lazy"></img>
                     <Typography
                         variant="body1"
                         sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
