@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeaderCard from '../ProfilePage/reviewPage/HeaderCard';
 import ProfilePageCardData from '../../data/ProfilePageCardData';
 import NetStats from '../ProfilePage/reviewPage/NetStats';
@@ -21,6 +21,11 @@ import { Box, Typography, Button } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import xclose from '../../assets/Xclose.svg';
 import main from '../../assets/main.svg';
+import pdf from '../../assets/pdf (2).svg';
+import ppt from '../../assets/ppt2.svg';
+import { handleDownloadAsPpt, handleDownloadAsPdf } from './ExportPage';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const style = {
 	position: 'absolute',
@@ -39,14 +44,60 @@ const style = {
 	alignItems: 'center',
 	flexDirection: 'column',
 };
+const exportStyle = {
+	position: 'absolute',
+	top: '50%',
+	left: '50%',
+	transform: 'translate(-50%, -50%)',
+	width: 305,
+	height: 284,
+	bgcolor: 'background.paper',
+	boxShadow: 24,
+	p: 4,
+	borderRadius: '8px',
+	border: 'none',
+	display: 'flex',
+	justifyContent: 'center',
+	alignItems: 'center',
+	flexDirection: 'column',
+};
 function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
+	const dispatch = useDispatch();
+	const personalDetail = useSelector((state) => state.personalDetail);
+	const existingPolicies = useSelector((state) => state.existingPolicies);
+	const assetsDetail = useSelector((state) => state.assetsDetail);
+	const existingProvisions = useSelector((state) => state.existingProvisions);
+	const expensesDetail = useSelector((state) => state.expensesDetail);
+	const goals = useSelector((state) => state.goals);
+	const incomeDetail = useSelector((state) => state.incomeDetail);
+	const liabilityDetail = useSelector((state) => state.liabilityDetail);
+
 	const [open, setOpen] = React.useState(false);
 	const [exportOpen, setExportOpen] = React.useState(false);
 	const handleExportOpen = () => setExportOpen(true);
 	const handleExportClose = () => setExportOpen(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-	console.log(activeStep);
+	const [activeButton, setActiveButton] = useState(null);
+
+	const handleButtonClick = (buttonName) => {
+		setActiveButton(buttonName);
+		// if(buttonName === "PPT"){
+		// 	handleDownloadAsPpt(
+		// 		personalDetail,
+		// 		existingPolicies,
+		// 		assetsDetail,
+		// 		existingProvisions,
+		// 		expensesDetail,
+		// 		goals,
+		// 		incomeDetail,
+		// 		liabilityDetail,
+		// 	);
+		// }if(buttonName === "PDF"){
+		// 	handleDownloadAsPdf()
+		// }
+		handleDownloadAsPdf()
+	};
 	const ScheduleCall = () => {
 		onNext();
 	};
@@ -137,7 +188,7 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 					aria-labelledby="modal-modal-title"
 					aria-describedby="modal-modal-description"
 				>
-					<Box sx={style}>
+					<Box sx={exportStyle}>
 						<Box>
 							<Box
 								sx={{
@@ -176,6 +227,58 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 								Choose the export option
 							</Typography>
 						</Box>
+						<Box
+							sx={{
+								display: 'flex',
+								gap: '20px',
+								marginBottom: '10px',
+							}}
+						>
+							<Button
+								onClick={() => handleButtonClick('PDF')}
+								sx={{
+									width: '83px',
+									height: '83px',
+									borderRadius: '4px',
+									// backgroundColor: 'hsla(234, 23%, 65%, 98)',
+									display: 'flex',
+									flexDirection: 'column',
+									color: 'hsla(234, 23%, 65%, 1)',
+									border: 'hsla(254, 82%, 26%, 1)',
+									color:
+										activeButton === 'PDF' ? 'hsla(254, 82%, 26%, 1)' : 'white',
+									border:
+										activeButton === 'PDF'
+											? '1px solid hsla(254, 82%, 26%, 1)'
+											: 'none',
+								}}
+							>
+								<img src={pdf} alt="exportpdf" />
+								<Typography>PDF</Typography>
+							</Button>
+							<Button
+								onClick={() => handleButtonClick('PPT')}
+								sx={{
+									width: '83px',
+									height: '83px',
+									borderRadius: '4px',
+									// backgroundColor: 'hsla(234, 23%, 65%, 98)',
+									display: 'flex',
+									flexDirection: 'column',
+									color: 'hsla(234, 23%, 65%, 1)',
+									border: 'hsla(254, 82%, 26%, 1)',
+									color:
+										activeButton === 'PPT' ? 'hsla(254, 82%, 26%, 1)' : 'white',
+									border:
+										activeButton === 'PPT'
+											? '1px solid hsla(254, 82%, 26%, 1)'
+											: 'none',
+								}}
+							>
+								<img src={ppt} alt="exportpdf" />
+								<Typography>PPT</Typography>
+							</Button>
+						</Box>
 						<Button
 							onClick={first}
 							sx={{
@@ -188,7 +291,11 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 								gap: '8px',
 								backgroundColor: 'hsla(254, 82%, 26%, 1)',
 								height: '32px',
-								fontSize: '16px',
+								fontSize: '0.8rem',
+								fontWeight: '600px',
+								'&:hover': {
+									backgroundColor: 'hsla(254, 82%, 26%, 1)', // Keep the same background color
+								},
 							}}
 						>
 							Export
@@ -198,9 +305,9 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 			</Box>
 			<Box sx={{ width: '100%' }}>
 				<Box sx={{ color: 'white', position: 'absolute', left: 30, top: 150 }}>
-					<Typography variant="h6">Hello,</Typography>
+					<Typography variant="h6" sx={{ fontSize: ['16px', '20px', '24px']}}>Hello,</Typography>
 					<Box sx={{ display: 'flex', flexDirection: 'column' }}>
-						<Typography variant="h6" sx={{ fontSize: '32px' }}>
+						<Typography variant="h6" sx={{ fontSize: ['24px', '28px', '32px'] }}>
 							Good Morning,{' '}
 							<span variant="h4" sx={{ fontWeight: '100', lineBreak: 'none' }}>
 								Firstname
@@ -208,7 +315,7 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 						</Typography>
 					</Box>
 
-					<Typography variant="h6">
+					<Typography variant="h6" sx={{ fontSize: ['16px', '20px', '24px'] }}>
 						Check Your Personal Financial Review
 					</Typography>
 				</Box>
@@ -216,6 +323,7 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 					src={main}
 					alt="main"
 					style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+					loading="lazy"
 				/>
 			</Box>
 			<HeaderCard HeaderCardData={profileData} />
@@ -331,94 +439,97 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 						</Button>
 					</Box>
 				</Modal>
-				{activeStep === 0 ? <Button
-					sx={{
-						backgroundColor: '#250C77',
-						color: '#fff',
-						padding: '10px 0px',
-						paddingLeft: '24px',
-						paddingRight: '6px',
-						borderRadius: '40px',
-						gap: '16px',
-						'&:hover': { backgroundColor: '#250C94' },
-					}}
-					variant="contained"
-					// onClick={ScheduleCall}
-					onClick={handleOpen}
-					style={{ marginTop: '16px' }}
-				>
-					<Typography
-						variant="body1"
-						sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
-					>
-						Fill Form
-					</Typography>
-					<div
-						style={{
-							backgroundColor: '#fff',
-							width: '32px',
-							height: '32px',
-							borderRadius: '50%',
-							position: 'relative',
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center',
+				{activeStep === 0 ? (
+					<Button
+						sx={{
+							backgroundColor: '#250C77',
+							color: '#fff',
+							padding: '10px 0px',
+							paddingLeft: '24px',
+							paddingRight: '6px',
+							borderRadius: '40px',
+							gap: '16px',
+							'&:hover': { backgroundColor: '#250C94' },
 						}}
+						variant="contained"
+						// onClick={ScheduleCall}
+						onClick={handleOpen}
+						style={{ marginTop: '16px' }}
 					>
-						<img
-							src={nextChevron}
+						<Typography
+							variant="body1"
+							sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
+						>
+							Fill Form
+						</Typography>
+						<div
 							style={{
-								filter: 'invert(1) saturate(0)',
-								zIndex: '100',
-								position: 'absolute',
+								backgroundColor: '#fff',
+								width: '32px',
+								height: '32px',
+								borderRadius: '50%',
+								position: 'relative',
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
 							}}
-						></img>
-					</div>
-				</Button> : <Button
-					sx={{
-						backgroundColor: '#250C77',
-						color: '#fff',
-						padding: '10px 0px',
-						paddingLeft: '24px',
-						paddingRight: '6px',
-						borderRadius: '40px',
-						gap: '16px',
-						'&:hover': { backgroundColor: '#250C94' },
-					}}
-					variant="contained"
-					onClick={ScheduleCall}
-					// onClick={handleOpen}
-					style={{ marginTop: '16px' }}
-				>
-					<Typography
-						variant="body1"
-						sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
-					>
-						Request For Free Analysis And Consultation
-					</Typography>
-					<div
-						style={{
-							backgroundColor: '#fff',
-							width: '32px',
-							height: '32px',
-							borderRadius: '50%',
-							position: 'relative',
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center',
+						>
+							<img
+								src={nextChevron}
+								style={{
+									filter: 'invert(1) saturate(0)',
+									zIndex: '100',
+									position: 'absolute',
+								}}
+							></img>
+						</div>
+					</Button>
+				) : (
+					<Button
+						sx={{
+							backgroundColor: '#250C77',
+							color: '#fff',
+							padding: '10px 0px',
+							paddingLeft: '24px',
+							paddingRight: '6px',
+							borderRadius: '40px',
+							gap: '16px',
+							'&:hover': { backgroundColor: '#250C94' },
 						}}
+						variant="contained"
+						onClick={ScheduleCall}
+						// onClick={handleOpen}
+						style={{ marginTop: '16px' }}
 					>
-						<img
-							src={nextChevron}
+						<Typography
+							variant="body1"
+							sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
+						>
+							Request For Free Analysis And Consultation
+						</Typography>
+						<div
 							style={{
-								filter: 'invert(1) saturate(0)',
-								zIndex: '100',
-								position: 'absolute',
+								backgroundColor: '#fff',
+								width: '32px',
+								height: '32px',
+								borderRadius: '50%',
+								position: 'relative',
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
 							}}
-						></img>
-					</div>
-				</Button>}
-				
+						>
+							<img
+								src={nextChevron}
+								style={{
+									filter: 'invert(1) saturate(0)',
+									zIndex: '100',
+									position: 'absolute',
+								}}
+							></img>
+						</div>
+					</Button>
+				)}
 			</Box>
 		</Box>
 	);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Pagetitle from '../components/Pagetitle';
 import { Route, Routes } from 'react-router';
@@ -21,6 +21,26 @@ function Home() {
 		setOpen(false);
 	};
 
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.matchMedia('(max-width: 768px)').matches) {
+				setOpen(false);
+			} else {
+				setOpen(true);
+			}
+		};
+
+		// Initial check on component mount
+		handleResize();
+
+		// Event listener for window resize
+		window.addEventListener('resize', handleResize);
+
+		// Cleanup function to remove event listener
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []); // Empty dependen
 	return (
 		<div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
 			<Navbar

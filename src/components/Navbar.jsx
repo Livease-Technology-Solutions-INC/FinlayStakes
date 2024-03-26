@@ -79,7 +79,14 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 	justifyContent: 'flex-end',
 }));
 
-const Navbar = ({ sidebarData, updateActiveItem, activeItem, handleDrawerOpen, handleDrawerClose, open}) => {
+const Navbar = ({
+	sidebarData,
+	updateActiveItem,
+	activeItem,
+	handleDrawerOpen,
+	handleDrawerClose,
+	open,
+}) => {
 	const [searchValue, setSearchValue] = useState('');
 
 	const theme = useTheme();
@@ -97,8 +104,6 @@ const Navbar = ({ sidebarData, updateActiveItem, activeItem, handleDrawerOpen, h
 		updateActiveItem(option);
 	};
 
-
-
 	const handleSearchChange = (event) => {
 		setSearchValue(event.target.value);
 	};
@@ -115,7 +120,7 @@ const Navbar = ({ sidebarData, updateActiveItem, activeItem, handleDrawerOpen, h
 					width: '100%',
 					backgroundColor: '#fff',
 					color: 'black',
-					paddingLeft: '8px',
+					paddingLeft: '8px 0',
 					paddingY: '20px',
 					boxShadow: 'none',
 				}}
@@ -123,24 +128,28 @@ const Navbar = ({ sidebarData, updateActiveItem, activeItem, handleDrawerOpen, h
 			>
 				<Toolbar
 					className="navbar-container"
-					sx={{ display: 'flex', justifyContent: 'space-between' }}
+					sx={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						alignItems: 'center',
+					}}
 				>
 					<IconButton
 						color="inherit"
 						aria-label="open drawer"
 						onClick={handleDrawerOpen}
 						edge="start"
-						sx={{ mr: 2, ...(open && { display: 'none' }) }}
+						sx={{ mr: 2, display: { xs: 'block', md: 'none' } }}
 					>
 						<img src={barIcon} alt="icon" />
 					</IconButton>
 					<Box
 						sx={{
 							display: 'flex',
-							gap: '24px',
+							gap: '10px',
 							alignItems: 'center',
 							justifyContent: 'center',
-							flexGrow: 0,
+							flexGrow: 1,
 							cursor: 'pointer',
 							backgroundColor: '#F2F1F9',
 							padding: '10px',
@@ -170,11 +179,13 @@ const Navbar = ({ sidebarData, updateActiveItem, activeItem, handleDrawerOpen, h
 								onChange={handleSearchChange}
 							/>
 						</Box>
-						<img src={flag} alt="flag" />
-						<img src={bellIcon} alt="bellicon" />
-						<img src={sitetheme} alt="theme" />
-						<img src={info} alt="info" />
-						<img alt="userIcon" src={userIcon} />
+						<Box sx={{ display: { xs: 'none', md: 'flex' }, gap: '10px' }}>
+							<img src={flag} alt="flag" />
+							<img src={bellIcon} alt="bellicon" />
+							<img src={sitetheme} alt="theme" />
+							<img src={info} alt="info" />
+							<img alt="userIcon" src={userIcon} />
+						</Box>
 					</Box>
 				</Toolbar>
 			</AppBar>

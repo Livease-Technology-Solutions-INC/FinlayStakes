@@ -19,7 +19,7 @@ export const SidebarData = [
   { label: 'Profile Page', icon: <img src={icon6} alt="Profile" />, url: "/profile" },
   { label: 'Investment Amount', icon: <img src={icon2} alt="Investment" />, url: "/investment" },
   { label: 'Business categories', icon: <img src={icon1} alt="Buissness" />, url: "/buissness" },
-  { label: 'Purpose of Investments', icon: <img src={icon3} alt="Investment" />, url: "/investment" },
+  { label: 'Purpose of Investments', icon: <img src={icon3} alt="purpose" />, url: "/purpose" },
   { label: 'Sources of Funds', icon: <img src={icon4} alt="Fund" />, url: "/Fund" },
   { label: 'Available Projects', icon: <img src={icon5} alt="Project" />, url: "/project" },
 ];

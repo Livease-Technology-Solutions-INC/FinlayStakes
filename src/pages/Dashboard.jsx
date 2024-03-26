@@ -31,7 +31,7 @@ function ProfilePage() {
     setActiveStep(1)
   }
   const showEditPage = () => {
-    setActiveStep(12)
+    setActiveStep(13)
   }
   return (
     <>
