@@ -86,6 +86,7 @@ const Goals = ({ onNext, onPrev }) => {
 						onChange={(childrenEducation) =>
 							handleChange('childrenEducation', childrenEducation)
 						}
+						type="number"
 					/>
 					<InputField
 						label={'Capital Required for University'}
@@ -94,6 +95,7 @@ const Goals = ({ onNext, onPrev }) => {
 						onChange={(universityCapital) =>
 							handleChange('universityCapital', universityCapital)
 						}
+						type="number"
 					/>
 					<InputField
 						label={'Years Left for University'}
@@ -102,12 +104,14 @@ const Goals = ({ onNext, onPrev }) => {
 						onChange={(universityYearsLeft) =>
 							handleChange('universityYearsLeft', universityYearsLeft)
 						}
+						type="number"
 					/>
 					<InputField
 						label={'Where would you like to Retire?'}
 						placeholder={'Where would you like to Retire?'}
 						value={goals.retire}
 						onChange={(retire) => handleChange('retire', retire)}
+						type="text"
 					/>
 					<InputField
 						label={'Income Required after Retirement?'}
@@ -116,6 +120,7 @@ const Goals = ({ onNext, onPrev }) => {
 						onChange={(retirementIncome) =>
 							handleChange('retirementIncome', retirementIncome)
 						}
+						type="number"
 					/>
 					<InputField
 						label={'Annual Income for Family Incase of Death'}
@@ -124,6 +129,7 @@ const Goals = ({ onNext, onPrev }) => {
 						onChange={(incomeIncaseOfDeath) =>
 							handleChange('incomeIncaseOfDeath', incomeIncaseOfDeath)
 						}
+						type="number"
 					/>
 					<InputField
 						label={'Annual Income for Family Incase of Critical Illness'}
@@ -135,6 +141,7 @@ const Goals = ({ onNext, onPrev }) => {
 								incomeIncaseOfCriticalIllness,
 							)
 						}
+						type="number"
 					/>
 					<InputField
 						label={'Annual Income for Family Incase of Disability'}
@@ -143,6 +150,7 @@ const Goals = ({ onNext, onPrev }) => {
 						onChange={(incomeIncaseOfDisability) =>
 							handleChange('incomeIncaseOfDisability', incomeIncaseOfDisability)
 						}
+						type="number"
 					/>
 				</Box>
 				<Box

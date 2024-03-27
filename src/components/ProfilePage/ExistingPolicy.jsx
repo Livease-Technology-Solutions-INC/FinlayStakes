@@ -146,6 +146,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 								handleChildrenEducationChange('policyNo', value)
 							}
 							required={true}
+							type="number"
 						/>
 						<InputField
 							label={'Annual Premium'}
@@ -155,6 +156,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 								handleChildrenEducationChange('annualPremium', value)
 							}
 							required={true}
+							type="number"
 						/>
 						<InputField
 							label={'Date of Maturity'}
@@ -164,6 +166,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 								handleChildrenEducationChange('dateofMaturity', value)
 							}
 							required={true}
+							type="date"
 						/>
 						<InputField
 							label={'Date of Commencement'}
@@ -173,6 +176,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 								handleChildrenEducationChange('commencementDate', value)
 							}
 							required={true}
+							type="date"
 						/>
 						<InputField
 							label={'Term'}
@@ -180,6 +184,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							value={existingPolicies.childrenEducation.term}
 							onChange={(value) => handleChildrenEducationChange('term', value)}
 							required={true}
+							type="number"
 						/>
 						<InputField
 							label={'Benefits'}
@@ -189,6 +194,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 								handleChildrenEducationChange('benefits', value)
 							}
 							required={true}
+							type="number"
 						/>
 					</Box>
 					<Typography
@@ -217,6 +223,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							value={existingPolicies.lifeInsurance.policyNo}
 							onChange={(value) => handleLifeInsuranceChange('policyNo', value)}
 							required={true}
+							type="number"
 						/>
 						<InputField
 							label={'Annual Premium'}
@@ -235,6 +242,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 								handleLifeInsuranceChange('dateofMaturity', value)
 							}
 							required={true}
+							type="date"
 						/>
 						<InputField
 							label={'Date of Commencement'}
@@ -244,6 +252,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 								handleLifeInsuranceChange('commencementDate', value)
 							}
 							required={true}
+							type="date"
 						/>
 						<InputField
 							label={'Term'}
@@ -251,6 +260,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							value={existingPolicies.lifeInsurance.term}
 							onChange={(value) => handleLifeInsuranceChange('term', value)}
 							required={true}
+							type='number'
 						/>
 						<InputField
 							label={'Benefits'}
@@ -258,6 +268,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							value={existingPolicies.lifeInsurance.benefits}
 							onChange={(value) => handleLifeInsuranceChange('benefits', value)}
 							required={true}
+							type='number'
 						/>
 					</Box>
 					<Typography
@@ -286,6 +297,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							value={existingPolicies.retirement.policyNo}
 							onChange={(value) => handleRetirementChange('policyNo', value)}
 							required={true}
+							type='number'
 						/>
 						<InputField
 							label={'Annual Premium'}
@@ -295,6 +307,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 								handleRetirementChange('annualPremium', value)
 							}
 							required={true}
+							type='number'
 						/>
 						<InputField
 							label={'Date of Maturity'}
@@ -304,6 +317,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 								handleRetirementChange('dateofMaturity', value)
 							}
 							required={true}
+							type='date'
 						/>
 						<InputField
 							label={'Date of Commencement'}
@@ -313,6 +327,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 								handleRetirementChange('commencementDate', value)
 							}
 							required={true}
+							type='date'
 						/>
 						<InputField
 							label={'Term'}
@@ -320,6 +335,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							value={existingPolicies.retirement.term}
 							onChange={(value) => handleRetirementChange('term', value)}
 							required={true}
+							type='number'
 						/>
 						<InputField
 							label={'Benefits'}
@@ -327,6 +343,7 @@ const ExistingPolicies = ({ onNext, onPrev }) => {
 							value={existingPolicies.retirement.benefits}
 							onChange={(value) => handleRetirementChange('benefits', value)}
 							required={true}
+							type='number'
 						/>
 					</Box>
 				</Box>

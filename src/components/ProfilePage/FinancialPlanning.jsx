@@ -82,6 +82,7 @@ const FinancialPlanningShortfall = ({ onNext, onPrev }) => {
 						onChange={(childrenEducation) =>
 							handleChange('childrenEducation', childrenEducation)
 						}
+						type="number"
 					/>
 					<InputField
 						label={'Life Insurance'}
@@ -90,18 +91,21 @@ const FinancialPlanningShortfall = ({ onNext, onPrev }) => {
 						onChange={(lifeInsurance) =>
 							handleChange('lifeInsurance', lifeInsurance)
 						}
+						type="number"
 					/>
 					<InputField
 						label={'Disability'}
 						placeholder={'Disability'}
 						value={financialPlanningShortfall.disability}
 						onChange={(disability) => handleChange('disability', disability)}
+						type="number"
 					/>
 					<InputField
 						label={'Retirement'}
 						placeholder={'Retirement'}
 						value={financialPlanningShortfall.retirement}
 						onChange={(retirement) => handleChange('retirement', retirement)}
+						type="number"
 					/>
 					<InputField
 						label={'Critical Illness'}
@@ -110,6 +114,7 @@ const FinancialPlanningShortfall = ({ onNext, onPrev }) => {
 						onChange={(criticalIllness) =>
 							handleChange('criticalIllness', criticalIllness)
 						}
+						type="number"
 					/>
 				</Box>
 				<Box

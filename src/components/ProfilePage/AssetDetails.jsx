@@ -84,6 +84,7 @@ const AssetsDetail = ({ onNext, onPrev }) => {
 							placeholder={'Cash in Hand & Bank'}
 							value={assetsDetail.cash}
 							onChange={(cash) => handleChange('cash', cash)}
+							type="number"
 						/>
 						<InputField
 							label={'Property Value'}
@@ -92,12 +93,14 @@ const AssetsDetail = ({ onNext, onPrev }) => {
 							onChange={(propertyValue) =>
 								handleChange('propertyValue', propertyValue)
 							}
+							type="number"
 						/>
 						<InputField
 							label={'Shares / Equities'}
 							placeholder={'Shares / Equities'}
 							value={assetsDetail.shares}
 							onChange={(shares) => handleChange('shares', shares)}
+							type="number"
 						/>
 						<InputField
 							label={'Business Assets'}
@@ -106,12 +109,14 @@ const AssetsDetail = ({ onNext, onPrev }) => {
 							onChange={(businessAssets) =>
 								handleChange('businessAssets', businessAssets)
 							}
+							type="number"
 						/>
 						<InputField
 							label={'Others'}
 							placeholder={'Others'}
 							value={assetsDetail.others}
 							onChange={(others) => handleChange('others', others)}
+							type="number"
 						/>
 						<InputField
 							label={'Total Assets'}
@@ -120,6 +125,7 @@ const AssetsDetail = ({ onNext, onPrev }) => {
 							onChange={(totalAssets) =>
 								handleChange('totalAssets', totalAssets)
 							}
+							type="number"
 						/>
 					</Box>
 				</Box>

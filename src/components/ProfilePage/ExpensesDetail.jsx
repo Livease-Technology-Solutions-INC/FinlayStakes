@@ -100,18 +100,21 @@ const ExpensesDetail = ({ onNext, onPrev }) => {
 							onChange={(utilityBill) =>
 								handleChange('utilityBill', utilityBill)
 							}
+							type="number"
 						/>
 						<InputField
 							label={'Rent'}
 							placeholder={'Rent'}
 							value={expensesDetail.rent}
 							onChange={(rent) => handleChange('rent', rent)}
+							type="number"
 						/>
 						<InputField
 							label={'Loan'}
 							placeholder={'Loan'}
 							value={expensesDetail.loan}
 							onChange={(loan) => handleChange('loan', loan)}
+							type="number"
 						/>
 					</Box>
 					<Typography
@@ -140,6 +143,7 @@ const ExpensesDetail = ({ onNext, onPrev }) => {
 							onChange={(shoppingExpense) =>
 								handleChange('shoppingExpense', shoppingExpense)
 							}
+							type="number"
 						/>
 						<InputField
 							label={'Leisure Expense'}
@@ -148,6 +152,7 @@ const ExpensesDetail = ({ onNext, onPrev }) => {
 							onChange={(leisureExpense) =>
 								handleChange('leisureExpense', leisureExpense)
 							}
+							type="number"
 						/>
 						<InputField
 							label={'Total Expenses'}
@@ -156,6 +161,7 @@ const ExpensesDetail = ({ onNext, onPrev }) => {
 							onChange={(totalExpenses) =>
 								handleChange('totalExpenses', totalExpenses)
 							}
+							type="number"
 						/>
 						<InputField
 							label={'Medical Expense'}
@@ -164,6 +170,7 @@ const ExpensesDetail = ({ onNext, onPrev }) => {
 							onChange={(medicalExpense) =>
 								handleChange('medicalExpense', medicalExpense)
 							}
+							type="number"
 						/>
 					</Box>
 				</Box>

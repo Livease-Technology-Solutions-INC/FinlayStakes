@@ -25,17 +25,33 @@ import { jwtDecode } from 'jwt-decode';
 import { isValidPhoneNumber } from '../../resources/functions';
 
 const PersonalDetail = ({ onNext, onPrev }) => {
+	const [formValid, setFormValid] = useState(false);
 	const personalDetail = useSelector((state) => state.personalDetail);
 	const dispatch = useDispatch();
+
 	const { personalDetails } = useContext(AuthContext);
 	const token = localStorage.getItem('authTokens');
 	if (token) {
 		const decode = jwtDecode(token);
 		var user_id = decode.user_id;
 	}
-	const [formValid, setFormValid] = useState(false);
 	const handleChange = (field, value) => {
-		dispatch(updatePersonalDetail({ [field]: value }));
+		if (field === 'DOB') {
+			const birthDate = new Date(value);
+			const today = new Date();
+			const age = today.getFullYear() - birthDate.getFullYear();
+			if (
+				today.getMonth() < birthDate.getMonth() ||
+				(today.getMonth() === birthDate.getMonth() &&
+					today.getDate() < birthDate.getDate())
+			) {
+				dispatch(updatePersonalDetail({ ...personalDetail, age: age - 1 }));
+			} else {
+				dispatch(updatePersonalDetail({ ...personalDetail, age, DOB: value, maritalStatus: 'single',}));
+			}
+		} else {
+			dispatch(updatePersonalDetail({ [field]: value }));
+		}
 	};
 	const validateForm = () => {
 		const requiredFields = [
@@ -59,7 +75,6 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 		handleChange();
 		const isFormValid = validateForm();
 		setFormValid(isFormValid);
-		console.log(personalDetail);
 		if (isFormValid) {
 			personalDetails(
 				user_id,
@@ -76,7 +91,6 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 				personalDetail.medicalHistory,
 				user_id,
 			);
-			console.log(personalDetail.phoneNumber);
 			onNext();
 		}
 	};
@@ -128,7 +142,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 						label={'Age'}
 						placeholder={'Age'}
 						value={personalDetail.age}
-						onChange={(age) => handleChange('age', age)}
+						onChange={(Age) => handleChange('Age', Age)}
 						required
 					/>
 					<InputField
@@ -152,7 +166,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 						display={'flex'}
 						flexWrap={'wrap'}
 						flexDirection={'row'}
-						gap="52px"
+						gap={{ xs: '16px', md: '32px' }}
 						rowGap={'24px'}
 					>
 						<Box
@@ -236,8 +250,8 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 							required
 						/>
 						<InputField
-							label={'Nationality & Country of Birth'}
-							placeholder={'Nationality & Country of Birth'}
+							label={'Nationality'}
+							placeholder={'Nationality'}
 							value={personalDetail.nationality}
 							onChange={(nationality) =>
 								handleChange('nationality', nationality)
@@ -347,9 +361,9 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 							padding: '10px 24px',
 							borderRadius: '8px',
 							gap: '8px',
-							marginTop: { xs: '40px', md: '20px' }, 
-							height: { xs: 'auto', md: '48px' }, 
-							width: { xs: '100%', md: 'auto' }, 
+							marginTop: { xs: '40px', md: '20px' },
+							height: { xs: 'auto', md: '48px' },
+							width: { xs: '100%', md: 'auto' },
 							'&:hover': { backgroundColor: '#250C94' },
 						}}
 						variant="contained"

@@ -94,6 +94,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 							value={incomeDetail.Interest}
 							onChange={(Interest) => handleChange('Interest', Interest)}
 							required={true}
+							type="number"
 						/>
 						<InputField
 							label={'Income from Property'}
@@ -103,6 +104,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 								handleChange('propertyIncome', propertyIncome)
 							}
 							required={true}
+							type="number"
 						/>
 						<InputField
 							label={'Bank Returns'}
@@ -112,6 +114,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 								handleChange('bankReturns', bankReturns)
 							}
 							required={true}
+							type="number"
 						/>
 					</Box>
 					<Typography
@@ -139,6 +142,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 							value={incomeDetail.salary}
 							onChange={(salary) => handleChange('salary', salary)}
 							required={true}
+							type="number"
 						/>
 						<InputField
 							label={'Total Income'}
@@ -148,6 +152,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 								handleChange('totalIncome', totalIncome)
 							}
 							required={true}
+							type="number"
 						/>
 						<InputField
 							label={'Bonus'}
@@ -155,6 +160,7 @@ const IncomeDetail = ({ onNext, onPrev }) => {
 							value={incomeDetail.bonus}
 							onChange={(bonus) => handleChange('bonus', bonus)}
 							required={true}
+							type="number"
 						/>
 					</Box>
 				</Box>

@@ -78,30 +78,35 @@ const LiabilityDetail = ({ onNext, onPrev }) => {
 						placeholder={'Bank Loans'}
 						value={liabilityDetail.bankLoans}
 						onChange={(bankLoans) => handleChange('bankLoans', bankLoans)}
+						type="number"
 					/>
 					<InputField
 						label={'Credit Card Outstanding'}
 						placeholder={'Credit Card Outstanding'}
 						value={liabilityDetail.creditCard}
 						onChange={(creditCard) => handleChange('creditCard', creditCard)}
+						type="number"
 					/>
 					<InputField
 						label={'Mortgages'}
 						placeholder={'Mortgages'}
 						value={liabilityDetail.mortgages}
 						onChange={(mortgages) => handleChange('mortgages', mortgages)}
+						type="number"
 					/>
 					<InputField
 						label={'Auto Loans'}
 						placeholder={'Auto Loans'}
 						value={liabilityDetail.autoLoans}
 						onChange={(autoLoans) => handleChange('autoLoans', autoLoans)}
+						type="number"
 					/>
 					<InputField
 						label={'Hand Loans'}
 						placeholder={'Hand Loans'}
 						value={liabilityDetail.handLoans}
 						onChange={(handLoans) => handleChange('handLoans', handLoans)}
+						type="number"
 					/>
 					<InputField
 						label={'Total Liabilities'}
@@ -110,6 +115,7 @@ const LiabilityDetail = ({ onNext, onPrev }) => {
 						onChange={(totalLiabilities) =>
 							handleChange('totalLiabilities', totalLiabilities)
 						}
+						type="number"
 					/>
 				</Box>
 				<Box

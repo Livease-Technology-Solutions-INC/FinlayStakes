@@ -23,9 +23,10 @@ import xclose from '../../assets/Xclose.svg';
 import main from '../../assets/main.svg';
 import pdf from '../../assets/pdf (2).svg';
 import ppt from '../../assets/ppt2.svg';
-import { handleDownloadAsPpt, handleDownloadAsPdf } from './ExportPage';
+import { handleDownloadAsPpt } from './ExportPage';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 const style = {
 	position: 'absolute',
@@ -80,23 +81,54 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 	const handleClose = () => setOpen(false);
 	const [activeButton, setActiveButton] = useState(null);
 
+	const handleDownloadAsPdf = () => {
+		const input = document.getElementById('downloadContent');
+
+		html2canvas(input)
+			.then((canvas) => {
+				const imgData = canvas.toDataURL('image/png');
+				const pdf = new jsPDF();
+				const imgWidth = 250;
+				const pageHeight = 297;
+				const imgHeight = (canvas.height * imgWidth) / canvas.width;
+				let heightLeft = imgHeight;
+				let position = 0;
+
+				pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+				heightLeft -= pageHeight;
+
+				while (heightLeft >= 0) {
+					position = heightLeft - imgHeight;
+					pdf.addPage();
+					pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+					heightLeft -= pageHeight;
+				}
+
+				pdf.save('FinancialDetails.pdf');
+			})
+			.catch((error) => {
+				console.error('Error capturing content:', error);
+			});
+	};
 	const handleButtonClick = (buttonName) => {
 		setActiveButton(buttonName);
-		// if(buttonName === "PPT"){
-		// 	handleDownloadAsPpt(
-		// 		personalDetail,
-		// 		existingPolicies,
-		// 		assetsDetail,
-		// 		existingProvisions,
-		// 		expensesDetail,
-		// 		goals,
-		// 		incomeDetail,
-		// 		liabilityDetail,
-		// 	);
-		// }if(buttonName === "PDF"){
-		// 	handleDownloadAsPdf()
-		// }
-		handleDownloadAsPdf()
+		if (buttonName === 'PPT') {
+			handleDownloadAsPpt(
+				personalDetail,
+				existingPolicies,
+				assetsDetail,
+				existingProvisions,
+				expensesDetail,
+				goals,
+				incomeDetail,
+				liabilityDetail,
+			);
+		}
+		if (buttonName === 'PDF') {
+			handleDownloadAsPdf();
+		} else {
+			handleDownloadAsPpt();
+		}
 	};
 	const ScheduleCall = () => {
 		onNext();
@@ -122,253 +154,278 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 				alignItems: 'flex-start',
 			}}
 		>
-			<Box
-				sx={{
-					width: '100%',
-					display: 'flex',
-					flexDirection: 'row',
-					justifyContent: 'space-between',
-				}}
-			>
-				<Box>
-					<PageTitle header={'Personal Financial Review'} title={'Dashboard'} />
-				</Box>
+			<Box id="downloadContent">
 				<Box
 					sx={{
+						width: '100%',
 						display: 'flex',
-						gap: '10px',
+						flexDirection: 'row',
+						justifyContent: 'space-between',
 					}}
 				>
-					<Button
+					<Box>
+						<PageTitle
+							header={'Personal Financial Review'}
+							title={'Dashboard'}
+						/>
+					</Box>
+					<Box
 						sx={{
 							display: 'flex',
-							color: '#9397BB',
-							padding: '7px 16px',
-							borderRadius: '8px',
-							gap: '8px',
-							backgroundColor: '#fff',
-							'&:hover': { backgroundColor: '#fff' },
-							height: '32px',
+							gap: '10px',
 						}}
-						onClick={editPage}
 					>
-						<img src={editIcon} alt="editIcon" />
-						<Typography
-							variant="body1"
-							sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
-						>
-							Edit
-						</Typography>
-					</Button>
-					<Button
-						sx={{
-							display: 'flex',
-							color: '#9397BB',
-							padding: '7px 16px',
-							borderRadius: '8px',
-							gap: '8px',
-							backgroundColor: '#fff',
-							'&:hover': { backgroundColor: '#fff' },
-							height: '32px',
-						}}
-						onClick={handleExportOpen}
-					>
-						<Typography
-							variant="body1"
-							sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
-						>
-							Export
-						</Typography>
-						<img src={exportIcon} alt="exportIcon" />
-					</Button>
-				</Box>
-				<Modal
-					open={exportOpen}
-					onClose={handleExportClose}
-					aria-labelledby="modal-modal-title"
-					aria-describedby="modal-modal-description"
-				>
-					<Box sx={exportStyle}>
-						<Box>
-							<Box
-								sx={{
-									display: 'flex',
-									justifyContent: 'space-between',
-									alignItems: 'center',
-									mb: 1,
-								}}
-							>
-								<Typography
-									id="modal-modal-title"
-									variant="h6"
-									component="h2"
-									sx={{
-										color: 'hsla(228, 35%, 20%, 1)',
-										fontWeight: 600,
-									}}
-								>
-									Export Format
-								</Typography>
-								<Button
-									onClick={handleExportClose}
-									sx={{
-										position: 'absolute',
-										top: 20,
-										right: 0,
-									}}
-								>
-									<img src={xclose} alt="editIcon" />
-								</Button>
-							</Box>
-							<Typography
-								id="modal-modal-description"
-								sx={{ mb: 3, color: 'hsla(234, 23%, 65%, 1)' }}
-							>
-								Choose the export option
-							</Typography>
-						</Box>
-						<Box
-							sx={{
-								display: 'flex',
-								gap: '20px',
-								marginBottom: '10px',
-							}}
-						>
-							<Button
-								onClick={() => handleButtonClick('PDF')}
-								sx={{
-									width: '83px',
-									height: '83px',
-									borderRadius: '4px',
-									// backgroundColor: 'hsla(234, 23%, 65%, 98)',
-									display: 'flex',
-									flexDirection: 'column',
-									color: 'hsla(234, 23%, 65%, 1)',
-									border: 'hsla(254, 82%, 26%, 1)',
-									color:
-										activeButton === 'PDF' ? 'hsla(254, 82%, 26%, 1)' : 'white',
-									border:
-										activeButton === 'PDF'
-											? '1px solid hsla(254, 82%, 26%, 1)'
-											: 'none',
-								}}
-							>
-								<img src={pdf} alt="exportpdf" />
-								<Typography>PDF</Typography>
-							</Button>
-							<Button
-								onClick={() => handleButtonClick('PPT')}
-								sx={{
-									width: '83px',
-									height: '83px',
-									borderRadius: '4px',
-									// backgroundColor: 'hsla(234, 23%, 65%, 98)',
-									display: 'flex',
-									flexDirection: 'column',
-									color: 'hsla(234, 23%, 65%, 1)',
-									border: 'hsla(254, 82%, 26%, 1)',
-									color:
-										activeButton === 'PPT' ? 'hsla(254, 82%, 26%, 1)' : 'white',
-									border:
-										activeButton === 'PPT'
-											? '1px solid hsla(254, 82%, 26%, 1)'
-											: 'none',
-								}}
-							>
-								<img src={ppt} alt="exportpdf" />
-								<Typography>PPT</Typography>
-							</Button>
-						</Box>
 						<Button
-							onClick={first}
 							sx={{
 								display: 'flex',
-								alignItems: 'center',
-								justifyContent: 'center',
-								color: 'white',
+								color: '#9397BB',
 								padding: '7px 16px',
 								borderRadius: '8px',
 								gap: '8px',
-								backgroundColor: 'hsla(254, 82%, 26%, 1)',
+								backgroundColor: '#fff',
+								'&:hover': { backgroundColor: '#fff' },
 								height: '32px',
-								fontSize: '0.8rem',
-								fontWeight: '600px',
-								'&:hover': {
-									backgroundColor: 'hsla(254, 82%, 26%, 1)', // Keep the same background color
-								},
 							}}
+							onClick={editPage}
 						>
-							Export
+							<img src={editIcon} alt="editIcon" />
+							<Typography
+								variant="body1"
+								sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
+							>
+								Edit
+							</Typography>
+						</Button>
+						<Button
+							sx={{
+								display: 'flex',
+								color: '#9397BB',
+								padding: '7px 16px',
+								borderRadius: '8px',
+								gap: '8px',
+								backgroundColor: '#fff',
+								'&:hover': { backgroundColor: '#fff' },
+								height: '32px',
+							}}
+							onClick={handleExportOpen}
+						>
+							<Typography
+								variant="body1"
+								sx={{ fontFamily: 'Inter, sans-serif', textTransform: 'none' }}
+							>
+								Export
+							</Typography>
+							<img src={exportIcon} alt="exportIcon" />
 						</Button>
 					</Box>
-				</Modal>
-			</Box>
-			<Box sx={{ width: '100%' }}>
-				<Box sx={{ color: 'white', position: 'absolute', left: 30, top: 150 }}>
-					<Typography variant="h6" sx={{ fontSize: ['16px', '20px', '24px']}}>Hello,</Typography>
-					<Box sx={{ display: 'flex', flexDirection: 'column' }}>
-						<Typography variant="h6" sx={{ fontSize: ['24px', '28px', '32px'] }}>
-							Good Morning,{' '}
-							<span variant="h4" sx={{ fontWeight: '100', lineBreak: 'none' }}>
-								Firstname
-							</span>
+					<Modal
+						open={exportOpen}
+						onClose={handleExportClose}
+						aria-labelledby="modal-modal-title"
+						aria-describedby="modal-modal-description"
+					>
+						<Box sx={exportStyle}>
+							<Box>
+								<Box
+									sx={{
+										display: 'flex',
+										justifyContent: 'space-between',
+										alignItems: 'center',
+										mb: 1,
+									}}
+								>
+									<Typography
+										id="modal-modal-title"
+										variant="h6"
+										component="h2"
+										sx={{
+											color: 'hsla(228, 35%, 20%, 1)',
+											fontWeight: 600,
+										}}
+									>
+										Export Format
+									</Typography>
+									<Button
+										onClick={handleExportClose}
+										sx={{
+											position: 'absolute',
+											top: 20,
+											right: 0,
+										}}
+									>
+										<img src={xclose} alt="editIcon" />
+									</Button>
+								</Box>
+								<Typography
+									id="modal-modal-description"
+									sx={{ mb: 3, color: 'hsla(234, 23%, 65%, 1)' }}
+								>
+									Choose the export option
+								</Typography>
+							</Box>
+							<Box
+								sx={{
+									display: 'flex',
+									gap: '20px',
+									marginBottom: '10px',
+								}}
+							>
+								<Button
+									onClick={() => handleButtonClick('PDF')}
+									sx={{
+										width: '83px',
+										height: '83px',
+										borderRadius: '4px',
+										// backgroundColor: 'hsla(234, 23%, 65%, 98)',
+										display: 'flex',
+										flexDirection: 'column',
+										color: 'hsla(234, 23%, 65%, 1)',
+										border: 'hsla(254, 82%, 26%, 1)',
+										color:
+											activeButton === 'PDF'
+												? 'hsla(254, 82%, 26%, 1)'
+												: 'white',
+										border:
+											activeButton === 'PDF'
+												? '1px solid hsla(254, 82%, 26%, 1)'
+												: 'none',
+									}}
+								>
+									<img src={pdf} alt="exportpdf" />
+									<Typography>PDF</Typography>
+								</Button>
+								<Button
+									onClick={() => handleButtonClick('PPT')}
+									sx={{
+										width: '83px',
+										height: '83px',
+										borderRadius: '4px',
+										// backgroundColor: 'hsla(234, 23%, 65%, 98)',
+										display: 'flex',
+										flexDirection: 'column',
+										color: 'hsla(234, 23%, 65%, 1)',
+										border: 'hsla(254, 82%, 26%, 1)',
+										color:
+											activeButton === 'PPT'
+												? 'hsla(254, 82%, 26%, 1)'
+												: 'white',
+										border:
+											activeButton === 'PPT'
+												? '1px solid hsla(254, 82%, 26%, 1)'
+												: 'none',
+									}}
+								>
+									<img src={ppt} alt="exportpdf" />
+									<Typography>PPT</Typography>
+								</Button>
+							</Box>
+							<Button
+								onClick={first}
+								sx={{
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									color: 'white',
+									padding: '7px 16px',
+									borderRadius: '8px',
+									gap: '8px',
+									backgroundColor: 'hsla(254, 82%, 26%, 1)',
+									height: '32px',
+									fontSize: '0.8rem',
+									fontWeight: '600px',
+									'&:hover': {
+										backgroundColor: 'hsla(254, 82%, 26%, 1)', // Keep the same background color
+									},
+								}}
+							>
+								Export
+							</Button>
+						</Box>
+					</Modal>
+				</Box>
+				<Box sx={{ width: '100%' }}>
+					<Box
+						sx={{ color: 'white', position: 'absolute', left: 30, top: 150 }}
+					>
+						<Typography
+							variant="h6"
+							sx={{ fontSize: ['16px', '20px', '24px'] }}
+						>
+							Hello,
+						</Typography>
+						<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+							<Typography
+								variant="h6"
+								sx={{ fontSize: ['24px', '28px', '32px'] }}
+							>
+								Good Morning,{' '}
+								<span
+									variant="h4"
+									sx={{ fontWeight: '100', lineBreak: 'none' }}
+								>
+									Firstname
+								</span>
+							</Typography>
+						</Box>
+
+						<Typography
+							variant="h6"
+							sx={{ fontSize: ['16px', '20px', '24px'] }}
+						>
+							Check Your Personal Financial Review
 						</Typography>
 					</Box>
-
-					<Typography variant="h6" sx={{ fontSize: ['16px', '20px', '24px'] }}>
-						Check Your Personal Financial Review
-					</Typography>
+					<img
+						src={main}
+						alt="main"
+						style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+						loading="lazy"
+					/>
 				</Box>
-				<img
-					src={main}
-					alt="main"
-					style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-					loading="lazy"
+				<HeaderCard HeaderCardData={profileData} />
+				<NetStats
+					data1={incomeStatsData}
+					data2={expenseStatsData}
+					Header={'NET INCOME'}
+					subHeader1={'Income'}
+					subHeader2={'Expenses'}
 				/>
+				<NetStats
+					data1={assetsStatsData}
+					data2={liabilitiesStatsData}
+					Header={'NET WORTH'}
+					subHeader1={'Assets'}
+					subHeader2={'Liabilities'}
+				/>
+				<GoalCards goalData={goalStatsData} />
+				<Box
+					sx={{
+						width: '100%',
+						display: 'flex',
+						flexWrap: 'wrap',
+						rowGap: '20px',
+						gap: '20px',
+						justifyContent: 'flex-start',
+						alignItems: 'flex-start',
+					}}
+				>
+					<BoxCard
+						data={existingProvisionData}
+						header="EXISTING PROVISIONS"
+						stat="AED24,000"
+						status="increase"
+						percentage="5.5%"
+					/>
+					<BoxCard
+						data={financialPlanningShortfallData}
+						header="FINANCIAL PLANNING SHORTFALL"
+						stat="AED24,000"
+						status="increase"
+						percentage="5.5%"
+					/>
+				</Box>
+				<PolicyTable data={existingPoliciesData} />
 			</Box>
-			<HeaderCard HeaderCardData={profileData} />
-			<NetStats
-				data1={incomeStatsData}
-				data2={expenseStatsData}
-				Header={'NET INCOME'}
-				subHeader1={'Income'}
-				subHeader2={'Expenses'}
-			/>
-			<NetStats
-				data1={assetsStatsData}
-				data2={liabilitiesStatsData}
-				Header={'NET WORTH'}
-				subHeader1={'Assets'}
-				subHeader2={'Liabilities'}
-			/>
-			<GoalCards goalData={goalStatsData} />
-			<Box
-				sx={{
-					width: '100%',
-					display: 'flex',
-					flexWrap: 'wrap',
-					rowGap: '20px',
-					gap: '20px',
-					justifyContent: 'flex-start',
-					alignItems: 'flex-start',
-				}}
-			>
-				<BoxCard
-					data={existingProvisionData}
-					header="EXISTING PROVISIONS"
-					stat="AED24,000"
-					status="increase"
-					percentage="5.5%"
-				/>
-				<BoxCard
-					data={financialPlanningShortfallData}
-					header="FINANCIAL PLANNING SHORTFALL"
-					stat="AED24,000"
-					status="increase"
-					percentage="5.5%"
-				/>
-			</Box>
-			<PolicyTable data={existingPoliciesData} />
 			<Box
 				position={'absolute'}
 				bottom="-100px"
@@ -433,6 +490,7 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 								backgroundColor: 'hsla(254, 82%, 26%, 1)',
 								height: '32px',
 								fontSize: '12px',
+								'&:hover': { backgroundColor: 'hsla(254, 82%, 26%, 1)' },
 							}}
 						>
 							Click here
