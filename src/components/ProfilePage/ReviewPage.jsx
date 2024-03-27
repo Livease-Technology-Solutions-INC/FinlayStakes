@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HeaderCard from '../ProfilePage/reviewPage/HeaderCard';
 import ProfilePageCardData from '../../data/ProfilePageCardData';
 import NetStats from '../ProfilePage/reviewPage/NetStats';
@@ -27,6 +27,8 @@ import { handleDownloadAsPpt } from './ExportPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
+import useAxios from '../../utlis/useAxios';
+import { jwtDecode } from 'jwt-decode';
 
 const style = {
 	position: 'absolute',
@@ -75,12 +77,62 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 
 	const [open, setOpen] = React.useState(false);
 	const [exportOpen, setExportOpen] = React.useState(false);
+	const [firstname, setFirstName] = useState('');
+	const api = useAxios();
 	const handleExportOpen = () => setExportOpen(true);
 	const handleExportClose = () => setExportOpen(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 	const [activeButton, setActiveButton] = useState(null);
+	const [timeOfDay, setTimeOfDay] = useState('');
+	const [newUser, setNewUser] = useState(false);
+	const [exportConfirm, setExportConfirm] = useState(false);
 
+	useEffect(() => {
+		const fetchData = async () => {
+			const token = localStorage.getItem('authTokens');
+			if (token) {
+				const decode = jwtDecode(token);
+				const user_id = decode.user_id;
+				try {
+					const personalResponse = await api.get(
+						`/personal_details/${encodeURIComponent(user_id)}/`,
+					);
+					const fullName = personalResponse.data.name;
+					setFirstName(fullName.split(' ')[0]);
+					checkIfUserExist(fullName.split(' ')[0]);
+				} catch (error) {
+					console.log(error);
+				}
+			}
+		};
+
+		const checkIfUserExist = (tname) => {
+			if (tname === '') {
+				setNewUser(false);
+			} else {
+				setNewUser(true);
+			}
+			console.log('this user exists: ' + newUser);
+		};
+		const getTimeOfDay = () => {
+			const currentHour = new Date().getHours();
+			if (currentHour >= 5 && currentHour < 12) {
+				return 'Morning';
+			} else if (currentHour >= 12 && currentHour < 18) {
+				return 'Afternoon';
+			} else {
+				return 'Evening';
+			}
+		};
+
+		fetchData();
+		checkIfUserExist(firstname);
+		setTimeOfDay(getTimeOfDay());
+	}, []);
+	const toggleValue = () => {
+		setExportConfirm(!exportConfirm);
+	};
 	const handleDownloadAsPdf = () => {
 		const input = document.getElementById('downloadContent');
 
@@ -112,7 +164,7 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 	};
 	const handleButtonClick = (buttonName) => {
 		setActiveButton(buttonName);
-		if (buttonName === 'PPT') {
+		if (exportConfirm === true && buttonName === 'PPT') {
 			handleDownloadAsPpt(
 				personalDetail,
 				existingPolicies,
@@ -123,12 +175,13 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 				incomeDetail,
 				liabilityDetail,
 			);
+			console.log('PDF')
 		}
-		if (buttonName === 'PDF') {
+		if (exportConfirm === true && buttonName === 'PDF') {
 			handleDownloadAsPdf();
-		} else {
-			handleDownloadAsPpt();
+			console.log("PPT")
 		}
+		setExportConfirm(false)
 	};
 	const ScheduleCall = () => {
 		onNext();
@@ -320,7 +373,7 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 								</Button>
 							</Box>
 							<Button
-								onClick={first}
+								onClick={toggleValue}
 								sx={{
 									display: 'flex',
 									alignItems: 'center',
@@ -356,21 +409,21 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 						<Box sx={{ display: 'flex', flexDirection: 'column' }}>
 							<Typography
 								variant="h6"
-								sx={{ fontSize: ['24px', '28px', '32px'] }}
+								sx={{ fontSize: ['16px', '28px', '32px'] }}
 							>
-								Good Morning,{' '}
+								Good {timeOfDay},{' '}
 								<span
 									variant="h4"
 									sx={{ fontWeight: '100', lineBreak: 'none' }}
 								>
-									Firstname
+									{firstname ? firstname : ''}
 								</span>
 							</Typography>
 						</Box>
 
 						<Typography
 							variant="h6"
-							sx={{ fontSize: ['16px', '20px', '24px'] }}
+							sx={{ fontSize: ['12px', '20px', '24px'] }}
 						>
 							Check Your Personal Financial Review
 						</Typography>
@@ -382,7 +435,9 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 						loading="lazy"
 					/>
 				</Box>
+				<br />
 				<HeaderCard HeaderCardData={profileData} />
+				<br />
 				<NetStats
 					data1={incomeStatsData}
 					data2={expenseStatsData}
@@ -390,6 +445,7 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 					subHeader1={'Income'}
 					subHeader2={'Expenses'}
 				/>
+				<br />
 				<NetStats
 					data1={assetsStatsData}
 					data2={liabilitiesStatsData}
@@ -397,7 +453,9 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 					subHeader1={'Assets'}
 					subHeader2={'Liabilities'}
 				/>
+				<br />
 				<GoalCards goalData={goalStatsData} />
+				<br />
 				<Box
 					sx={{
 						width: '100%',
@@ -424,6 +482,7 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 						percentage="5.5%"
 					/>
 				</Box>
+				<br />
 				<PolicyTable data={existingPoliciesData} />
 			</Box>
 			<Box
@@ -478,7 +537,7 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 							</Typography>
 						</Box>
 						<Button
-							onClick={first}
+							onClick={exportConfirm}
 							sx={{
 								display: 'flex',
 								alignItems: 'center',
@@ -497,7 +556,7 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 						</Button>
 					</Box>
 				</Modal>
-				{activeStep === 0 ? (
+				{newUser === false ? (
 					<Button
 						sx={{
 							backgroundColor: '#250C77',

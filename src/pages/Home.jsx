@@ -8,19 +8,6 @@ import { Grid } from '@mui/material';
 import AvailableProjects from './AvailableProjects';
 
 function Home() {
-	const [activeItem, setActiveItem] = useState(SidebarData[0]);
-	const [open, setOpen] = React.useState(true);
-	const updateActiveItem = (newActiveItem) => {
-		setActiveItem(newActiveItem);
-	};
-	const handleDrawerOpen = () => {
-		setOpen(true);
-	};
-
-	const handleDrawerClose = () => {
-		setOpen(false);
-	};
-
 	useEffect(() => {
 		const handleResize = () => {
 			if (window.matchMedia('(max-width: 768px)').matches) {
@@ -40,7 +27,20 @@ function Home() {
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, []); // Empty dependen
+	}, []);
+	const [activeItem, setActiveItem] = useState(SidebarData[0]);
+	const [open, setOpen] = React.useState(true);
+	const updateActiveItem = (newActiveItem) => {
+		setActiveItem(newActiveItem);
+	};
+	const handleDrawerOpen = () => {
+		setOpen(true);
+	};
+
+	const handleDrawerClose = () => {
+		setOpen(false);
+	};
+
 	return (
 		<div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
 			<Navbar
