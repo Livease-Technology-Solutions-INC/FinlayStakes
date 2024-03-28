@@ -3,7 +3,7 @@ import { Box, Table, TableHead, TableBody, TableRow, TableCell, Typography } fro
 
 const PolicyTable = ({ data }) => {
   return (
-    <Box sx={{ width: "100%", display: "flex", flexDirection: "column", backgroundColor: "#fff", padding: "24px" }}>
+    <Box sx={{ width: "100%", display: "flex", flexDirection: "column", backgroundColor: "#fff", padding: "24px", borderRadius: '16px'}}>
       <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="body1">
         EXISTING POLICIES</Typography>
       <Table>

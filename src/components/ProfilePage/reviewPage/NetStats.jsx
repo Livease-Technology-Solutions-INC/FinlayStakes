@@ -6,7 +6,7 @@ import chevronUp from "../../../assets/system-uicons_chevron-up-double.svg"
 
 function NetStats({ data1, data2, Header, subHeader1, subHeader2 }) {
     return (
-        <Box sx={{ width: { xs: '70%', md: '100%' }, display: "flex", flexDirection: "column", backgroundColor: "#fff", padding: "24px" }}>
+        <Box sx={{ width: { xs: '70%', md: '100%' }, display: "flex", flexDirection: "column", backgroundColor: "#fff", padding: "24px", borderRadius: '16px' }}>
             <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700", marginBottom: "32px" }} variant="body1">
                 {Header}
             </Typography>

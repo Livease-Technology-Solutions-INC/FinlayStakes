@@ -43,7 +43,7 @@ function ProfilePageCardData() {
             icon: <img src={incomeIcon} alt="Income" />,
             subHeader: 'AED' + totalIncome,
             stats: {
-                stats: "'0.25%",
+                stats: "0.25%",
                 status: "Increase"
             },
             description: 'Total amount of income generated',
@@ -53,7 +53,7 @@ function ProfilePageCardData() {
             icon: <img src={expensesIcon} alt="Expenses" />,
             subHeader: 'AED' + totalExpenses,
             stats: {
-                stats: "'0.25%",
+                stats: "0.25%",
                 status: "Decrease"
             },
             description: 'Total amount of Expense generated',

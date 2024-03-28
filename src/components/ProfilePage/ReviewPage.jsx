@@ -175,13 +175,13 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 				incomeDetail,
 				liabilityDetail,
 			);
-			console.log('PDF')
+			console.log('PDF');
 		}
 		if (exportConfirm === true && buttonName === 'PDF') {
 			handleDownloadAsPdf();
-			console.log("PPT")
+			console.log('PPT');
 		}
-		setExportConfirm(false)
+		setExportConfirm(false);
 	};
 	const ScheduleCall = () => {
 		onNext();

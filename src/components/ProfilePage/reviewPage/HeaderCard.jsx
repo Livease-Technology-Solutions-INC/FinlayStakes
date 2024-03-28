@@ -26,7 +26,7 @@ const HeaderCard = ({ HeaderCardData }) => {
                             {(item.stats && item.stats.status==="Increase") ? (<img src={chevronUp}></img>) : (<img src={chevronDown}></img>)}
 
                             <Typography sx={{fontFamily: "Inter", color:"#9397BB"}} textAlign="center"  variant="body1">
-                           <span style={{fontWeight:"700", marginRight:"5px"}}>{item.stats.number}</span> 
+                           <span style={{fontWeight:"700", marginRight:"5px"}}>{item.stats.stats}</span> 
                            {item.stats.status}
                             </Typography>
                         </Box>

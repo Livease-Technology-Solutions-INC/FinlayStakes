@@ -6,7 +6,7 @@ import { Typography, Box, Divider } from '@mui/material';
 
 function BoxCard({ data, header, stat, status, percentage }) {
     return (
-        <Box sx={{ width:{ xs: '70%', md: '100%' }, maxWidth:"550px", display: "flex", flexDirection: "column", backgroundColor: "#fff", padding: "24px", gap:"16px" }}>
+        <Box sx={{ width:{ xs: '70%', md: '100%' }, maxWidth:"550px", display: "flex", flexDirection: "column", backgroundColor: "#fff", padding: "24px", gap:"16px", borderRadius: '16px' }}>
             <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap:"16px" }}>
                 <Typography sx={{ fontFamily: "Inter", color: "#212844", fontWeight: "700" }} variant="body1">
                     {header}
