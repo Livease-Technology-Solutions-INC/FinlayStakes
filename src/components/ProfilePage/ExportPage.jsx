@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import InputField from '../Input';
 import PhoneInput from 'react-phone-input-2';
+import CurrencyTextField from '@lupus-ai/mui-currency-textfield';
 import {
 	Radio,
 	RadioGroup,
@@ -390,8 +391,8 @@ function ExportPage() {
 							}
 						/>
 						<InputField
-							label={'Nationality & Country of Birth'}
-							placeholder={'Nationality & Country of Birth'}
+							label={'Nationality'}
+							placeholder={'Nationality'}
 							value={personalDetail.nationality}
 							onChange={(nationality) =>
 								handleChange('personalDetail', 'nationality', nationality)
@@ -519,14 +520,22 @@ function ExportPage() {
 						rowGap={'24px'}
 						alignItems={'flex-start'}
 					>
-						<InputField
-							label={'Interest'}
-							placeholder={'Interest'}
-							value={incomeDetail.Interest}
-							onChange={(Interest) =>
-								handleChange('incomeDetail', 'Interest', Interest)
-							}
-						/>
+						<div style={{ display: 'flex', alignItems: 'center' }}>
+							<span style={{ marginRight: '5px' }}>$</span>
+							<InputField
+								label={'Interest'}
+								placeholder={'Interest'}
+								value={incomeDetail.Interest}
+								currencySymbol="$"
+								variant="outlined"
+								outputFormat="string"
+								decimalCharacter="."
+								digitGroupSeparator=","
+								onChange={(Interest) =>
+									handleChange('incomeDetail', 'Interest', Interest)
+								}
+							/>
+						</div>
 						<InputField
 							label={'Income from Property'}
 							placeholder={'Income from Property'}
