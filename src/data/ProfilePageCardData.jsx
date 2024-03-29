@@ -41,7 +41,7 @@ function ProfilePageCardData() {
         {
             header: 'Total Income',
             icon: <img src={incomeIcon} alt="Income" />,
-            subHeader: 'AED' + totalIncome,
+            subHeader: 'AED' + (totalIncome || "0"),
             stats: {
                 stats: "0.25%",
                 status: "Increase"
@@ -51,7 +51,7 @@ function ProfilePageCardData() {
         {
             header: 'Total Expenses',
             icon: <img src={expensesIcon} alt="Expenses" />,
-            subHeader: 'AED' + totalExpenses,
+            subHeader: 'AED' + (totalExpenses || "0"),
             stats: {
                 stats: "0.25%",
                 status: "Decrease"
@@ -61,7 +61,7 @@ function ProfilePageCardData() {
         {
             header: 'Total Assets',
             icon: <img src={assetsIcon} alt="Assets" />,
-            subHeader: 'AED' + totalAssets,
+            subHeader: 'AED' + (totalAssets || "0"),
             stats: {
                 stats: "0.35%",
                 status: "Increase"
@@ -71,7 +71,7 @@ function ProfilePageCardData() {
         {
             header: 'Total Liabilities',
             icon: <img src={liabilitiesIcon} alt="Liabilities" />,
-            subHeader: 'AED' + totalLiabilities,
+            subHeader: 'AED' + (totalLiabilities || "0"),
             stats: {
                 stats: "0.15%",
                 status: "Increase"

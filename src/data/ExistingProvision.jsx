@@ -29,27 +29,27 @@ function ExistingProvisionData() {
 	return [
 		{
 			name: 'Children’s  Education -',
-			stat: 'AED' + ExistingProvision.children_education,
+			stat: 'AED' + (ExistingProvision.children_education || "0"),
 			color: '#06B48A',
 		},
 		{
 			name: 'Retirement - ',
-			stat: 'AED' + ExistingProvision.retirement,
+			stat: 'AED' + (ExistingProvision.retirement || "0"),
 			color: '#6560F0',
 		},
 		{
 			name: 'Life Insurance -',
-			stat: 'AED' + ExistingProvision.life_insurance,
+			stat: 'AED' + (ExistingProvision.life_insurance || "0"),
 			color: '#3DD9EB',
 		},
 		{
-			name: 'Critical Illness',
-			stat: 'AED' + ExistingProvision.critical_illness,
+			name: 'Critical Illness -',
+			stat: 'AED' + (ExistingProvision.critical_illness || "0"),
 			color: '#D76B66',
 		},
 		{
-			name: 'Disability',
-			stat: 'AED' + ExistingProvision.disability,
+			name: 'Disability -',
+			stat: 'AED' + (ExistingProvision.disability || "0"),
 			color: '#F6CF7D',
 		},
 	];

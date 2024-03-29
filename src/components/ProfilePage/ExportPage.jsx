@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import InputField from '../Input';
 import PhoneInput from 'react-phone-input-2';
-import CurrencyTextField from '@lupus-ai/mui-currency-textfield';
+import CurrencyInput from 'react-currency-input-field';
 import {
 	Radio,
 	RadioGroup,
@@ -32,6 +32,8 @@ import { updateGoals } from '../../state-management/reducer/goalsSlice';
 import { updateIncomeDetail } from '../../state-management/reducer/incomeDetailSlice';
 import { updateLiabilityDetail } from '../../state-management/reducer/liabilityDetailSlice';
 import { updatePersonalDetail } from '../../state-management/reducer/personalDetailSlice';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 
 export const handleDownloadAsPpt = ({
 	personalDetail,
@@ -520,22 +522,19 @@ function ExportPage() {
 						rowGap={'24px'}
 						alignItems={'flex-start'}
 					>
-						<div style={{ display: 'flex', alignItems: 'center' }}>
-							<span style={{ marginRight: '5px' }}>$</span>
-							<InputField
-								label={'Interest'}
-								placeholder={'Interest'}
-								value={incomeDetail.Interest}
-								currencySymbol="$"
-								variant="outlined"
-								outputFormat="string"
-								decimalCharacter="."
-								digitGroupSeparator=","
-								onChange={(Interest) =>
-									handleChange('incomeDetail', 'Interest', Interest)
-								}
-							/>
-						</div>
+						<InputField
+							prefix="$"
+							label={'Interest'}
+							placeholder={'Interest'}
+							value={incomeDetail.Interest}
+							min="0.01"
+							step="0.01"
+							onChange={(Interest) =>
+								handleChange('incomeDetail', 'Interest', Interest)
+							}
+							type="number"
+						/>
+
 						<InputField
 							label={'Income from Property'}
 							placeholder={'Income from Property'}

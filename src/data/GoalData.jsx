@@ -30,42 +30,42 @@ function GoalData() {
 		{
 			header: "Children's Education",
 			status: 'Budget',
-			stats: 'AED' + Goal.children_education,
+			stats: 'AED' + (Goal.children_education || "0"),
 		},
 		{
 			header: 'Capital Required for University',
 			status: 'Budget',
-			stats: 'AED' + Goal.universityCapital,
+			stats: 'AED' + (Goal.universityCapital || "0"),
 		},
 		{
 			header: 'Years left for University',
 			status: 'Year',
-			stats: Goal.years_left_for_university + 'Years',
+			stats: (Goal.years_left_for_university || "0") + 'Years',
 		},
 		{
 			header: 'Where would you like to retire?',
 			status: 'Location',
-			stats: Goal.where_would_you_like_to_retire,
+			stats: (Goal.where_would_you_like_to_retire || "0"),
 		},
 		{
 			header: 'Income required after retirement?',
 			status: 'Budget',
-			stats: 'AED' + Goal.income_required_after_retirement,
+			stats: 'AED' + (Goal.income_required_after_retirement || "0"),
 		},
 		{
 			header: 'Annual income for family incase of death',
 			status: 'Budget',
-			stats: 'AED' + Goal.annual_income_for_family_incase_of_death,
+			stats: 'AED' + (Goal.annual_income_for_family_incase_of_death || "0"),
 		},
 		{
 			header: 'Annual income for family incase of critical illness',
 			status: 'Budget',
-			stats: 'AED' + Goal.annual_income_for_family_incase_of_critical_illness,
+			stats: 'AED' + (Goal.annual_income_for_family_incase_of_critical_illness || "0"),
 		},
 		{
 			header: 'Annual income for family incase of disability',
 			status: 'Budget',
-			stats: 'AED' + Goal.annual_income_for_family_incase_of_disability,
+			stats: 'AED' + (Goal.annual_income_for_family_incase_of_disability || "0"),
 		},
 	];
 }

@@ -537,7 +537,7 @@ function ReviewPage({ onNext, exportPage, editPage, first, activeStep }) {
 							</Typography>
 						</Box>
 						<Button
-							onClick={exportConfirm}
+							onClick={first}
 							sx={{
 								display: 'flex',
 								alignItems: 'center',

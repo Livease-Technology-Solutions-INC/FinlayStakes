@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Toolbar from '@mui/material/Toolbar';
-
+import chevron from '../../src/assets/solar_logout-outline.svg';
 import info from '../assets/info_outline.svg';
 import bellIcon from '../assets/notifications_none.svg';
 import sitetheme from '../assets/moon-solid 1.svg';
@@ -141,7 +141,7 @@ const Navbar = ({
 						edge="start"
 						sx={{ mr: 2, display: { xs: 'block', md: 'block' } }}
 					>
-						<img src={barIcon} alt="icon" loading='lazy'/>
+						<img src={barIcon} alt="icon" loading="lazy" />
 					</IconButton>
 					<Box
 						sx={{
@@ -200,7 +200,7 @@ const Navbar = ({
 						width: drawerWidth,
 						boxSizing: 'border-box',
 					},
-					display: { xs: 'block', md: 'block' }
+					display: { xs: 'block', md: 'block' },
 				}}
 				variant="persistent"
 				anchor="left"
@@ -208,9 +208,9 @@ const Navbar = ({
 			>
 				<DrawerHeader>
 					<Box sx={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
-						<img src={Logo} alt="logo" loading='lazy' />
+						<img src={Logo} alt="logo" loading="lazy" />
 						<IconButton onClick={handleDrawerClose}>
-							<img src={barIcon} alt="icon" loading='lazy'/>
+							<img src={barIcon} alt="icon" loading="lazy" />
 						</IconButton>
 					</Box>
 				</DrawerHeader>
@@ -254,6 +254,26 @@ const Navbar = ({
 						</ListItem>
 					))}
 				</List>
+				<Button
+					onClick={logoutUser}
+					sx={{
+						position: 'fixed', 
+						left: '1%', 
+						padding: '0px 24px',
+						bottom: '40px', 
+						color: '#9397BB',
+						textTransform: 'none',
+						fontSize: '16px',
+						zIndex: 9, 
+					}}
+				>
+					<img
+						src={chevron}
+						style={{ marginRight: '16px' }}
+						alt="Chevron Icon"
+					/>
+					Logout
+				</Button>
 			</Drawer>
 		</Box>
 	);

@@ -29,27 +29,27 @@ function FinancialPlanningShortfallData() {
 	return [
 		{
 			name: 'Children’s  Education -',
-			stat: 'AED' + FinancialPlanningShortfall.children_education,
+			stat: 'AED' + (FinancialPlanningShortfall.children_education || "0"),
 			color: '#06B48A',
 		},
 		{
 			name: 'Retirement - ',
-			stat: 'AED' + FinancialPlanningShortfall.retirement,
+			stat: 'AED' + (FinancialPlanningShortfall.retirement || "0"),
 			color: '#6560F0',
 		},
 		{
 			name: 'Life Insurance -',
-			stat: 'AED' + FinancialPlanningShortfall.life_insurance,
+			stat: 'AED' + (FinancialPlanningShortfall.life_insurance || "0"),
 			color: '#3DD9EB',
 		},
 		{
-			name: 'Critical Illness',
-			stat: 'AED' + FinancialPlanningShortfall.critical_illness,
+			name: 'Critical Illness -',
+			stat: 'AED' + (FinancialPlanningShortfall.critical_illness || "0"),
 			color: '#D76B66',
 		},
 		{
-			name: 'Disability',
-			stat: 'AED' + FinancialPlanningShortfall.disability,
+			name: 'Disability -',
+			stat: 'AED' + (FinancialPlanningShortfall.disability || "0"),
 			color: '#F6CF7D',
 		},
 	];

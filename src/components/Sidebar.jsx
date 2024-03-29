@@ -90,7 +90,7 @@ const Sidebar = ({ sidebarData, updateActiveItem, activeItem }) => {
 					</ListItem>
 				))}
 			</List>
-			<Button
+			{/* <Button
 				onClick={logoutUser}
 				sx={{
 					position: 'absolute',
@@ -103,7 +103,7 @@ const Sidebar = ({ sidebarData, updateActiveItem, activeItem }) => {
 			>
 				<img src={chevron} style={{ marginRight: '16px' }}></img>
 				Logout
-			</Button>
+			</Button> */}
 		</Drawer>
 	);
 };
