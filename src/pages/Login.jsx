@@ -11,10 +11,10 @@ function Login() {
 			<Box
 				sx={{
 					width: '100%',
-					maxWidth: '650px',
+					maxWidth: '550px',
 					maxHeight: '100%',
-					'@media screen and (max-width: 600px)': {
-						display: 'none', 
+					'@media screen and (max-width: 800px)': {
+						display: 'none',
 					},
 				}}
 			>
@@ -22,13 +22,21 @@ function Login() {
 					src={Background}
 					alt="background"
 					style={{
-						width: '100%',
+						maxWidth: '100%',
 						height: 'auto',
 						objectFit: 'cover',
 					}}
 				/>
 			</Box>
-			<Box className="column-layout" sx={{ width: '100%', maxWidth: '685px' }}>
+			<Box
+				className="column-layout"
+				sx={{
+					maxWidth: '685px',
+					'@media screen and (max-width: 800px)': {
+						marginTop: '20px',
+					},
+				}}
+			>
 				<Routes>
 					<Route path="/" element={<LoginPage />}></Route>
 					<Route

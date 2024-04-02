@@ -20,8 +20,8 @@ import facebook from '../../assets/logos_facebook.svg';
 import AuthContext from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
-import { useGoogleLogin } from '@react-oauth/google'
-import axios from 'axios'
+import { useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 const LoginPage = () => {
 	const [email, setEmail] = useState('');
@@ -33,7 +33,7 @@ const LoginPage = () => {
 	const navigate = useNavigate();
 	const { loginUser } = useContext(AuthContext);
 	const { loginWithGoogle } = useContext(AuthContext);
-	const google_Access_Token = "dksldsdlksj"
+	const google_Access_Token = 'dksldsdlksj';
 
 	//google login start
 	// let googleData = '';
@@ -145,8 +145,15 @@ const LoginPage = () => {
 		<Box>
 			<img
 				src={Logo}
-				style={{ marginBottom: '20px', width: '320px', height: '46px' }}
+				style={{
+					marginBottom: '20px',
+					width: '320px',
+					height: '46px',
+					maxWidth: '100%', 
+					height: 'auto',
+				}}
 				loading="lazy"
+				className="loginImage"
 			/>
 			<Box
 				display="flex"

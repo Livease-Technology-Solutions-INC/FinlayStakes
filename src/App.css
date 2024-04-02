@@ -144,4 +144,16 @@
 	.MuiTableRow-root:last-child {
 		border-bottom: none;
 	}
+	.row-layout {
+		position: static;
+	}
+	.loginImage{
+		width: '220px' !important;
+	}
+}
+
+@media (max-width: 800px) {
+	.row-layout {
+		position: static;
+	}
 }
