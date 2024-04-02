@@ -230,7 +230,7 @@ const LoginPage = () => {
 								fontFamily: 'Inter, sans-serif',
 								fontWeight: '500',
 								alignSelf: 'flex-end',
-								marginTop: '-8px',
+								marginTop: '-3px',
 								cursor: 'pointer',
 							}}
 							onClick={handleForgotPassword}
@@ -245,7 +245,7 @@ const LoginPage = () => {
 						backgroundColor: '#250C77',
 						color: '#fff',
 						padding: '14px 0',
-						marginTop: '48px',
+						marginTop: '28px',
 						borderRadius: '10px',
 					}}
 					variant="contained"
@@ -269,7 +269,7 @@ const LoginPage = () => {
 					flexDirection={'row'}
 					alignItems="center"
 					gap="14px"
-					margin={'30px 0px'}
+					margin={'10px 0px'}
 				>
 					<Divider style={{ flexGrow: 1 }} />
 					<Typography
@@ -335,7 +335,7 @@ const LoginPage = () => {
 					width="100%"
 					justifyContent={'center'}
 					alignItems={'center'}
-					marginTop={'32px'}
+					marginTop={'22px'}
 				>
 					<Typography
 						variant="body2"

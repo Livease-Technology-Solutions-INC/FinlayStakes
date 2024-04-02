@@ -13,6 +13,7 @@ import {
 	MenuItem,
 } from '@mui/material';
 import InputField from '../Input';
+import ReactFlagsSelect from 'react-flags-select';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import nextChevron from '../../assets/carbon_next-outline.svg';
@@ -47,7 +48,14 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 			) {
 				dispatch(updatePersonalDetail({ ...personalDetail, age: age - 1 }));
 			} else {
-				dispatch(updatePersonalDetail({ ...personalDetail, age, DOB: value, maritalStatus: 'single',}));
+				dispatch(
+					updatePersonalDetail({
+						...personalDetail,
+						age,
+						DOB: value,
+						maritalStatus: 'single',
+					}),
+				);
 			}
 		} else {
 			dispatch(updatePersonalDetail({ [field]: value }));
@@ -146,6 +154,8 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 						required
 					/>
 					<InputField
+						label={'Marital Status'}
+						placeholder={'Marital Status'}
 						dropdown={true}
 						options={[
 							{ value: 'single', label: 'Single' },
@@ -153,8 +163,6 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 							{ value: 'divorced', label: 'Divorced' },
 							{ value: 'widowed', label: 'Widowed' },
 						]}
-						label={'Marital Status'}
-						placeholder={'Marital Status'}
 						value={personalDetail.maritalStatus}
 						onChange={(maritalStatus) =>
 							handleChange('maritalStatus', maritalStatus)
@@ -240,7 +248,7 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 							onChange={(email) => handleChange('email', email)}
 							required
 						/>
-						<InputField
+						<ReactFlagsSelect
 							label={'Country of Residence'}
 							placeholder={'Country of Residence'}
 							value={personalDetail.residentCountry}
@@ -248,6 +256,19 @@ const PersonalDetail = ({ onNext, onPrev }) => {
 								handleChange('residentCountry', residentCountry)
 							}
 							required
+							sx={{
+								margin: '0px',
+								fontFamily: 'Roboto Helvetica Arial sans-serif',
+								fontWeight: '400',
+								fontSize: '1rem',
+								lineHeight: '1.5',
+								letterSpacing: '0.00938em',
+								color: '#212844',
+								fontFamily: 'Inter',
+								fontWeight: '600',
+								lineHeight: '19.36px',
+								fontSize: '16px',
+							}}
 						/>
 						<InputField
 							label={'Nationality'}
