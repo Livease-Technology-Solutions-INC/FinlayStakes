@@ -32,9 +32,6 @@ function Login() {
 				className="column-layout"
 				sx={{
 					maxWidth: '100%',
-					'@media screen and (max-width: 800px)': {
-						marginTop: '20px',
-					},
 				}}
 			>
 				<Routes>

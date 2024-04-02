@@ -11,7 +11,7 @@ function SignUp() {
 			<Box
 				sx={{
 					width: '100%',
-					maxWidth: '550px',
+					maxWidth: '660px',
 					maxHeight: '100%',
 					'@media screen and (max-width: 800px)': {
 						display: 'none',
@@ -27,10 +27,7 @@ function SignUp() {
 			<Box
 				className="column-layout"
 				sx={{
-					maxWidth: '685px',
-					'@media screen and (max-width: 800px)': {
-						marginTop: '20px',
-					},
+					maxWidth: '100%',
 				}}
 			>
 				<Routes>
