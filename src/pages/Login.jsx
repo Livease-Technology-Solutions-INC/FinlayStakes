@@ -31,7 +31,7 @@ function Login() {
 			<Box
 				className="column-layout"
 				sx={{
-					maxWidth: '685px',
+					maxWidth: '100%',
 					'@media screen and (max-width: 800px)': {
 						marginTop: '20px',
 					},
