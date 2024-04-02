@@ -11,9 +11,9 @@ function Login() {
 			<Box
 				sx={{
 					width: '100%',
-					maxWidth: '550px',
+					maxWidth: '660px',
 					maxHeight: '100%',
-					'@media screen and (max-width: 800px)': {
+					'@media screen and (max-width: 830px)': {
 						display: 'none',
 					},
 				}}
