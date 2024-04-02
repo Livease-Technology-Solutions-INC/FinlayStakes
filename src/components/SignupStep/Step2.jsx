@@ -37,7 +37,7 @@ const Step2 = ({ email }) => {
 	};
 	const handleContinue = () => {
 		const otpString = otp.join('');
-		console.log('your otp is' + otp)
+		console.log('your otp is' + otp);
 		verifyEmail(storedEmail, otpString);
 	};
 	const handleSubmit = async (e) => {
@@ -50,7 +50,17 @@ const Step2 = ({ email }) => {
 	};
 	return (
 		<Box>
-			<img src={Logo} style={{ marginBottom: '72px' }} loading="lazy"/>
+			<img
+				src={Logo}
+				style={{
+					marginBottom: '20px',
+					width: '320px',
+					height: '46px',
+					maxWidth: '100%',
+					height: 'auto',
+				}}
+				loading="lazy"
+			/>
 			<Box
 				width="100%"
 				display="flex"
@@ -139,6 +149,8 @@ const Step2 = ({ email }) => {
 											justifyContent: 'center',
 											padding: '0',
 											border: 'none',
+											maxWidth: '48px',
+											minWidth: '35px'
 										}}
 									/>
 								</Box>

@@ -14,12 +14,11 @@ import { validateEmail, validateNotEmpty } from '../../resources/functions';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
 
-
 const ResendOTP = () => {
 	const [email, setEmail] = useState('');
 	const [snackbarOpen, setSnackbarOpen] = useState(false);
 	const [snackbarMessage, setSnackbarMessage] = useState('');
-    const {resendOTP} = useContext(AuthContext)
+	const { resendOTP } = useContext(AuthContext);
 	const storedEmail = localStorage.getItem('email');
 
 	const navigate = useNavigate();
@@ -34,18 +33,27 @@ const ResendOTP = () => {
 			setSnackbarOpen(true);
 			return;
 		} else {
-            resendOTP(storedEmail)
+			resendOTP(storedEmail);
 			navigate('/register/verify-email');
 		}
 	};
-    const handleSubmit = async (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		handleContinue()
+		handleContinue();
 	};
 	return (
 		<Box>
 			<form onSubmit={handleSubmit}>
-				<img src={Logo} style={{ marginBottom: '72px' }} />
+				<img
+					src={Logo}
+					style={{
+						marginBottom: '20px',
+						width: '320px',
+						height: '46px',
+						maxWidth: '100%',
+						height: 'auto',
+					}}
+				/>
 				<Box
 					width="100%"
 					display="flex"

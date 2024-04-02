@@ -45,7 +45,7 @@
 }
 .row-layout {
 	width: 100%;
-	height: 100VH;
+	height: 100vh;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;
@@ -146,6 +146,11 @@
 	}
 	.row-layout {
 		position: static;
+	}
+	.otp-box .MuiInputBase-input,
+	.otp-box .MuiOutlinedInput-input,
+	.otp-box .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+		font-size: '10px';
 	}
 }
 

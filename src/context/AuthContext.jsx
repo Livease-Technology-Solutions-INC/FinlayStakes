@@ -80,15 +80,15 @@ export const AuthProvider = ({ children }) => {
 			}),
 		});
 		if (response.status === 201 || 200) {
-			swal.fire({
-				title: 'Registration Successful, Please verify your email',
-				icon: 'success',
-				toast: true,
-				timer: 1000,
-				position: 'top-right',
-				timerProgressBar: true,
-				showConfirmButton: false,
-			});
+			// swal.fire({
+			// 	title: 'Registration Successful, Please verify your email',
+			// 	icon: 'success',
+			// 	toast: true,
+			// 	timer: 1000,
+			// 	position: 'top-right',
+			// 	timerProgressBar: true,
+			// 	showConfirmButton: false,
+			// });
 		} else {
 			console.log(response.status);
 			console.log('there was a server issue');
