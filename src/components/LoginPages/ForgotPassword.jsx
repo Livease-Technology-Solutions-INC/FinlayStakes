@@ -106,6 +106,8 @@ const ForgotPasswordPage = () => {
 					fontWeight: 'Regular',
 					marginBottom: '32px',
 					textAlign: 'left',
+					wordWrap: 'break-word',
+					maxWidth: "400px"
 				}}
 			>
 				Please enter your email. A password reset link will be sent to you on
